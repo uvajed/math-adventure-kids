@@ -7,6 +7,7 @@ const translations = {
     en: {
         // App title and main
         appTitle: 'Math Adventure!',
+        funMathForKids: 'Fun Math for Kids!',
         whoIsPlaying: "Who's playing today?",
         addNewPlayer: 'Add New Player',
         managePlayers: 'Manage Players',
@@ -186,6 +187,7 @@ const translations = {
     de: {
         // App title and main
         appTitle: 'Mathe-Abenteuer!',
+        funMathForKids: 'Mathe-Spaß für Kinder!',
         whoIsPlaying: 'Wer spielt heute?',
         addNewPlayer: 'Neuen Spieler hinzufügen',
         managePlayers: 'Spieler verwalten',
@@ -392,6 +394,14 @@ function setLanguage(lang) {
     currentLanguage = lang;
     localStorage.setItem('mathAdventureLanguage', lang);
     updateAllTranslations();
+    updateHomeLangButtons();
+}
+
+// Update home language toggle button states
+function updateHomeLangButtons() {
+    document.querySelectorAll('.home-lang-toggle .lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === currentLanguage);
+    });
 }
 
 // Load saved language
@@ -587,6 +597,7 @@ function init() {
     renderUserProfiles();
     updateSoundToggle();
     updateAllTranslations();
+    updateHomeLangButtons();
 }
 
 // Setup PIN input behavior for all PIN containers
@@ -929,6 +940,17 @@ function renderGradeButtons() {
 
 // ===== Event Listeners Setup =====
 function setupEventListeners() {
+    // Home language toggle buttons
+    document.querySelectorAll('.home-lang-toggle .lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const lang = btn.dataset.lang;
+            setLanguage(lang);
+            updateHomeLangButtons();
+            renderUserProfiles(); // Re-render profiles with new language
+            playSound('click');
+        });
+    });
+
     // Add user button
     document.getElementById('add-user-btn').addEventListener('click', () => {
         resetRegistrationForm();
