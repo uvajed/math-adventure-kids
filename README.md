@@ -84,10 +84,6 @@ Works in all modern browsers:
 - Safari
 - Mobile browsers (iOS Safari, Chrome for Android)
 
-## License
-
-MIT License - Feel free to use, modify, and share!
-
 ---
 
 Made with fun for kids who love math!
