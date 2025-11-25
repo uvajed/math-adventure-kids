@@ -1348,23 +1348,40 @@ function renderMatch() {
         answer: p.answer
     }));
 
-    const answers = problems.map(p => ({
+    // Shuffle answers
+    const shuffledAnswers = problems.map(p => ({
         id: p.id,
         value: p.answer
     })).sort(() => Math.random() - 0.5);
 
-    let html = '<div class="match-container">';
-    html += '<div class="match-column">';
+    // Create horizontal rows with problems on left, line in middle, answers on right
+    let html = '<div class="match-game">';
+    html += '<div class="match-header"><span>' + t('matchGameDesc') + '</span></div>';
+
+    // Problems column
+    html += '<div class="match-grid">';
+    html += '<div class="match-col match-problems">';
     problems.forEach(p => {
-        html += `<div class="match-item match-problem" data-id="${p.id}">${p.display}</div>`;
+        html += `<div class="match-item match-problem" data-id="${p.id}">
+            <span class="match-text">${p.display}</span>
+            <span class="match-dot"></span>
+        </div>`;
     });
     html += '</div>';
-    html += '<div class="match-column">';
-    answers.forEach(a => {
-        html += `<div class="match-item match-answer" data-id="${a.id}">${a.value}</div>`;
+
+    // Lines column (SVG for drawing connections)
+    html += '<div class="match-lines"><svg id="match-svg" width="100%" height="100%"></svg></div>';
+
+    // Answers column
+    html += '<div class="match-col match-answers">';
+    shuffledAnswers.forEach(a => {
+        html += `<div class="match-item match-answer" data-id="${a.id}">
+            <span class="match-dot"></span>
+            <span class="match-text">${a.value}</span>
+        </div>`;
     });
     html += '</div>';
-    html += '</div>';
+    html += '</div></div>';
 
     gameArea.innerHTML = html;
 
@@ -1416,6 +1433,9 @@ function checkMatch() {
         selectedAnswer.classList.remove('selected');
         matched.push(problemId);
 
+        // Draw connecting line
+        drawMatchLine(selectedProblem, selectedAnswer);
+
         gameState.score += 10;
         gameState.streak++;
         gameState.correctAnswers++;
@@ -1453,6 +1473,35 @@ function checkMatch() {
     }
 
     updateStats();
+}
+
+// Draw a line connecting matched problem and answer
+function drawMatchLine(problemEl, answerEl) {
+    const svg = document.getElementById('match-svg');
+    if (!svg) return;
+
+    const svgRect = svg.getBoundingClientRect();
+    const problemDot = problemEl.querySelector('.match-dot');
+    const answerDot = answerEl.querySelector('.match-dot');
+
+    if (!problemDot || !answerDot) return;
+
+    const problemRect = problemDot.getBoundingClientRect();
+    const answerRect = answerDot.getBoundingClientRect();
+
+    const x1 = problemRect.left + problemRect.width / 2 - svgRect.left;
+    const y1 = problemRect.top + problemRect.height / 2 - svgRect.top;
+    const x2 = answerRect.left + answerRect.width / 2 - svgRect.left;
+    const y2 = answerRect.top + answerRect.height / 2 - svgRect.top;
+
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line.setAttribute('x1', x1);
+    line.setAttribute('y1', y1);
+    line.setAttribute('x2', x2);
+    line.setAttribute('y2', y2);
+    line.setAttribute('class', 'match-line');
+
+    svg.appendChild(line);
 }
 
 // ===== Bubble Pop Mode =====
