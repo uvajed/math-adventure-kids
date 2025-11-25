@@ -31,8 +31,15 @@ python3 -m http.server 8000
 
 **User Management**
 - Users stored in localStorage as `mathAdventureUsers`
-- Each user has: id, name, avatar, grades[], language preference, stats
+- Each user has: id, name, avatar, grades[], language preference, pinHash (optional), stats
 - `currentUser` global holds logged-in user
+
+**PIN Security**
+- Optional 4-digit PIN protection for user profiles
+- PINs are hashed with SHA-256 + salt before storage (never stored in plain text)
+- `hashPin(pin)` - async function using Web Crypto API
+- `verifyPinHash(enteredPin, storedHash)` - async comparison
+- PIN modal appears when selecting a protected profile
 
 **Game State**
 - `gameState` object tracks: grade, mode, score, streak, lives, currentQuestion, prizes won
