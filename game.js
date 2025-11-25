@@ -40,8 +40,34 @@ const gameState = {
         selectedProblem: null,
         selectedAnswer: null,
         matched: []
-    }
+    },
+    prizes: [], // Prizes won during the game
+    lastPrizeStreak: 0 // Track when last prize was given
 };
+
+// Available Prizes - kids win these every 3 correct answers in a row!
+const prizes = [
+    { emoji: '🎁', name: 'Gift Box', points: 15 },
+    { emoji: '🍭', name: 'Lollipop', points: 10 },
+    { emoji: '🍪', name: 'Cookie', points: 10 },
+    { emoji: '🧸', name: 'Teddy Bear', points: 20 },
+    { emoji: '🎈', name: 'Balloon', points: 10 },
+    { emoji: '🍦', name: 'Ice Cream', points: 15 },
+    { emoji: '🎀', name: 'Ribbon', points: 10 },
+    { emoji: '🌟', name: 'Golden Star', points: 25 },
+    { emoji: '🏅', name: 'Medal', points: 20 },
+    { emoji: '🎪', name: 'Circus Ticket', points: 15 },
+    { emoji: '🦋', name: 'Butterfly', points: 10 },
+    { emoji: '🌈', name: 'Rainbow', points: 20 },
+    { emoji: '🎨', name: 'Paint Set', points: 15 },
+    { emoji: '🎮', name: 'Game Controller', points: 25 },
+    { emoji: '📚', name: 'Storybook', points: 15 },
+    { emoji: '🧩', name: 'Puzzle Piece', points: 10 },
+    { emoji: '🎵', name: 'Music Note', points: 10 },
+    { emoji: '🚀', name: 'Rocket Ship', points: 20 },
+    { emoji: '👑', name: 'Crown', points: 30 },
+    { emoji: '💎', name: 'Diamond', points: 30 }
+];
 
 // Grade Level Configurations
 const gradeConfig = {
@@ -563,6 +589,8 @@ function resetGameState() {
         selectedAnswer: null,
         matched: []
     };
+    gameState.prizes = [];
+    gameState.lastPrizeStreak = 0;
 
     if (gameState.timerInterval) {
         clearInterval(gameState.timerInterval);
@@ -1070,6 +1098,8 @@ function popBubble(bubble, correctAnswer) {
 
 // ===== Answer Handling =====
 function handleAnswer(isCorrect, correctAnswer) {
+    let prizeWon = null;
+
     if (isCorrect) {
         gameState.score += 10 + (gameState.streak * 2);
         gameState.streak++;
@@ -1078,6 +1108,12 @@ function handleAnswer(isCorrect, correctAnswer) {
 
         if (gameState.streak > gameState.bestStreak) {
             gameState.bestStreak = gameState.streak;
+        }
+
+        // Check for prize! Award every 3 consecutive correct answers
+        if (gameState.streak > 0 && gameState.streak % 3 === 0 && gameState.streak > gameState.lastPrizeStreak) {
+            prizeWon = awardPrize();
+            gameState.lastPrizeStreak = gameState.streak;
         }
 
         playSound('correct');
@@ -1091,6 +1127,7 @@ function handleAnswer(isCorrect, correctAnswer) {
         showFeedback(true);
     } else {
         gameState.streak = 0;
+        gameState.lastPrizeStreak = 0; // Reset prize streak when wrong
         gameState.lives--;
         playSound('wrong');
         updateSpeech(speeches.incorrect[Math.floor(Math.random() * speeches.incorrect.length)]);
@@ -1104,26 +1141,68 @@ function handleAnswer(isCorrect, correctAnswer) {
         return;
     }
 
-    setTimeout(() => {
-        gameState.currentQuestion++;
+    // Show prize popup if won, then continue game
+    if (prizeWon) {
+        showPrize(prizeWon, () => {
+            proceedToNextQuestion();
+        });
+    } else {
+        setTimeout(() => {
+            proceedToNextQuestion();
+        }, 1500);
+    }
+}
 
-        if (gameState.currentQuestion >= gameState.totalQuestions) {
-            endGame();
-        } else {
-            updateProgress();
-            switch (gameState.mode) {
-                case 'fill-blank':
-                    renderFillBlank();
-                    break;
-                case 'quiz':
-                    renderQuiz();
-                    break;
-                case 'bubble':
-                    renderBubble();
-                    break;
-            }
+function proceedToNextQuestion() {
+    gameState.currentQuestion++;
+
+    if (gameState.currentQuestion >= gameState.totalQuestions) {
+        endGame();
+    } else {
+        updateProgress();
+        switch (gameState.mode) {
+            case 'fill-blank':
+                renderFillBlank();
+                break;
+            case 'quiz':
+                renderQuiz();
+                break;
+            case 'bubble':
+                renderBubble();
+                break;
         }
-    }, 1500);
+    }
+}
+
+// ===== Prize System =====
+function awardPrize() {
+    const randomPrize = prizes[Math.floor(Math.random() * prizes.length)];
+    const prizeInstance = { ...randomPrize, wonAt: gameState.streak };
+    gameState.prizes.push(prizeInstance);
+    gameState.score += randomPrize.points;
+    return prizeInstance;
+}
+
+function showPrize(prize, callback) {
+    const prizePopup = document.getElementById('prize-popup');
+    const prizeEmoji = document.getElementById('prize-emoji');
+    const prizeName = document.getElementById('prize-name');
+    const prizePoints = document.getElementById('prize-points');
+
+    prizeEmoji.textContent = prize.emoji;
+    prizeName.textContent = prize.name;
+    prizePoints.textContent = `+${prize.points} bonus points!`;
+
+    prizePopup.classList.remove('hidden');
+    prizePopup.classList.add('show');
+    playSound('prize');
+
+    // Auto-close after 2 seconds
+    setTimeout(() => {
+        prizePopup.classList.remove('show');
+        prizePopup.classList.add('hidden');
+        if (callback) callback();
+    }, 2000);
 }
 
 function showFeedback(isCorrect, correctAnswer = null) {
@@ -1190,12 +1269,29 @@ function endGame() {
         }, (i + 1) * 500);
     });
 
+    // Show prizes won
+    const prizesWonDiv = document.getElementById('prizes-won');
+    const prizesList = document.getElementById('prizes-list');
+    if (gameState.prizes.length > 0) {
+        prizesWonDiv.classList.remove('hidden');
+        prizesList.innerHTML = gameState.prizes.map((prize, i) => `
+            <div class="prize-item" style="animation-delay: ${i * 0.1}s">
+                <span class="prize-item-emoji">${prize.emoji}</span>
+                <span class="prize-item-name">${prize.name}</span>
+            </div>
+        `).join('');
+    } else {
+        prizesWonDiv.classList.add('hidden');
+        prizesList.innerHTML = '';
+    }
+
     // Show achievements
     const achievements = [];
     if (gameState.correctAnswers === gameState.totalQuestions) achievements.push('🏆 Perfect Score!');
     if (gameState.bestStreak >= 5) achievements.push('🔥 Hot Streak!');
     if (gameState.score >= 100) achievements.push('⭐ Math Star!');
     if (gameState.lives === 5) achievements.push('❤️ Flawless!');
+    if (gameState.prizes.length >= 3) achievements.push('🎁 Prize Collector!');
 
     const achievementsDiv = document.getElementById('achievements');
     achievementsDiv.innerHTML = achievements.map(a => `<div class="achievement">${a}</div>`).join('');
@@ -1224,7 +1320,8 @@ const sounds = {
     star: { frequency: 880, duration: 0.2, type: 'sine' },
     start: { frequency: 440, duration: 0.1, type: 'sine', sequence: [440, 554.37, 659.25] },
     win: { frequency: 523.25, duration: 0.15, type: 'sine', sequence: [523.25, 659.25, 783.99, 1046.50] },
-    end: { frequency: 392, duration: 0.2, type: 'sine' }
+    end: { frequency: 392, duration: 0.2, type: 'sine' },
+    prize: { frequency: 587.33, duration: 0.12, type: 'sine', sequence: [587.33, 739.99, 880, 1046.50, 1174.66] }
 };
 
 let audioContext = null;
