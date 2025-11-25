@@ -752,6 +752,7 @@ function startGamePlay() {
     document.getElementById('game-character-emoji').textContent = currentUser ? currentUser.avatar : '🦊';
     updateStats();
     updateProgress();
+    updatePrizeCollection(); // Reset prize display
 
     // Reset timer color
     document.getElementById('timer').style.color = '';
@@ -1180,7 +1181,25 @@ function awardPrize() {
     const prizeInstance = { ...randomPrize, wonAt: gameState.streak };
     gameState.prizes.push(prizeInstance);
     gameState.score += randomPrize.points;
+    updatePrizeCollection();
     return prizeInstance;
+}
+
+function updatePrizeCollection() {
+    const prizeCollection = document.getElementById('prize-collection');
+    const collectedPrizes = document.getElementById('collected-prizes');
+
+    if (gameState.prizes.length > 0) {
+        prizeCollection.classList.remove('hidden');
+        collectedPrizes.innerHTML = gameState.prizes.map((prize, i) => `
+            <span class="collected-prize-item" style="animation-delay: ${i * 0.1}s" title="${prize.name}">
+                ${prize.emoji}
+            </span>
+        `).join('');
+    } else {
+        prizeCollection.classList.add('hidden');
+        collectedPrizes.innerHTML = '';
+    }
 }
 
 function showPrize(prize, callback) {
@@ -1188,21 +1207,23 @@ function showPrize(prize, callback) {
     const prizeEmoji = document.getElementById('prize-emoji');
     const prizeName = document.getElementById('prize-name');
     const prizePoints = document.getElementById('prize-points');
+    const prizeStreakMsg = document.getElementById('prize-streak-msg');
 
     prizeEmoji.textContent = prize.emoji;
     prizeName.textContent = prize.name;
     prizePoints.textContent = `+${prize.points} bonus points!`;
+    prizeStreakMsg.textContent = `🔥 ${gameState.streak} in a row! 🔥`;
 
     prizePopup.classList.remove('hidden');
     prizePopup.classList.add('show');
     playSound('prize');
 
-    // Auto-close after 2 seconds
+    // Auto-close after 2.5 seconds
     setTimeout(() => {
         prizePopup.classList.remove('show');
         prizePopup.classList.add('hidden');
         if (callback) callback();
-    }, 2000);
+    }, 2500);
 }
 
 function showFeedback(isCorrect, correctAnswer = null) {

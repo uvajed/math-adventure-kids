@@ -2066,10 +2066,110 @@ body {
 }
 
 .prize-streak-msg {
-    font-size: 0.9rem;
-    color: #666;
-    font-style: italic;
+    font-size: 1rem;
+    color: #e67e22;
+    font-weight: bold;
     position: relative;
+}
+
+/* Prize Burst Effect */
+.prize-burst {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.burst-star {
+    position: absolute;
+    font-size: 1.5rem;
+    animation: burstOut 1s ease-out forwards;
+    opacity: 0;
+}
+
+.burst-star:nth-child(1) { animation-delay: 0s; }
+.burst-star:nth-child(2) { animation-delay: 0.05s; }
+.burst-star:nth-child(3) { animation-delay: 0.1s; }
+.burst-star:nth-child(4) { animation-delay: 0.15s; }
+.burst-star:nth-child(5) { animation-delay: 0.2s; }
+.burst-star:nth-child(6) { animation-delay: 0.25s; }
+.burst-star:nth-child(7) { animation-delay: 0.3s; }
+.burst-star:nth-child(8) { animation-delay: 0.35s; }
+
+@keyframes burstOut {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(0);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--burst-x, 100px), var(--burst-y, -100px)) scale(1);
+    }
+}
+
+.burst-star:nth-child(1) { --burst-x: -80px; --burst-y: -80px; }
+.burst-star:nth-child(2) { --burst-x: 80px; --burst-y: -80px; }
+.burst-star:nth-child(3) { --burst-x: -100px; --burst-y: 0px; }
+.burst-star:nth-child(4) { --burst-x: 100px; --burst-y: 0px; }
+.burst-star:nth-child(5) { --burst-x: -80px; --burst-y: 80px; }
+.burst-star:nth-child(6) { --burst-x: 80px; --burst-y: 80px; }
+.burst-star:nth-child(7) { --burst-x: 0px; --burst-y: -100px; }
+.burst-star:nth-child(8) { --burst-x: 0px; --burst-y: 100px; }
+
+/* Prize Collection During Game */
+.prize-collection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #fff9e6, #fff3cd);
+    border: 2px solid #ffc107;
+    border-radius: var(--radius-full);
+    padding: 8px 16px;
+    margin: 10px auto;
+    max-width: fit-content;
+    animation: slideIn 0.3s ease;
+}
+
+.prize-collection.hidden {
+    display: none;
+}
+
+.prize-collection-label {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #b8860b;
+}
+
+.collected-prizes {
+    display: flex;
+    gap: 6px;
+}
+
+.collected-prize-item {
+    font-size: 1.5rem;
+    animation: prizeCollect 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+@keyframes prizeCollect {
+    0% {
+        transform: scale(0) rotate(-180deg);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.3) rotate(10deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
 }
 
 /* Prize Animations */
@@ -2175,6 +2275,10 @@ body {
         font-size: 1rem;
     }
 
+    .prize-streak-msg {
+        font-size: 0.9rem;
+    }
+
     .prizes-won {
         padding: 15px;
     }
@@ -2186,5 +2290,22 @@ body {
 
     .prize-item-emoji {
         font-size: 1.75rem;
+    }
+
+    .prize-collection {
+        padding: 6px 12px;
+        gap: 8px;
+    }
+
+    .prize-collection-label {
+        font-size: 0.8rem;
+    }
+
+    .collected-prize-item {
+        font-size: 1.25rem;
+    }
+
+    .burst-star {
+        font-size: 1.2rem;
     }
 }
