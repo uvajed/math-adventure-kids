@@ -1463,13 +1463,20 @@ function renderBubble() {
     const options = generateOptions(problem.answer);
     const colors = ['#e74c3c', '#3498db', '#2ecc71', '#9b59b6', '#f39c12', '#1abc9c'];
 
-    let html = `<div class="bubble-question">${problem.display}</div>`;
+    let html = '<div class="bubble-game-wrapper">';
+    html += `<div class="bubble-question">${problem.display}</div>`;
     html += '<div class="bubble-container" id="bubble-container"></div>';
+    html += '</div>';
 
     gameArea.innerHTML = html;
 
     const container = document.getElementById('bubble-container');
-    const containerWidth = container.offsetWidth - 100;
+    const containerWidth = container.offsetWidth - 80;
+
+    // Spread bubbles across horizontal positions to avoid overlap
+    const positions = [];
+    const bubbleWidth = 75;
+    const spacing = Math.floor(containerWidth / options.length);
 
     options.forEach((opt, i) => {
         setTimeout(() => {
@@ -1478,14 +1485,20 @@ function renderBubble() {
             bubble.dataset.answer = opt;
             bubble.textContent = opt;
             bubble.style.backgroundColor = colors[i % colors.length];
-            bubble.style.left = `${randomInt(20, Math.max(containerWidth, 50))}px`;
-            bubble.style.animationDelay = `${i * 0.5}s`;
-            bubble.style.animationDuration = `${randomInt(3, 5)}s`;
+
+            // Spread bubbles evenly with some randomness
+            const basePos = (i * spacing) + 10;
+            const randomOffset = randomInt(-15, 15);
+            bubble.style.left = `${Math.max(10, Math.min(basePos + randomOffset, containerWidth))}px`;
+
+            // Slower animation: 7-10 seconds instead of 3-5
+            bubble.style.animationDelay = `${i * 0.8}s`;
+            bubble.style.animationDuration = `${randomInt(7, 10)}s`;
 
             bubble.addEventListener('click', () => popBubble(bubble, problem.answer));
 
             container.appendChild(bubble);
-        }, i * 300);
+        }, i * 400);
     });
 }
 

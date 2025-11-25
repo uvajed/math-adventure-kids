@@ -662,43 +662,57 @@ body {
 }
 
 /* Bubble Pop Game */
-.bubble-container {
-    position: relative;
-    width: 100%;
-    height: 300px;
-}
-
-.bubble {
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
+.bubble-game-wrapper {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--white);
-    cursor: pointer;
-    animation: floatUp 4s linear forwards;
-    transition: transform 0.2s ease;
-    box-shadow: inset -5px -5px 15px rgba(0,0,0,0.2), inset 5px 5px 15px rgba(255,255,255,0.3);
-}
-
-.bubble:hover {
-    transform: scale(1.2);
-}
-
-.bubble.pop {
-    animation: pop 0.3s ease forwards;
+    flex-direction: column;
+    width: 100%;
 }
 
 .bubble-question {
     font-size: 2rem;
     font-weight: bold;
     color: var(--dark);
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     text-align: center;
+    padding: 10px;
+    background: var(--light);
+    border-radius: var(--radius-md);
+    position: relative;
+    z-index: 10;
+}
+
+.bubble-container {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    background: linear-gradient(180deg, rgba(168, 237, 234, 0.3) 0%, rgba(254, 214, 227, 0.3) 100%);
+}
+
+.bubble {
+    position: absolute;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--white);
+    cursor: pointer;
+    animation: floatUp 8s linear forwards;
+    transition: transform 0.2s ease;
+    box-shadow: inset -5px -5px 15px rgba(0,0,0,0.2), inset 5px 5px 15px rgba(255,255,255,0.3);
+}
+
+.bubble:hover {
+    transform: scale(1.15);
+}
+
+.bubble.pop {
+    animation: pop 0.3s ease forwards;
 }
 
 /* ===== Feedback ===== */
@@ -923,7 +937,7 @@ body {
 
 @keyframes floatUp {
     0% { bottom: -80px; opacity: 1; }
-    100% { bottom: 100%; opacity: 0.8; }
+    100% { bottom: calc(100% - 80px); opacity: 0.9; }
 }
 
 @keyframes pop {
@@ -1100,17 +1114,19 @@ body {
 
     /* Bubble game mobile */
     .bubble-container {
-        height: 250px;
+        height: 220px;
     }
 
     .bubble {
-        width: 65px;
-        height: 65px;
-        font-size: 1.25rem;
+        width: 60px;
+        height: 60px;
+        font-size: 1.15rem;
     }
 
     .bubble-question {
-        font-size: 1.25rem;
+        font-size: 1.2rem;
+        padding: 8px;
+        margin-bottom: 10px;
     }
 
     /* Buttons mobile */
