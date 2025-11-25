@@ -172,7 +172,16 @@ const translations = {
         // Validation
         pleaseEnterName: 'Please enter your name!',
         pleaseSelectGrade: 'Please select at least one grade level!',
-        noPlayersYet: 'No players yet! Click below to add your first player.'
+        noPlayersYet: 'No players yet! Click below to add your first player.',
+
+        // PIN related
+        createPin: 'Create a 4-digit PIN:',
+        pinHint: 'This keeps your profile private!',
+        enterPin: 'Enter your PIN:',
+        wrongPin: 'Wrong PIN! Try again.',
+        changePin: 'Change PIN:',
+        changePinHint: 'Leave empty to keep current PIN',
+        pleaseEnterPin: 'Please enter a 4-digit PIN!'
     },
     de: {
         // App title and main
@@ -342,7 +351,16 @@ const translations = {
         // Validation
         pleaseEnterName: 'Bitte gib deinen Namen ein!',
         pleaseSelectGrade: 'Bitte wähle mindestens eine Klassenstufe!',
-        noPlayersYet: 'Noch keine Spieler! Klicke unten, um deinen ersten Spieler hinzuzufügen.'
+        noPlayersYet: 'Noch keine Spieler! Klicke unten, um deinen ersten Spieler hinzuzufügen.',
+
+        // PIN related
+        createPin: 'Erstelle eine 4-stellige PIN:',
+        pinHint: 'Das hält dein Profil privat!',
+        enterPin: 'Gib deine PIN ein:',
+        wrongPin: 'Falsche PIN! Versuche es erneut.',
+        changePin: 'PIN ändern:',
+        changePinHint: 'Leer lassen, um aktuelle PIN zu behalten',
+        pleaseEnterPin: 'Bitte gib eine 4-stellige PIN ein!'
     }
 };
 
@@ -426,6 +444,31 @@ const avatars = [
 let users = [];
 let currentUser = null;
 let deleteTargetId = null;
+let pinLoginUserId = null; // User ID attempting to login with PIN
+
+// ===== PIN Hashing =====
+// Hash a PIN using SHA-256 for secure storage
+async function hashPin(pin) {
+    if (!pin) return null;
+
+    // Add a salt to make rainbow table attacks harder
+    const salt = 'MathAdventure2024';
+    const data = new TextEncoder().encode(salt + pin);
+
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+    return hashHex;
+}
+
+// Verify a PIN against a stored hash
+async function verifyPinHash(enteredPin, storedHash) {
+    if (!enteredPin || !storedHash) return false;
+
+    const enteredHash = await hashPin(enteredPin);
+    return enteredHash === storedHash;
+}
 
 // Game State
 const gameState = {
@@ -540,9 +583,145 @@ function init() {
     renderAvatarGrids();
     renderLanguageSelector();
     setupEventListeners();
+    setupPinInputs();
     renderUserProfiles();
     updateSoundToggle();
     updateAllTranslations();
+}
+
+// Setup PIN input behavior for all PIN containers
+function setupPinInputs() {
+    const pinContainers = document.querySelectorAll('.pin-input-container');
+
+    pinContainers.forEach(container => {
+        const inputs = container.querySelectorAll('.pin-digit');
+        const hiddenInput = container.nextElementSibling;
+
+        inputs.forEach((input, index) => {
+            // Handle input
+            input.addEventListener('input', (e) => {
+                const value = e.target.value.replace(/[^0-9]/g, '');
+                e.target.value = value;
+
+                if (value) {
+                    e.target.classList.add('filled');
+                    // Move to next input
+                    if (index < inputs.length - 1) {
+                        inputs[index + 1].focus();
+                    }
+                } else {
+                    e.target.classList.remove('filled');
+                }
+
+                // Update hidden input with combined PIN
+                updatePinValue(container, hiddenInput);
+
+                // Check if PIN is complete (for verification modal)
+                if (container.id === 'pin-verify-container') {
+                    const pin = getPinFromContainer(container);
+                    if (pin.length === 4) {
+                        verifyPin(pin);
+                    }
+                }
+            });
+
+            // Handle backspace
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && !e.target.value && index > 0) {
+                    inputs[index - 1].focus();
+                    inputs[index - 1].value = '';
+                    inputs[index - 1].classList.remove('filled');
+                    updatePinValue(container, hiddenInput);
+                }
+            });
+
+            // Handle paste
+            input.addEventListener('paste', (e) => {
+                e.preventDefault();
+                const pastedData = e.clipboardData.getData('text').replace(/[^0-9]/g, '').slice(0, 4);
+
+                pastedData.split('').forEach((digit, i) => {
+                    if (inputs[i]) {
+                        inputs[i].value = digit;
+                        inputs[i].classList.add('filled');
+                    }
+                });
+
+                updatePinValue(container, hiddenInput);
+
+                // Focus last filled or next empty
+                const nextIndex = Math.min(pastedData.length, inputs.length - 1);
+                inputs[nextIndex].focus();
+
+                // Check if complete for verification
+                if (container.id === 'pin-verify-container' && pastedData.length === 4) {
+                    verifyPin(pastedData);
+                }
+            });
+
+            // Only allow numbers
+            input.addEventListener('keypress', (e) => {
+                if (!/[0-9]/.test(e.key)) {
+                    e.preventDefault();
+                }
+            });
+        });
+    });
+}
+
+// Get PIN value from a container
+function getPinFromContainer(container) {
+    const inputs = container.querySelectorAll('.pin-digit');
+    let pin = '';
+    inputs.forEach(input => {
+        pin += input.value;
+    });
+    return pin;
+}
+
+// Update hidden input with PIN value
+function updatePinValue(container, hiddenInput) {
+    if (hiddenInput) {
+        hiddenInput.value = getPinFromContainer(container);
+    }
+}
+
+// Clear PIN inputs in a container
+function clearPinInputs(container) {
+    const inputs = container.querySelectorAll('.pin-digit');
+    inputs.forEach(input => {
+        input.value = '';
+        input.classList.remove('filled', 'error', 'success');
+    });
+    const hiddenInput = container.nextElementSibling;
+    if (hiddenInput && hiddenInput.type === 'hidden') {
+        hiddenInput.value = '';
+    }
+}
+
+// Show PIN error animation
+function showPinError(container) {
+    const inputs = container.querySelectorAll('.pin-digit');
+    inputs.forEach(input => {
+        input.classList.add('error');
+    });
+
+    setTimeout(() => {
+        inputs.forEach(input => {
+            input.classList.remove('error');
+            input.value = '';
+            input.classList.remove('filled');
+        });
+        inputs[0].focus();
+    }, 600);
+}
+
+// Show PIN success animation
+function showPinSuccess(container) {
+    const inputs = container.querySelectorAll('.pin-digit');
+    inputs.forEach(input => {
+        input.classList.add('success');
+    });
 }
 
 // Render language selector in registration form
@@ -586,13 +765,17 @@ function generateUserId() {
     return 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
 }
 
-function createUser(name, avatar, grades, language) {
+async function createUser(name, avatar, grades, language, pin) {
+    // Hash the PIN before storing
+    const hashedPin = pin ? await hashPin(pin) : null;
+
     const user = {
         id: generateUserId(),
         name: name,
         avatar: avatar,
         grades: grades,
         language: language || currentLanguage,
+        pinHash: hashedPin, // Store hashed PIN (not plain text)
         stats: {
             totalGames: 0,
             totalScore: 0,
@@ -662,6 +845,7 @@ function renderUserProfiles() {
         const gradeLabel = (grades) => grades.length > 1 ? t('grades') : t('grade');
         container.innerHTML = users.map(user => `
             <div class="user-profile-card" data-user-id="${user.id}">
+                ${user.pinHash ? '<span class="profile-lock">🔒</span>' : ''}
                 <span class="user-avatar">${user.avatar}</span>
                 <span class="user-name">${user.name}</span>
                 <span class="user-grades">${gradeLabel(user.grades)}: ${user.grades.join(', ')}</span>
@@ -672,7 +856,7 @@ function renderUserProfiles() {
         container.querySelectorAll('.user-profile-card').forEach(card => {
             card.addEventListener('click', () => {
                 const userId = card.dataset.userId;
-                loginUser(userId);
+                attemptLogin(userId);
             });
         });
     }
@@ -776,6 +960,9 @@ function setupEventListeners() {
     document.getElementById('confirm-delete-btn').addEventListener('click', confirmDelete);
     document.getElementById('cancel-delete-btn').addEventListener('click', closeDeleteModal);
 
+    // PIN modal cancel button
+    document.getElementById('cancel-pin-btn').addEventListener('click', closePinModal);
+
     // Switch user button
     document.getElementById('switch-user-btn').addEventListener('click', () => {
         currentUser = null;
@@ -829,9 +1016,15 @@ function resetRegistrationForm() {
     avatarGrid.querySelectorAll('.avatar-option').forEach((btn, i) => {
         btn.classList.toggle('selected', i === 0);
     });
+
+    // Reset PIN inputs
+    const pinContainer = document.querySelector('#register-screen .pin-input-container');
+    if (pinContainer) {
+        clearPinInputs(pinContainer);
+    }
 }
 
-function registerUser() {
+async function registerUser() {
     const name = document.getElementById('reg-name').value.trim();
     const selectedAvatar = document.querySelector('#avatar-grid .avatar-option.selected');
     const avatar = selectedAvatar ? selectedAvatar.dataset.avatar : avatars[0];
@@ -839,6 +1032,7 @@ function registerUser() {
         .map(cb => parseInt(cb.value))
         .sort((a, b) => a - b);
     const language = document.getElementById('reg-language').value || currentLanguage;
+    const pin = document.getElementById('reg-pin').value;
 
     // Validation
     if (!name) {
@@ -851,12 +1045,91 @@ function registerUser() {
         return;
     }
 
-    // Create user with language preference
-    const user = createUser(name, avatar, grades, language);
+    // Validate PIN (must be 4 digits if provided)
+    if (pin && pin.length !== 4) {
+        alert(t('pleaseEnterPin'));
+        return;
+    }
+
+    // Create user with language preference and PIN (will be hashed)
+    const user = await createUser(name, avatar, grades, language, pin || null);
 
     // Auto-login the new user
     loginUser(user.id);
     playSound('start');
+}
+
+// Attempt to login - check if PIN is required
+function attemptLogin(userId) {
+    const user = getUserById(userId);
+    if (!user) return;
+
+    if (user.pinHash) {
+        // Show PIN modal
+        openPinModal(user);
+    } else {
+        // No PIN, login directly
+        loginUser(userId);
+    }
+}
+
+// Open PIN verification modal
+function openPinModal(user) {
+    pinLoginUserId = user.id;
+
+    document.getElementById('pin-modal-avatar').textContent = user.avatar;
+    document.getElementById('pin-modal-name').textContent = user.name;
+    document.getElementById('pin-error').classList.add('hidden');
+
+    const container = document.getElementById('pin-verify-container');
+    clearPinInputs(container);
+
+    document.getElementById('pin-modal').classList.remove('hidden');
+
+    // Focus first PIN input
+    setTimeout(() => {
+        container.querySelector('.pin-digit').focus();
+    }, 100);
+
+    playSound('click');
+}
+
+// Close PIN modal
+function closePinModal() {
+    pinLoginUserId = null;
+    document.getElementById('pin-modal').classList.add('hidden');
+
+    const container = document.getElementById('pin-verify-container');
+    clearPinInputs(container);
+}
+
+// Verify entered PIN
+async function verifyPin(enteredPin) {
+    if (!pinLoginUserId) return;
+
+    const user = getUserById(pinLoginUserId);
+    if (!user) return;
+
+    const container = document.getElementById('pin-verify-container');
+
+    // Compare hashed PINs
+    const isMatch = await verifyPinHash(enteredPin, user.pinHash);
+
+    if (isMatch) {
+        // Success!
+        showPinSuccess(container);
+        playSound('correct');
+
+        setTimeout(() => {
+            closePinModal();
+            loginUser(user.id);
+        }, 400);
+    } else {
+        // Wrong PIN
+        document.getElementById('pin-error').classList.remove('hidden');
+        showPinError(container);
+        playSound('wrong');
+    }
 }
 
 function loginUser(userId) {
@@ -905,11 +1178,17 @@ function openEditScreen(userId) {
         langSelector.value = user.language || 'en';
     }
 
+    // Clear PIN inputs (don't show current PIN for security)
+    const pinContainer = document.getElementById('edit-pin-container');
+    if (pinContainer) {
+        clearPinInputs(pinContainer);
+    }
+
     showScreen('edit-screen');
     playSound('click');
 }
 
-function saveUserEdit() {
+async function saveUserEdit() {
     const userId = document.getElementById('edit-user-id').value;
     const name = document.getElementById('edit-name').value.trim();
     const selectedAvatar = document.querySelector('#edit-avatar-grid .avatar-option.selected');
@@ -918,6 +1197,7 @@ function saveUserEdit() {
         .map(cb => parseInt(cb.value))
         .sort((a, b) => a - b);
     const language = document.getElementById('edit-language').value || currentLanguage;
+    const newPin = document.getElementById('edit-pin').value;
 
     // Validation
     if (!name) {
@@ -930,8 +1210,25 @@ function saveUserEdit() {
         return;
     }
 
-    // Update user with language
-    updateUser(userId, { name, avatar, grades, language });
+    // Validate PIN if entered (must be 4 digits or empty)
+    if (newPin && newPin.length !== 4) {
+        alert(t('pleaseEnterPin'));
+        return;
+    }
+
+    // Get current user to preserve PIN hash if not changed
+    const currentUserData = getUserById(userId);
+
+    // Hash new PIN if provided, otherwise keep existing hash
+    let pinHashToSave;
+    if (newPin) {
+        pinHashToSave = await hashPin(newPin);
+    } else {
+        pinHashToSave = currentUserData ? currentUserData.pinHash : null;
+    }
+
+    // Update user with language and hashed PIN
+    updateUser(userId, { name, avatar, grades, language, pinHash: pinHashToSave });
 
     // Refresh manage list and go back
     renderManageUserList();

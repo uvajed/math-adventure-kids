@@ -110,6 +110,18 @@
                     </div>
 
                     <div class="form-section">
+                        <label class="form-label" data-i18n="createPin">Create a 4-digit PIN:</label>
+                        <p class="form-hint" data-i18n="pinHint">This keeps your profile private!</p>
+                        <div class="pin-input-container">
+                            <input type="tel" class="pin-digit" maxlength="1" pattern="[0-9]" inputmode="numeric" data-pin-index="0">
+                            <input type="tel" class="pin-digit" maxlength="1" pattern="[0-9]" inputmode="numeric" data-pin-index="1">
+                            <input type="tel" class="pin-digit" maxlength="1" pattern="[0-9]" inputmode="numeric" data-pin-index="2">
+                            <input type="tel" class="pin-digit" maxlength="1" pattern="[0-9]" inputmode="numeric" data-pin-index="3">
+                        </div>
+                        <input type="hidden" id="reg-pin" value="">
+                    </div>
+
+                    <div class="form-section">
                         <label class="form-label" data-i18n="selectGradeLevels">Select your grade levels:</label>
                         <p class="form-hint" data-i18n="canChooseMultiple">You can choose one or more!</p>
                         <div class="grade-select-grid">
@@ -218,6 +230,18 @@
                                 </span>
                             </label>
                         </div>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label" data-i18n="changePin">Change PIN:</label>
+                        <p class="form-hint" data-i18n="changePinHint">Leave empty to keep current PIN</p>
+                        <div class="pin-input-container" id="edit-pin-container">
+                            <input type="tel" class="pin-digit" maxlength="1" pattern="[0-9]" inputmode="numeric" data-pin-index="0">
+                            <input type="tel" class="pin-digit" maxlength="1" pattern="[0-9]" inputmode="numeric" data-pin-index="1">
+                            <input type="tel" class="pin-digit" maxlength="1" pattern="[0-9]" inputmode="numeric" data-pin-index="2">
+                            <input type="tel" class="pin-digit" maxlength="1" pattern="[0-9]" inputmode="numeric" data-pin-index="3">
+                        </div>
+                        <input type="hidden" id="edit-pin" value="">
                     </div>
 
                     <button id="save-edit-btn" class="big-button">
@@ -425,6 +449,26 @@
 
     <!-- Sound toggle -->
     <button id="sound-toggle" class="sound-toggle">🔊</button>
+
+    <!-- PIN Entry Modal -->
+    <div id="pin-modal" class="modal hidden">
+        <div class="modal-content pin-modal-content">
+            <div class="pin-modal-avatar" id="pin-modal-avatar">🦊</div>
+            <h2 id="pin-modal-name">Player</h2>
+            <p data-i18n="enterPin">Enter your PIN:</p>
+            <div class="pin-input-container" id="pin-verify-container">
+                <input type="tel" class="pin-digit" maxlength="1" pattern="[0-9]" inputmode="numeric" data-pin-index="0">
+                <input type="tel" class="pin-digit" maxlength="1" pattern="[0-9]" inputmode="numeric" data-pin-index="1">
+                <input type="tel" class="pin-digit" maxlength="1" pattern="[0-9]" inputmode="numeric" data-pin-index="2">
+                <input type="tel" class="pin-digit" maxlength="1" pattern="[0-9]" inputmode="numeric" data-pin-index="3">
+            </div>
+            <input type="hidden" id="verify-pin" value="">
+            <p id="pin-error" class="pin-error hidden" data-i18n="wrongPin">Wrong PIN! Try again.</p>
+            <div class="modal-buttons">
+                <button id="cancel-pin-btn" class="secondary-button" data-i18n="cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Delete Confirmation Modal -->
     <div id="delete-modal" class="modal hidden">

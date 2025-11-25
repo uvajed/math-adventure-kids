@@ -2764,6 +2764,129 @@ body {
     text-align: center;
 }
 
+/* ===== PIN Input System ===== */
+
+.pin-input-container {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 15px 0;
+}
+
+.pin-digit {
+    width: 55px;
+    height: 65px;
+    font-size: 1.75rem;
+    font-weight: bold;
+    text-align: center;
+    border: 3px solid var(--primary-light);
+    border-radius: var(--radius-md);
+    background: var(--white);
+    color: var(--primary);
+    font-family: inherit;
+    outline: none;
+    transition: all 0.3s ease;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.pin-digit:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 20px rgba(108, 92, 231, 0.3);
+    transform: scale(1.05);
+}
+
+.pin-digit.filled {
+    background: var(--primary-light);
+    border-color: var(--primary);
+}
+
+.pin-digit.error {
+    border-color: var(--danger);
+    background: #ffe0e0;
+    animation: shake 0.4s ease;
+}
+
+.pin-digit.success {
+    border-color: var(--success);
+    background: #d4edda;
+}
+
+/* PIN Modal Styles */
+.pin-modal-content {
+    padding: 30px 40px;
+}
+
+.pin-modal-avatar {
+    font-size: 4rem;
+    margin-bottom: 10px;
+    animation: bounce 2s infinite;
+}
+
+.pin-modal-content h2 {
+    color: var(--primary);
+    margin-bottom: 5px;
+}
+
+.pin-modal-content p {
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.pin-error {
+    color: var(--danger);
+    font-weight: bold;
+    font-size: 0.95rem;
+    margin-top: 10px;
+    animation: shake 0.4s ease;
+}
+
+.pin-error.hidden {
+    display: none;
+}
+
+/* Lock icon on profile cards */
+.profile-lock {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 0.9rem;
+    opacity: 0.6;
+}
+
+.user-profile-card {
+    position: relative;
+}
+
+/* PIN input responsive */
+@media (max-width: 480px) {
+    .pin-input-container {
+        gap: 8px;
+    }
+
+    .pin-digit {
+        width: 48px;
+        height: 58px;
+        font-size: 1.5rem;
+    }
+
+    .pin-modal-content {
+        padding: 24px 20px;
+    }
+
+    .pin-modal-avatar {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .pin-digit {
+        width: 42px;
+        height: 52px;
+        font-size: 1.3rem;
+    }
+}
+
 /* Prize popup responsive */
 @media (max-width: 480px) {
     .prize-popup-content {
