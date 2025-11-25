@@ -24,118 +24,56 @@
     <div class="container">
         <!-- Login/User Selection Screen -->
         <div id="login-screen" class="screen active">
-            <div class="app-landing">
-                <!-- Animated Stars Background -->
-                <div class="stars-bg">
-                    <span class="star star-1">✦</span>
-                    <span class="star star-2">★</span>
-                    <span class="star star-3">✦</span>
-                    <span class="star star-4">★</span>
-                    <span class="star star-5">✦</span>
-                    <span class="star star-6">★</span>
-                    <span class="star star-7">✦</span>
-                    <span class="star star-8">★</span>
+            <div class="home-screen">
+                <!-- Animated Background -->
+                <div class="home-bg">
+                    <div class="bg-circle bg-circle-1"></div>
+                    <div class="bg-circle bg-circle-2"></div>
+                    <div class="bg-circle bg-circle-3"></div>
                 </div>
 
-                <!-- Hero Banner -->
-                <div class="hero-banner">
-                    <!-- Mascot Character -->
-                    <div class="mascot-container">
-                        <div class="mascot-glow"></div>
-                        <div class="mascot-character">
-                            <span class="mascot-body">🦁</span>
-                        </div>
-                        <div class="mascot-badge">
-                            <span>🎓</span>
-                        </div>
+                <!-- Logo & Branding -->
+                <div class="home-brand">
+                    <div class="logo-container">
+                        <div class="logo-ring"></div>
+                        <div class="logo-icon">🎯</div>
                     </div>
-
-                    <!-- Title -->
-                    <div class="hero-title-group">
-                        <h1 class="app-title">
-                            <span class="title-line-1">Math</span>
-                            <span class="title-line-2">Adventure</span>
-                        </h1>
-                        <div class="title-decoration">
-                            <span class="deco-star">⭐</span>
-                            <span class="deco-text">Grades 1-4</span>
-                            <span class="deco-star">⭐</span>
-                        </div>
-                    </div>
-
-                    <!-- Reward Teaser -->
-                    <div class="reward-teaser">
-                        <div class="reward-item">
-                            <div class="reward-icon">🏆</div>
-                            <div class="reward-label">Earn Prizes</div>
-                        </div>
-                        <div class="reward-divider"></div>
-                        <div class="reward-item">
-                            <div class="reward-icon">🎮</div>
-                            <div class="reward-label">4 Game Modes</div>
-                        </div>
-                        <div class="reward-divider"></div>
-                        <div class="reward-item">
-                            <div class="reward-icon">📊</div>
-                            <div class="reward-label">Track Progress</div>
-                        </div>
-                    </div>
+                    <h1 class="home-title">MathQuest</h1>
+                    <p class="home-tagline">Fun Math for Kids!</p>
                 </div>
 
-                <!-- Player Selection -->
-                <div class="player-section">
-                    <div class="section-header">
-                        <div class="header-line"></div>
-                        <h2 data-i18n="whoIsPlaying">Who's playing?</h2>
-                        <div class="header-line"></div>
+                <!-- Main Card -->
+                <div class="home-card">
+                    <div class="card-top">
+                        <span class="card-emoji">👋</span>
+                        <span class="card-title" data-i18n="whoIsPlaying">Who's playing?</span>
                     </div>
 
-                    <div id="user-profiles" class="user-profiles">
-                        <!-- User profiles will be rendered here -->
-                    </div>
+                    <div id="user-profiles" class="user-profiles"></div>
 
-                    <div class="player-actions">
-                        <button id="add-user-btn" class="btn-add-player">
-                            <div class="btn-icon-circle">
-                                <span>+</span>
-                            </div>
-                            <span class="btn-label" data-i18n="addNewPlayer">New Player</span>
-                        </button>
-                    </div>
+                    <button id="add-user-btn" class="btn-main">
+                        <span class="btn-plus">+</span>
+                        <span data-i18n="addNewPlayer">Add Player</span>
+                    </button>
 
-                    <button id="manage-users-btn" class="btn-manage">
-                        <span>⚙️</span>
-                        <span data-i18n="managePlayers">Manage Players</span>
+                    <button id="manage-users-btn" class="btn-link">
+                        ⚙️ <span data-i18n="managePlayers">Manage</span>
                     </button>
                 </div>
 
-                <!-- Game Mode Preview -->
-                <div class="games-preview">
-                    <div class="preview-header">
-                        <span class="preview-icon">🎯</span>
-                        <span class="preview-title">Fun Game Modes</span>
+                <!-- Features Row -->
+                <div class="home-features">
+                    <div class="feature">
+                        <span class="feature-num">4</span>
+                        <span class="feature-label">Games</span>
                     </div>
-                    <div class="games-scroll">
-                        <div class="game-preview-card game-card-1">
-                            <div class="game-card-bg"></div>
-                            <span class="game-emoji">🧩</span>
-                            <span class="game-name">Fill Gap</span>
-                        </div>
-                        <div class="game-preview-card game-card-2">
-                            <div class="game-card-bg"></div>
-                            <span class="game-emoji">⚡</span>
-                            <span class="game-name">Quiz</span>
-                        </div>
-                        <div class="game-preview-card game-card-3">
-                            <div class="game-card-bg"></div>
-                            <span class="game-emoji">🎴</span>
-                            <span class="game-name">Match</span>
-                        </div>
-                        <div class="game-preview-card game-card-4">
-                            <div class="game-card-bg"></div>
-                            <span class="game-emoji">🫧</span>
-                            <span class="game-name">Bubbles</span>
-                        </div>
+                    <div class="feature">
+                        <span class="feature-num">🏆</span>
+                        <span class="feature-label">Prizes</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-num">1-4</span>
+                        <span class="feature-label">Grades</span>
                     </div>
                 </div>
             </div>
