@@ -25,8 +25,8 @@
         <!-- Login/User Selection Screen -->
         <div id="login-screen" class="screen active">
             <div class="welcome-content">
-                <h1 class="title bounce">Math Adventure!</h1>
-                <p class="subtitle">Who's playing today?</p>
+                <h1 class="title bounce" data-i18n="appTitle">Math Adventure!</h1>
+                <p class="subtitle" data-i18n="whoIsPlaying">Who's playing today?</p>
 
                 <div id="user-profiles" class="user-profiles">
                     <!-- User profiles will be rendered here -->
@@ -35,10 +35,10 @@
                 <div class="login-actions">
                     <button id="add-user-btn" class="add-user-btn">
                         <span class="add-icon">➕</span>
-                        <span>Add New Player</span>
+                        <span data-i18n="addNewPlayer">Add New Player</span>
                     </button>
                     <button id="manage-users-btn" class="secondary-button small">
-                        ⚙️ Manage Players
+                        ⚙️ <span data-i18n="managePlayers">Manage Players</span>
                     </button>
                 </div>
             </div>
@@ -48,65 +48,73 @@
         <div id="register-screen" class="screen">
             <div class="welcome-content">
                 <div class="screen-header">
-                    <button class="back-btn" data-target="login-screen">← Back</button>
+                    <button class="back-btn" data-target="login-screen">← <span data-i18n="back">Back</span></button>
                 </div>
-                <h1 class="title">Create Your Profile!</h1>
-                <p class="subtitle">Let's get you set up for learning!</p>
+                <h1 class="title" data-i18n="createProfile">Create Your Profile!</h1>
+                <p class="subtitle" data-i18n="letsGetSetup">Let's get you set up for learning!</p>
 
                 <div class="registration-form">
                     <div class="form-section">
-                        <label class="form-label">What's your name?</label>
-                        <input type="text" id="reg-name" class="form-input" placeholder="Enter your name..." maxlength="15">
+                        <label class="form-label" data-i18n="selectLanguage">Choose your language:</label>
+                        <select id="reg-language" class="form-select">
+                            <option value="en">🇬🇧 English</option>
+                            <option value="de">🇩🇪 Deutsch</option>
+                        </select>
                     </div>
 
                     <div class="form-section">
-                        <label class="form-label">Pick your avatar!</label>
+                        <label class="form-label" data-i18n="whatsYourName">What's your name?</label>
+                        <input type="text" id="reg-name" class="form-input" data-i18n-placeholder="enterName" placeholder="Enter your name..." maxlength="15">
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label" data-i18n="pickAvatar">Pick your avatar!</label>
                         <div class="avatar-grid" id="avatar-grid">
                             <!-- Avatars will be rendered by JS -->
                         </div>
                     </div>
 
                     <div class="form-section">
-                        <label class="form-label">Select your grade levels:</label>
-                        <p class="form-hint">You can choose one or more!</p>
+                        <label class="form-label" data-i18n="selectGradeLevels">Select your grade levels:</label>
+                        <p class="form-hint" data-i18n="canChooseMultiple">You can choose one or more!</p>
                         <div class="grade-select-grid">
                             <label class="grade-checkbox">
                                 <input type="checkbox" name="grade" value="1">
                                 <span class="grade-check-box">
-                                    <span class="grade-num">1st</span>
-                                    <span class="grade-text">Grade</span>
+                                    <span class="grade-num" data-i18n-grade="1">1st</span>
+                                    <span class="grade-text" data-i18n="grade">Grade</span>
                                 </span>
                             </label>
                             <label class="grade-checkbox">
                                 <input type="checkbox" name="grade" value="2">
                                 <span class="grade-check-box">
-                                    <span class="grade-num">2nd</span>
-                                    <span class="grade-text">Grade</span>
+                                    <span class="grade-num" data-i18n-grade="2">2nd</span>
+                                    <span class="grade-text" data-i18n="grade">Grade</span>
                                 </span>
                             </label>
                             <label class="grade-checkbox">
                                 <input type="checkbox" name="grade" value="3">
                                 <span class="grade-check-box">
-                                    <span class="grade-num">3rd</span>
-                                    <span class="grade-text">Grade</span>
+                                    <span class="grade-num" data-i18n-grade="3">3rd</span>
+                                    <span class="grade-text" data-i18n="grade">Grade</span>
                                 </span>
                             </label>
                             <label class="grade-checkbox">
                                 <input type="checkbox" name="grade" value="4">
                                 <span class="grade-check-box">
-                                    <span class="grade-num">4th</span>
-                                    <span class="grade-text">Grade</span>
+                                    <span class="grade-num" data-i18n-grade="4">4th</span>
+                                    <span class="grade-text" data-i18n="grade">Grade</span>
                                 </span>
                             </label>
                         </div>
                         <label class="select-all-label">
                             <input type="checkbox" id="select-all-grades">
-                            <span>Select All Grades</span>
+                            <span data-i18n="selectAllGrades">Select All Grades</span>
                         </label>
                     </div>
 
                     <button id="register-btn" class="big-button">
-                        ✨ Create Profile ✨
+                        ✨ <span data-i18n="createProfileBtn">Create Profile</span> ✨
                     </button>
                 </div>
             </div>
@@ -116,61 +124,69 @@
         <div id="edit-screen" class="screen">
             <div class="welcome-content">
                 <div class="screen-header">
-                    <button class="back-btn" data-target="manage-screen">← Back</button>
+                    <button class="back-btn" data-target="manage-screen">← <span data-i18n="back">Back</span></button>
                 </div>
-                <h1 class="title">Edit Profile</h1>
+                <h1 class="title" data-i18n="editProfile">Edit Profile</h1>
 
                 <div class="registration-form">
                     <input type="hidden" id="edit-user-id">
 
                     <div class="form-section">
-                        <label class="form-label">Name</label>
-                        <input type="text" id="edit-name" class="form-input" placeholder="Enter name..." maxlength="15">
+                        <label class="form-label" data-i18n="selectLanguage">Choose your language:</label>
+                        <select id="edit-language" class="form-select">
+                            <option value="en">🇬🇧 English</option>
+                            <option value="de">🇩🇪 Deutsch</option>
+                        </select>
                     </div>
 
                     <div class="form-section">
-                        <label class="form-label">Avatar</label>
+                        <label class="form-label" data-i18n="name">Name</label>
+                        <input type="text" id="edit-name" class="form-input" data-i18n-placeholder="enterName" placeholder="Enter name..." maxlength="15">
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label" data-i18n="avatar">Avatar</label>
                         <div class="avatar-grid" id="edit-avatar-grid">
                             <!-- Avatars will be rendered by JS -->
                         </div>
                     </div>
 
                     <div class="form-section">
-                        <label class="form-label">Grade Levels</label>
+                        <label class="form-label" data-i18n="gradeLevels">Grade Levels</label>
                         <div class="grade-select-grid" id="edit-grade-grid">
                             <label class="grade-checkbox">
                                 <input type="checkbox" name="edit-grade" value="1">
                                 <span class="grade-check-box">
-                                    <span class="grade-num">1st</span>
-                                    <span class="grade-text">Grade</span>
+                                    <span class="grade-num" data-i18n-grade="1">1st</span>
+                                    <span class="grade-text" data-i18n="grade">Grade</span>
                                 </span>
                             </label>
                             <label class="grade-checkbox">
                                 <input type="checkbox" name="edit-grade" value="2">
                                 <span class="grade-check-box">
-                                    <span class="grade-num">2nd</span>
-                                    <span class="grade-text">Grade</span>
+                                    <span class="grade-num" data-i18n-grade="2">2nd</span>
+                                    <span class="grade-text" data-i18n="grade">Grade</span>
                                 </span>
                             </label>
                             <label class="grade-checkbox">
                                 <input type="checkbox" name="edit-grade" value="3">
                                 <span class="grade-check-box">
-                                    <span class="grade-num">3rd</span>
-                                    <span class="grade-text">Grade</span>
+                                    <span class="grade-num" data-i18n-grade="3">3rd</span>
+                                    <span class="grade-text" data-i18n="grade">Grade</span>
                                 </span>
                             </label>
                             <label class="grade-checkbox">
                                 <input type="checkbox" name="edit-grade" value="4">
                                 <span class="grade-check-box">
-                                    <span class="grade-num">4th</span>
-                                    <span class="grade-text">Grade</span>
+                                    <span class="grade-num" data-i18n-grade="4">4th</span>
+                                    <span class="grade-text" data-i18n="grade">Grade</span>
                                 </span>
                             </label>
                         </div>
                     </div>
 
                     <button id="save-edit-btn" class="big-button">
-                        💾 Save Changes
+                        💾 <span data-i18n="saveChanges">Save Changes</span>
                     </button>
                 </div>
             </div>
@@ -180,10 +196,10 @@
         <div id="manage-screen" class="screen">
             <div class="welcome-content">
                 <div class="screen-header">
-                    <button class="back-btn" data-target="login-screen">← Back</button>
+                    <button class="back-btn" data-target="login-screen">← <span data-i18n="back">Back</span></button>
                 </div>
-                <h1 class="title">Manage Players</h1>
-                <p class="subtitle">Edit or remove player profiles</p>
+                <h1 class="title" data-i18n="managePlayersTitle">Manage Players</h1>
+                <p class="subtitle" data-i18n="editOrRemove">Edit or remove player profiles</p>
 
                 <div id="manage-user-list" class="manage-user-list">
                     <!-- User management cards will be rendered here -->
@@ -197,32 +213,32 @@
                 <div class="user-welcome">
                     <span id="welcome-avatar" class="welcome-avatar"></span>
                     <div class="welcome-text">
-                        <h2>Welcome back,</h2>
+                        <h2 data-i18n="welcomeBack">Welcome back,</h2>
                         <h1 id="welcome-name" class="welcome-name"></h1>
                     </div>
-                    <button id="switch-user-btn" class="icon-btn" title="Switch Player">👥</button>
+                    <button id="switch-user-btn" class="icon-btn" data-i18n-title="switchPlayer" title="Switch Player">👥</button>
                 </div>
 
                 <div class="user-stats-card">
-                    <h3>Your Progress</h3>
+                    <h3 data-i18n="yourProgress">Your Progress</h3>
                     <div class="mini-stats">
                         <div class="mini-stat">
                             <span class="mini-stat-value" id="total-games">0</span>
-                            <span class="mini-stat-label">Games</span>
+                            <span class="mini-stat-label" data-i18n="totalGames">Games</span>
                         </div>
                         <div class="mini-stat">
                             <span class="mini-stat-value" id="total-score">0</span>
-                            <span class="mini-stat-label">Total Stars</span>
+                            <span class="mini-stat-label" data-i18n="totalStars">Total Stars</span>
                         </div>
                         <div class="mini-stat">
                             <span class="mini-stat-value" id="best-streak-stat">0</span>
-                            <span class="mini-stat-label">Best Streak</span>
+                            <span class="mini-stat-label" data-i18n="bestStreak">Best Streak</span>
                         </div>
                     </div>
                 </div>
 
                 <button id="start-btn" class="big-button pulse">
-                    🚀 Start Adventure! 🚀
+                    🚀 <span data-i18n="startAdventure">Start Adventure!</span> 🚀
                 </button>
             </div>
         </div>
@@ -230,11 +246,11 @@
         <!-- Grade Selection Screen -->
         <div id="grade-screen" class="screen">
             <div class="screen-header">
-                <button class="back-btn" data-target="welcome-screen">← Back</button>
+                <button class="back-btn" data-target="welcome-screen">← <span data-i18n="back">Back</span></button>
                 <span id="player-display" class="player-info"></span>
             </div>
-            <h1 class="title">📚 Choose Your Level! 📚</h1>
-            <p class="subtitle">Pick the level you want to practice</p>
+            <h1 class="title">📚 <span data-i18n="chooseLevel">Choose Your Level!</span> 📚</h1>
+            <p class="subtitle" data-i18n="pickLevel">Pick the level you want to practice</p>
 
             <div id="grade-buttons" class="grade-buttons">
                 <!-- Grade buttons will be dynamically generated based on user's assigned grades -->
@@ -244,31 +260,31 @@
         <!-- Game Mode Selection -->
         <div id="mode-screen" class="screen">
             <div class="screen-header">
-                <button class="back-btn" data-target="grade-screen">← Back</button>
+                <button class="back-btn" data-target="grade-screen">← <span data-i18n="back">Back</span></button>
                 <span id="mode-player-display" class="player-info"></span>
             </div>
-            <h1 class="title">🎯 Choose Your Game! 🎯</h1>
+            <h1 class="title">🎯 <span data-i18n="chooseGame">Choose Your Game!</span> 🎯</h1>
 
             <div class="mode-buttons">
                 <button class="mode-btn" data-mode="fill-blank">
                     <span class="mode-icon">🧩</span>
-                    <span class="mode-name">Fill the Gap</span>
-                    <span class="mode-desc">Find the missing number!</span>
+                    <span class="mode-name" data-i18n="fillTheGap">Fill the Gap</span>
+                    <span class="mode-desc" data-i18n="fillTheGapDesc">Find the missing number!</span>
                 </button>
                 <button class="mode-btn" data-mode="quiz">
                     <span class="mode-icon">❓</span>
-                    <span class="mode-name">Quick Quiz</span>
-                    <span class="mode-desc">Answer as fast as you can!</span>
+                    <span class="mode-name" data-i18n="quickQuiz">Quick Quiz</span>
+                    <span class="mode-desc" data-i18n="quickQuizDesc">Answer as fast as you can!</span>
                 </button>
                 <button class="mode-btn" data-mode="match">
                     <span class="mode-icon">🎴</span>
-                    <span class="mode-name">Match Game</span>
-                    <span class="mode-desc">Match problems with answers!</span>
+                    <span class="mode-name" data-i18n="matchGame">Match Game</span>
+                    <span class="mode-desc" data-i18n="matchGameDesc">Match problems with answers!</span>
                 </button>
                 <button class="mode-btn" data-mode="bubble">
                     <span class="mode-icon">🫧</span>
-                    <span class="mode-name">Bubble Pop</span>
-                    <span class="mode-desc">Pop the right answer!</span>
+                    <span class="mode-name" data-i18n="bubblePop">Bubble Pop</span>
+                    <span class="mode-desc" data-i18n="bubblePopDesc">Pop the right answer!</span>
                 </button>
             </div>
         </div>
@@ -276,7 +292,7 @@
         <!-- Game Screen -->
         <div id="game-screen" class="screen">
             <div class="game-header">
-                <button class="back-btn" data-target="mode-screen">← Back</button>
+                <button class="back-btn" data-target="mode-screen">← <span data-i18n="back">Back</span></button>
                 <div class="game-stats">
                     <div class="stat">
                         <span class="stat-icon">⭐</span>
@@ -299,13 +315,13 @@
 
             <!-- Prize Collection Display -->
             <div id="prize-collection" class="prize-collection hidden">
-                <span class="prize-collection-label">🎁 Prizes:</span>
+                <span class="prize-collection-label">🎁 <span data-i18n="prizes">Prizes:</span></span>
                 <div id="collected-prizes" class="collected-prizes"></div>
             </div>
 
             <div class="game-character">
                 <span id="game-character-emoji"></span>
-                <div id="character-speech" class="speech-bubble">Let's do this!</div>
+                <div id="character-speech" class="speech-bubble" data-i18n="letsDoThis">Let's do this!</div>
             </div>
 
             <div id="game-area" class="game-area">
@@ -334,17 +350,17 @@
                 <div class="results-stats">
                     <div class="result-item">
                         <span class="result-icon">⭐</span>
-                        <span class="result-label">Score</span>
+                        <span class="result-label" data-i18n="score">Score</span>
                         <span id="final-score" class="result-value">0</span>
                     </div>
                     <div class="result-item">
                         <span class="result-icon">✅</span>
-                        <span class="result-label">Correct</span>
+                        <span class="result-label" data-i18n="correctLabel">Correct</span>
                         <span id="correct-count" class="result-value">0</span>
                     </div>
                     <div class="result-item">
                         <span class="result-icon">🔥</span>
-                        <span class="result-label">Best Streak</span>
+                        <span class="result-label" data-i18n="bestStreak">Best Streak</span>
                         <span id="best-streak" class="result-value">0</span>
                     </div>
                 </div>
@@ -354,16 +370,16 @@
                 </div>
 
                 <div id="prizes-won" class="prizes-won hidden">
-                    <h3 class="prizes-title">Prizes Won!</h3>
+                    <h3 id="prizes-title" class="prizes-title" data-i18n="prizesWon">Prizes Won!</h3>
                     <div id="prizes-list" class="prizes-list"></div>
                 </div>
 
                 <div id="achievements" class="achievements"></div>
 
                 <div class="results-buttons">
-                    <button id="play-again-btn" class="big-button">🔄 Play Again</button>
-                    <button id="change-mode-btn" class="secondary-button">🎮 Different Game</button>
-                    <button id="home-btn" class="secondary-button">🏠 Home</button>
+                    <button id="play-again-btn" class="big-button">🔄 <span data-i18n="playAgain">Play Again</span></button>
+                    <button id="change-mode-btn" class="secondary-button">🎮 <span data-i18n="differentGame">Different Game</span></button>
+                    <button id="home-btn" class="secondary-button">🏠 <span data-i18n="home">Home</span></button>
                 </div>
             </div>
         </div>
@@ -378,11 +394,11 @@
     <!-- Delete Confirmation Modal -->
     <div id="delete-modal" class="modal hidden">
         <div class="modal-content">
-            <h2>Delete Player?</h2>
+            <h2 data-i18n="deletePlayer">Delete Player?</h2>
             <p id="delete-modal-text">Are you sure you want to delete this player?</p>
             <div class="modal-buttons">
-                <button id="confirm-delete-btn" class="danger-button">Yes, Delete</button>
-                <button id="cancel-delete-btn" class="secondary-button">Cancel</button>
+                <button id="confirm-delete-btn" class="danger-button" data-i18n="yesDelete">Yes, Delete</button>
+                <button id="cancel-delete-btn" class="secondary-button" data-i18n="cancel">Cancel</button>
             </div>
         </div>
     </div>
@@ -405,7 +421,7 @@
                 <span class="sparkle">⭐</span>
                 <span class="sparkle">✨</span>
             </div>
-            <h2 class="prize-title">🎉 YOU WON A PRIZE! 🎉</h2>
+            <h2 class="prize-title">🎉 <span data-i18n="youWonPrize">YOU WON A PRIZE!</span> 🎉</h2>
             <div id="prize-emoji" class="prize-emoji">🎁</div>
             <div id="prize-name" class="prize-name">Gift Box</div>
             <div id="prize-points" class="prize-points">+15 bonus points!</div>

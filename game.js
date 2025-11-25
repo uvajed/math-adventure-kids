@@ -1,5 +1,419 @@
 // ===== Math Adventure - Game Logic with User Management =====
 
+// ===== Internationalization (i18n) =====
+let currentLanguage = 'en';
+
+const translations = {
+    en: {
+        // App title and main
+        appTitle: 'Math Adventure!',
+        whoIsPlaying: "Who's playing today?",
+        addNewPlayer: 'Add New Player',
+        managePlayers: 'Manage Players',
+
+        // Registration
+        createProfile: 'Create Your Profile!',
+        letsGetSetup: "Let's get you set up for learning!",
+        whatsYourName: "What's your name?",
+        enterName: 'Enter your name...',
+        pickAvatar: 'Pick your avatar!',
+        selectGradeLevels: 'Select your grade levels:',
+        canChooseMultiple: 'You can choose one or more!',
+        selectAllGrades: 'Select All Grades',
+        createProfileBtn: 'Create Profile',
+        selectLanguage: 'Choose your language:',
+
+        // Grade levels
+        grade: 'Grade',
+        grades: 'Grades',
+        gradeOrdinal: { 1: '1st', 2: '2nd', 3: '3rd', 4: '4th' },
+        gradeDescriptions: {
+            1: 'Numbers 1-20, Simple Addition',
+            2: 'Numbers to 100, Add & Subtract',
+            3: 'Multiplication & Division',
+            4: 'Fractions & Word Problems'
+        },
+
+        // Edit profile
+        editProfile: 'Edit Profile',
+        name: 'Name',
+        avatar: 'Avatar',
+        gradeLevels: 'Grade Levels',
+        saveChanges: 'Save Changes',
+
+        // Manage users
+        managePlayersTitle: 'Manage Players',
+        editOrRemove: 'Edit or remove player profiles',
+        noPlayersToManage: 'No players to manage.',
+        games: 'Games',
+
+        // Delete modal
+        deletePlayer: 'Delete Player?',
+        deleteConfirm: "Are you sure you want to delete this player? This cannot be undone.",
+        yesDelete: 'Yes, Delete',
+        cancel: 'Cancel',
+
+        // Welcome screen
+        welcomeBack: 'Welcome back,',
+        yourProgress: 'Your Progress',
+        totalGames: 'Games',
+        totalStars: 'Total Stars',
+        bestStreak: 'Best Streak',
+        startAdventure: 'Start Adventure!',
+        switchPlayer: 'Switch Player',
+
+        // Grade selection
+        chooseLevel: 'Choose Your Level!',
+        pickLevel: 'Pick the level you want to practice',
+
+        // Game mode selection
+        chooseGame: 'Choose Your Game!',
+        fillTheGap: 'Fill the Gap',
+        fillTheGapDesc: 'Find the missing number!',
+        quickQuiz: 'Quick Quiz',
+        quickQuizDesc: 'Answer as fast as you can!',
+        matchGame: 'Match Game',
+        matchGameDesc: 'Match problems with answers!',
+        bubblePop: 'Bubble Pop',
+        bubblePopDesc: 'Pop the right answer!',
+
+        // Game screen
+        back: 'Back',
+        checkAnswer: 'Check Answer!',
+        questionOf: 'Question {current} of {total}',
+        prizes: 'Prizes:',
+
+        // Character speech
+        letsDoThis: "Let's do this!",
+        encouragement: [
+            "You've got this! 💪",
+            "Keep going! 🌟",
+            "Almost there! 🎯",
+            "You're doing great! 🎉",
+            "Fantastic! ✨",
+            "Way to go! 🚀"
+        ],
+        correct: [
+            "Excellent! 🎉",
+            "Perfect! ⭐",
+            "Amazing! 🌟",
+            "Brilliant! 💫",
+            "Superstar! 🏆",
+            "Wonderful! 🎊"
+        ],
+        incorrect: [
+            "Try again! 💪",
+            "Almost! 🤔",
+            "Keep trying! 🌈",
+            "You can do it! ⭐",
+            "Don't give up! 🎯"
+        ],
+        streak: [
+            "On fire! 🔥",
+            "Unstoppable! 💥",
+            "Incredible streak! ⚡",
+            "Math wizard! 🧙‍♂️"
+        ],
+
+        // Feedback
+        correctFeedback: ['Correct!', 'Awesome!', 'Perfect!', 'Great job!'],
+        answerWas: 'The answer was {answer}',
+
+        // Prize popup
+        youWonPrize: 'YOU WON A PRIZE!',
+        bonusPoints: '+{points} bonus points!',
+        inARow: '{count} in a row!',
+        prizesWon: 'Prizes Won!',
+
+        // Prize names
+        prizeNames: {
+            'Gift Box': 'Gift Box',
+            'Lollipop': 'Lollipop',
+            'Cookie': 'Cookie',
+            'Teddy Bear': 'Teddy Bear',
+            'Balloon': 'Balloon',
+            'Ice Cream': 'Ice Cream',
+            'Ribbon': 'Ribbon',
+            'Golden Star': 'Golden Star',
+            'Medal': 'Medal',
+            'Circus Ticket': 'Circus Ticket',
+            'Butterfly': 'Butterfly',
+            'Rainbow': 'Rainbow',
+            'Paint Set': 'Paint Set',
+            'Game Controller': 'Game Controller',
+            'Storybook': 'Storybook',
+            'Puzzle Piece': 'Puzzle Piece',
+            'Music Note': 'Music Note',
+            'Rocket Ship': 'Rocket Ship',
+            'Crown': 'Crown',
+            'Diamond': 'Diamond'
+        },
+
+        // Results screen
+        amazingJob: 'Amazing Job!',
+        goodTry: 'Good Try!',
+        keepPracticing: 'Keep Practicing!',
+        score: 'Score',
+        correctLabel: 'Correct',
+        playAgain: 'Play Again',
+        differentGame: 'Different Game',
+        home: 'Home',
+
+        // Achievements
+        perfectScore: 'Perfect Score!',
+        hotStreak: 'Hot Streak!',
+        mathStar: 'Math Star!',
+        flawless: 'Flawless!',
+        prizeCollector: 'Prize Collector!',
+
+        // Fraction problems
+        whichIsBigger: 'Which is bigger: {f1} or {f2}?',
+
+        // Validation
+        pleaseEnterName: 'Please enter your name!',
+        pleaseSelectGrade: 'Please select at least one grade level!',
+        noPlayersYet: 'No players yet! Click below to add your first player.'
+    },
+    de: {
+        // App title and main
+        appTitle: 'Mathe-Abenteuer!',
+        whoIsPlaying: 'Wer spielt heute?',
+        addNewPlayer: 'Neuen Spieler hinzufügen',
+        managePlayers: 'Spieler verwalten',
+
+        // Registration
+        createProfile: 'Erstelle dein Profil!',
+        letsGetSetup: 'Lass uns alles einrichten!',
+        whatsYourName: 'Wie heißt du?',
+        enterName: 'Gib deinen Namen ein...',
+        pickAvatar: 'Wähle deinen Avatar!',
+        selectGradeLevels: 'Wähle deine Klassenstufen:',
+        canChooseMultiple: 'Du kannst eine oder mehrere wählen!',
+        selectAllGrades: 'Alle Klassen auswählen',
+        createProfileBtn: 'Profil erstellen',
+        selectLanguage: 'Wähle deine Sprache:',
+
+        // Grade levels
+        grade: 'Klasse',
+        grades: 'Klassen',
+        gradeOrdinal: { 1: '1.', 2: '2.', 3: '3.', 4: '4.' },
+        gradeDescriptions: {
+            1: 'Zahlen 1-20, Einfache Addition',
+            2: 'Zahlen bis 100, Addieren & Subtrahieren',
+            3: 'Multiplikation & Division',
+            4: 'Brüche & Textaufgaben'
+        },
+
+        // Edit profile
+        editProfile: 'Profil bearbeiten',
+        name: 'Name',
+        avatar: 'Avatar',
+        gradeLevels: 'Klassenstufen',
+        saveChanges: 'Änderungen speichern',
+
+        // Manage users
+        managePlayersTitle: 'Spieler verwalten',
+        editOrRemove: 'Spielerprofile bearbeiten oder entfernen',
+        noPlayersToManage: 'Keine Spieler zum Verwalten.',
+        games: 'Spiele',
+
+        // Delete modal
+        deletePlayer: 'Spieler löschen?',
+        deleteConfirm: 'Bist du sicher, dass du diesen Spieler löschen möchtest? Das kann nicht rückgängig gemacht werden.',
+        yesDelete: 'Ja, löschen',
+        cancel: 'Abbrechen',
+
+        // Welcome screen
+        welcomeBack: 'Willkommen zurück,',
+        yourProgress: 'Dein Fortschritt',
+        totalGames: 'Spiele',
+        totalStars: 'Sterne gesamt',
+        bestStreak: 'Beste Serie',
+        startAdventure: 'Abenteuer starten!',
+        switchPlayer: 'Spieler wechseln',
+
+        // Grade selection
+        chooseLevel: 'Wähle dein Level!',
+        pickLevel: 'Wähle das Level zum Üben',
+
+        // Game mode selection
+        chooseGame: 'Wähle dein Spiel!',
+        fillTheGap: 'Lücke füllen',
+        fillTheGapDesc: 'Finde die fehlende Zahl!',
+        quickQuiz: 'Schnelles Quiz',
+        quickQuizDesc: 'Antworte so schnell du kannst!',
+        matchGame: 'Zuordnungsspiel',
+        matchGameDesc: 'Ordne Aufgaben den Lösungen zu!',
+        bubblePop: 'Blasen platzen',
+        bubblePopDesc: 'Platze die richtige Antwort!',
+
+        // Game screen
+        back: 'Zurück',
+        checkAnswer: 'Antwort prüfen!',
+        questionOf: 'Frage {current} von {total}',
+        prizes: 'Preise:',
+
+        // Character speech
+        letsDoThis: 'Los geht\'s!',
+        encouragement: [
+            "Du schaffst das! 💪",
+            "Weiter so! 🌟",
+            "Fast geschafft! 🎯",
+            "Du machst das toll! 🎉",
+            "Fantastisch! ✨",
+            "Super gemacht! 🚀"
+        ],
+        correct: [
+            "Ausgezeichnet! 🎉",
+            "Perfekt! ⭐",
+            "Toll! 🌟",
+            "Brillant! 💫",
+            "Superstar! 🏆",
+            "Wunderbar! 🎊"
+        ],
+        incorrect: [
+            "Versuch's nochmal! 💪",
+            "Fast! 🤔",
+            "Weiter versuchen! 🌈",
+            "Du schaffst es! ⭐",
+            "Gib nicht auf! 🎯"
+        ],
+        streak: [
+            "Auf Feuer! 🔥",
+            "Nicht zu stoppen! 💥",
+            "Unglaubliche Serie! ⚡",
+            "Mathe-Zauberer! 🧙‍♂️"
+        ],
+
+        // Feedback
+        correctFeedback: ['Richtig!', 'Super!', 'Perfekt!', 'Gut gemacht!'],
+        answerWas: 'Die Antwort war {answer}',
+
+        // Prize popup
+        youWonPrize: 'DU HAST EINEN PREIS GEWONNEN!',
+        bonusPoints: '+{points} Bonuspunkte!',
+        inARow: '{count} hintereinander!',
+        prizesWon: 'Gewonnene Preise!',
+
+        // Prize names
+        prizeNames: {
+            'Gift Box': 'Geschenkbox',
+            'Lollipop': 'Lutscher',
+            'Cookie': 'Keks',
+            'Teddy Bear': 'Teddybär',
+            'Balloon': 'Luftballon',
+            'Ice Cream': 'Eiscreme',
+            'Ribbon': 'Schleife',
+            'Golden Star': 'Goldener Stern',
+            'Medal': 'Medaille',
+            'Circus Ticket': 'Zirkuskarte',
+            'Butterfly': 'Schmetterling',
+            'Rainbow': 'Regenbogen',
+            'Paint Set': 'Malset',
+            'Game Controller': 'Spielcontroller',
+            'Storybook': 'Geschichtenbuch',
+            'Puzzle Piece': 'Puzzleteil',
+            'Music Note': 'Musiknote',
+            'Rocket Ship': 'Rakete',
+            'Crown': 'Krone',
+            'Diamond': 'Diamant'
+        },
+
+        // Results screen
+        amazingJob: 'Toll gemacht!',
+        goodTry: 'Guter Versuch!',
+        keepPracticing: 'Weiter üben!',
+        score: 'Punkte',
+        correctLabel: 'Richtig',
+        playAgain: 'Nochmal spielen',
+        differentGame: 'Anderes Spiel',
+        home: 'Startseite',
+
+        // Achievements
+        perfectScore: 'Perfekte Punktzahl!',
+        hotStreak: 'Heiße Serie!',
+        mathStar: 'Mathe-Star!',
+        flawless: 'Fehlerlos!',
+        prizeCollector: 'Preissammler!',
+
+        // Fraction problems
+        whichIsBigger: 'Was ist größer: {f1} oder {f2}?',
+
+        // Validation
+        pleaseEnterName: 'Bitte gib deinen Namen ein!',
+        pleaseSelectGrade: 'Bitte wähle mindestens eine Klassenstufe!',
+        noPlayersYet: 'Noch keine Spieler! Klicke unten, um deinen ersten Spieler hinzuzufügen.'
+    }
+};
+
+// Get translation helper
+function t(key, replacements = {}) {
+    let text = translations[currentLanguage][key] || translations['en'][key] || key;
+
+    // Handle replacements like {count}, {answer}, etc.
+    for (const [placeholder, value] of Object.entries(replacements)) {
+        text = text.replace(`{${placeholder}}`, value);
+    }
+
+    return text;
+}
+
+// Get array translation (for random messages)
+function tArray(key) {
+    return translations[currentLanguage][key] || translations['en'][key] || [];
+}
+
+// Get nested translation
+function tNested(key, subKey) {
+    const obj = translations[currentLanguage][key] || translations['en'][key];
+    return obj ? obj[subKey] : subKey;
+}
+
+// Set language and update UI
+function setLanguage(lang) {
+    currentLanguage = lang;
+    localStorage.setItem('mathAdventureLanguage', lang);
+    updateAllTranslations();
+}
+
+// Load saved language
+function loadLanguage() {
+    const saved = localStorage.getItem('mathAdventureLanguage');
+    if (saved && translations[saved]) {
+        currentLanguage = saved;
+    }
+}
+
+// Update all UI translations
+function updateAllTranslations() {
+    // Update all elements with data-i18n attribute
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        el.textContent = t(key);
+    });
+
+    // Update placeholders
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        el.placeholder = t(key);
+    });
+
+    // Update titles
+    document.querySelectorAll('[data-i18n-title]').forEach(el => {
+        const key = el.getAttribute('data-i18n-title');
+        el.title = t(key);
+    });
+
+    // Update grade ordinals (1st, 2nd, 3rd, 4th -> 1., 2., 3., 4.)
+    document.querySelectorAll('[data-i18n-grade]').forEach(el => {
+        const gradeNum = el.getAttribute('data-i18n-grade');
+        el.textContent = tNested('gradeOrdinal', gradeNum);
+    });
+
+    // Update page title
+    document.title = t('appTitle') + ' - Fun Learning for Kids!';
+}
+
 // Available Avatars
 const avatars = [
     '🦊', '🐰', '🐼', '🦁', '🐯', '🐨',
@@ -7,14 +421,6 @@ const avatars = [
     '🐙', '🦀', '🐳', '🐬', '🦜', '🦩',
     '🦉', '🐺', '🐻', '🐮', '🐷', '🐵'
 ];
-
-// Grade descriptions
-const gradeDescriptions = {
-    1: 'Numbers 1-20, Simple Addition',
-    2: 'Numbers to 100, Add & Subtract',
-    3: 'Multiplication & Division',
-    4: 'Fractions & Word Problems'
-};
 
 // User Management
 let users = [];
@@ -46,28 +452,34 @@ const gameState = {
 };
 
 // Available Prizes - kids win these every 3 correct answers in a row!
+// Names are keys that get translated
 const prizes = [
-    { emoji: '🎁', name: 'Gift Box', points: 15 },
-    { emoji: '🍭', name: 'Lollipop', points: 10 },
-    { emoji: '🍪', name: 'Cookie', points: 10 },
-    { emoji: '🧸', name: 'Teddy Bear', points: 20 },
-    { emoji: '🎈', name: 'Balloon', points: 10 },
-    { emoji: '🍦', name: 'Ice Cream', points: 15 },
-    { emoji: '🎀', name: 'Ribbon', points: 10 },
-    { emoji: '🌟', name: 'Golden Star', points: 25 },
-    { emoji: '🏅', name: 'Medal', points: 20 },
-    { emoji: '🎪', name: 'Circus Ticket', points: 15 },
-    { emoji: '🦋', name: 'Butterfly', points: 10 },
-    { emoji: '🌈', name: 'Rainbow', points: 20 },
-    { emoji: '🎨', name: 'Paint Set', points: 15 },
-    { emoji: '🎮', name: 'Game Controller', points: 25 },
-    { emoji: '📚', name: 'Storybook', points: 15 },
-    { emoji: '🧩', name: 'Puzzle Piece', points: 10 },
-    { emoji: '🎵', name: 'Music Note', points: 10 },
-    { emoji: '🚀', name: 'Rocket Ship', points: 20 },
-    { emoji: '👑', name: 'Crown', points: 30 },
-    { emoji: '💎', name: 'Diamond', points: 30 }
+    { emoji: '🎁', nameKey: 'Gift Box', points: 15 },
+    { emoji: '🍭', nameKey: 'Lollipop', points: 10 },
+    { emoji: '🍪', nameKey: 'Cookie', points: 10 },
+    { emoji: '🧸', nameKey: 'Teddy Bear', points: 20 },
+    { emoji: '🎈', nameKey: 'Balloon', points: 10 },
+    { emoji: '🍦', nameKey: 'Ice Cream', points: 15 },
+    { emoji: '🎀', nameKey: 'Ribbon', points: 10 },
+    { emoji: '🌟', nameKey: 'Golden Star', points: 25 },
+    { emoji: '🏅', nameKey: 'Medal', points: 20 },
+    { emoji: '🎪', nameKey: 'Circus Ticket', points: 15 },
+    { emoji: '🦋', nameKey: 'Butterfly', points: 10 },
+    { emoji: '🌈', nameKey: 'Rainbow', points: 20 },
+    { emoji: '🎨', nameKey: 'Paint Set', points: 15 },
+    { emoji: '🎮', nameKey: 'Game Controller', points: 25 },
+    { emoji: '📚', nameKey: 'Storybook', points: 15 },
+    { emoji: '🧩', nameKey: 'Puzzle Piece', points: 10 },
+    { emoji: '🎵', nameKey: 'Music Note', points: 10 },
+    { emoji: '🚀', nameKey: 'Rocket Ship', points: 20 },
+    { emoji: '👑', nameKey: 'Crown', points: 30 },
+    { emoji: '💎', nameKey: 'Diamond', points: 30 }
 ];
+
+// Get translated prize name
+function getPrizeName(nameKey) {
+    return tNested('prizeNames', nameKey);
+}
 
 // Grade Level Configurations
 const gradeConfig = {
@@ -102,38 +514,11 @@ const gradeConfig = {
     }
 };
 
-// Speech messages
-const speeches = {
-    encouragement: [
-        "You've got this! 💪",
-        "Keep going! 🌟",
-        "Almost there! 🎯",
-        "You're doing great! 🎉",
-        "Fantastic! ✨",
-        "Way to go! 🚀"
-    ],
-    correct: [
-        "Excellent! 🎉",
-        "Perfect! ⭐",
-        "Amazing! 🌟",
-        "Brilliant! 💫",
-        "Superstar! 🏆",
-        "Wonderful! 🎊"
-    ],
-    incorrect: [
-        "Try again! 💪",
-        "Almost! 🤔",
-        "Keep trying! 🌈",
-        "You can do it! ⭐",
-        "Don't give up! 🎯"
-    ],
-    streak: [
-        "On fire! 🔥",
-        "Unstoppable! 💥",
-        "Incredible streak! ⚡",
-        "Math wizard! 🧙‍♂️"
-    ]
-};
+// Get speech message (now uses translations)
+function getSpeech(type) {
+    const messages = tArray(type);
+    return messages[Math.floor(Math.random() * messages.length)];
+}
 
 // DOM Elements
 const screens = {
@@ -150,11 +535,35 @@ const screens = {
 
 // Initialize the game
 function init() {
+    loadLanguage();
     loadUsers();
     renderAvatarGrids();
+    renderLanguageSelector();
     setupEventListeners();
     renderUserProfiles();
     updateSoundToggle();
+    updateAllTranslations();
+}
+
+// Render language selector in registration form
+function renderLanguageSelector() {
+    const regLangSelector = document.getElementById('reg-language');
+    const editLangSelector = document.getElementById('edit-language');
+
+    [regLangSelector, editLangSelector].forEach(selector => {
+        if (selector) {
+            selector.innerHTML = `
+                <option value="en" ${currentLanguage === 'en' ? 'selected' : ''}>🇬🇧 English</option>
+                <option value="de" ${currentLanguage === 'de' ? 'selected' : ''}>🇩🇪 Deutsch</option>
+            `;
+
+            // Add change listener to update UI when language is selected
+            selector.addEventListener('change', (e) => {
+                setLanguage(e.target.value);
+                playSound('click');
+            });
+        }
+    });
 }
 
 // ===== User Management =====
@@ -177,12 +586,13 @@ function generateUserId() {
     return 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
 }
 
-function createUser(name, avatar, grades) {
+function createUser(name, avatar, grades, language) {
     const user = {
         id: generateUserId(),
         name: name,
         avatar: avatar,
         grades: grades,
+        language: language || currentLanguage,
         stats: {
             totalGames: 0,
             totalScore: 0,
@@ -245,15 +655,16 @@ function renderUserProfiles() {
         container.innerHTML = `
             <div class="no-users-message">
                 <span class="big-emoji">👋</span>
-                <p>No players yet! Click below to add your first player.</p>
+                <p>${t('noPlayersYet')}</p>
             </div>
         `;
     } else {
+        const gradeLabel = (grades) => grades.length > 1 ? t('grades') : t('grade');
         container.innerHTML = users.map(user => `
             <div class="user-profile-card" data-user-id="${user.id}">
                 <span class="user-avatar">${user.avatar}</span>
                 <span class="user-name">${user.name}</span>
-                <span class="user-grades">Grade${user.grades.length > 1 ? 's' : ''}: ${user.grades.join(', ')}</span>
+                <span class="user-grades">${gradeLabel(user.grades)}: ${user.grades.join(', ')}</span>
             </div>
         `).join('');
 
@@ -277,18 +688,18 @@ function renderManageUserList() {
     const container = document.getElementById('manage-user-list');
 
     if (users.length === 0) {
-        container.innerHTML = '<p style="text-align: center; color: #666;">No players to manage.</p>';
+        container.innerHTML = `<p style="text-align: center; color: #666;">${t('noPlayersToManage')}</p>`;
     } else {
         container.innerHTML = users.map(user => `
             <div class="manage-user-card" data-user-id="${user.id}">
                 <span class="user-avatar">${user.avatar}</span>
                 <div class="manage-user-info">
                     <div class="user-name">${user.name}</div>
-                    <div class="user-details">Grades: ${user.grades.join(', ')} | Games: ${user.stats.totalGames}</div>
+                    <div class="user-details">${t('grades')}: ${user.grades.join(', ')} | ${t('games')}: ${user.stats.totalGames}</div>
                 </div>
                 <div class="manage-user-actions">
-                    <button class="edit-btn" data-user-id="${user.id}" title="Edit">✏️</button>
-                    <button class="delete-btn" data-user-id="${user.id}" title="Delete">🗑️</button>
+                    <button class="edit-btn" data-user-id="${user.id}" title="${t('editProfile')}">✏️</button>
+                    <button class="delete-btn" data-user-id="${user.id}" title="${t('deletePlayer')}">🗑️</button>
                 </div>
             </div>
         `).join('');
@@ -319,9 +730,9 @@ function renderGradeButtons() {
 
     container.innerHTML = currentUser.grades.map((grade, i) => `
         <button class="grade-btn" data-grade="${grade}" style="border-color: ${colors[grade-1]}">
-            <span class="grade-number">${grade}${getOrdinalSuffix(grade)}</span>
-            <span class="grade-label">Grade</span>
-            <span class="grade-desc">${gradeDescriptions[grade]}</span>
+            <span class="grade-number">${tNested('gradeOrdinal', grade)}</span>
+            <span class="grade-label">${t('grade')}</span>
+            <span class="grade-desc">${tNested('gradeDescriptions', grade)}</span>
             <span class="grade-stars">${stars[grade-1]}</span>
         </button>
     `).join('');
@@ -330,12 +741,6 @@ function renderGradeButtons() {
     container.querySelectorAll('.grade-btn').forEach(btn => {
         btn.addEventListener('click', () => selectGrade(parseInt(btn.dataset.grade)));
     });
-}
-
-function getOrdinalSuffix(n) {
-    const s = ['th', 'st', 'nd', 'rd'];
-    const v = n % 100;
-    return s[(v - 20) % 10] || s[v] || s[0];
 }
 
 // ===== Event Listeners Setup =====
@@ -433,20 +838,21 @@ function registerUser() {
     const grades = Array.from(document.querySelectorAll('input[name="grade"]:checked'))
         .map(cb => parseInt(cb.value))
         .sort((a, b) => a - b);
+    const language = document.getElementById('reg-language').value || currentLanguage;
 
     // Validation
     if (!name) {
-        alert('Please enter your name!');
+        alert(t('pleaseEnterName'));
         return;
     }
 
     if (grades.length === 0) {
-        alert('Please select at least one grade level!');
+        alert(t('pleaseSelectGrade'));
         return;
     }
 
-    // Create user
-    const user = createUser(name, avatar, grades);
+    // Create user with language preference
+    const user = createUser(name, avatar, grades, language);
 
     // Auto-login the new user
     loginUser(user.id);
@@ -458,6 +864,11 @@ function loginUser(userId) {
     if (!user) return;
 
     currentUser = user;
+
+    // Set language to user's preference
+    if (user.language && translations[user.language]) {
+        setLanguage(user.language);
+    }
 
     // Update welcome screen
     document.getElementById('welcome-avatar').textContent = user.avatar;
@@ -488,6 +899,12 @@ function openEditScreen(userId) {
         cb.checked = user.grades.includes(parseInt(cb.value));
     });
 
+    // Set language
+    const langSelector = document.getElementById('edit-language');
+    if (langSelector) {
+        langSelector.value = user.language || 'en';
+    }
+
     showScreen('edit-screen');
     playSound('click');
 }
@@ -500,20 +917,21 @@ function saveUserEdit() {
     const grades = Array.from(document.querySelectorAll('input[name="edit-grade"]:checked'))
         .map(cb => parseInt(cb.value))
         .sort((a, b) => a - b);
+    const language = document.getElementById('edit-language').value || currentLanguage;
 
     // Validation
     if (!name) {
-        alert('Please enter a name!');
+        alert(t('pleaseEnterName'));
         return;
     }
 
     if (grades.length === 0) {
-        alert('Please select at least one grade level!');
+        alert(t('pleaseSelectGrade'));
         return;
     }
 
-    // Update user
-    updateUser(userId, { name, avatar, grades });
+    // Update user with language
+    updateUser(userId, { name, avatar, grades, language });
 
     // Refresh manage list and go back
     renderManageUserList();
@@ -526,8 +944,7 @@ function openDeleteModal(userId) {
     if (!user) return;
 
     deleteTargetId = userId;
-    document.getElementById('delete-modal-text').textContent =
-        `Are you sure you want to delete ${user.name}'s profile? This cannot be undone.`;
+    document.getElementById('delete-modal-text').textContent = t('deleteConfirm');
     document.getElementById('delete-modal').classList.remove('hidden');
 }
 
@@ -707,7 +1124,7 @@ function generateFractionProblem() {
             while (f2.value === f1.value) {
                 f2 = fractions[Math.floor(Math.random() * fractions.length)];
             }
-            display = `Which is bigger: ${f1.num}/${f1.den} or ${f2.num}/${f2.den}?`;
+            display = t('whichIsBigger', { f1: `${f1.num}/${f1.den}`, f2: `${f2.num}/${f2.den}` });
             answer = f1.value > f2.value ? `${f1.num}/${f1.den}` : `${f2.num}/${f2.den}`;
             options = [`${f1.num}/${f1.den}`, `${f2.num}/${f2.den}`];
             break;
@@ -776,7 +1193,7 @@ function startGamePlay() {
             break;
     }
 
-    updateSpeech(speeches.encouragement[Math.floor(Math.random() * speeches.encouragement.length)]);
+    updateSpeech(getSpeech('encouragement'));
 }
 
 function updateStats() {
@@ -790,7 +1207,7 @@ function updateProgress() {
     const progress = (gameState.currentQuestion / gameState.totalQuestions) * 100;
     document.getElementById('progress-fill').style.width = `${progress}%`;
     document.getElementById('progress-text').textContent =
-        `Question ${gameState.currentQuestion + 1} of ${gameState.totalQuestions}`;
+        t('questionOf', { current: gameState.currentQuestion + 1, total: gameState.totalQuestions });
 }
 
 function updateTimer() {
@@ -823,7 +1240,7 @@ function renderFillBlank() {
         html += `<span>${parts[1]}</span>`;
     }
     html += '</div>';
-    html += '<button class="big-button" id="submit-answer">Check Answer! ✓</button>';
+    html += `<button class="big-button" id="submit-answer">${t('checkAnswer')} ✓</button>`;
 
     gameArea.innerHTML = html;
 
@@ -1003,7 +1420,7 @@ function checkMatch() {
         gameState.streak++;
         gameState.correctAnswers++;
         playSound('correct');
-        updateSpeech(speeches.correct[Math.floor(Math.random() * speeches.correct.length)]);
+        updateSpeech(getSpeech('correct'));
 
         if (matched.length === 5) {
             gameState.score += 50;
@@ -1021,7 +1438,7 @@ function checkMatch() {
         gameState.streak = 0;
         gameState.lives--;
         playSound('wrong');
-        updateSpeech(speeches.incorrect[Math.floor(Math.random() * speeches.incorrect.length)]);
+        updateSpeech(getSpeech('incorrect'));
 
         if (gameState.lives <= 0) {
             setTimeout(() => endGame(), 500);
@@ -1088,7 +1505,7 @@ function popBubble(bubble, correctAnswer) {
             gameState.lives--;
             gameState.streak = 0;
             updateStats();
-            updateSpeech(speeches.incorrect[Math.floor(Math.random() * speeches.incorrect.length)]);
+            updateSpeech(getSpeech('incorrect'));
 
             if (gameState.lives <= 0) {
                 endGame();
@@ -1120,9 +1537,9 @@ function handleAnswer(isCorrect, correctAnswer) {
         playSound('correct');
 
         if (gameState.streak >= 5) {
-            updateSpeech(speeches.streak[Math.floor(Math.random() * speeches.streak.length)]);
+            updateSpeech(getSpeech('streak'));
         } else {
-            updateSpeech(speeches.correct[Math.floor(Math.random() * speeches.correct.length)]);
+            updateSpeech(getSpeech('correct'));
         }
 
         showFeedback(true);
@@ -1131,7 +1548,7 @@ function handleAnswer(isCorrect, correctAnswer) {
         gameState.lastPrizeStreak = 0; // Reset prize streak when wrong
         gameState.lives--;
         playSound('wrong');
-        updateSpeech(speeches.incorrect[Math.floor(Math.random() * speeches.incorrect.length)]);
+        updateSpeech(getSpeech('incorrect'));
         showFeedback(false, correctAnswer);
     }
 
@@ -1192,7 +1609,7 @@ function updatePrizeCollection() {
     if (gameState.prizes.length > 0) {
         prizeCollection.classList.remove('hidden');
         collectedPrizes.innerHTML = gameState.prizes.map((prize, i) => `
-            <span class="collected-prize-item" style="animation-delay: ${i * 0.1}s" title="${prize.name}">
+            <span class="collected-prize-item" style="animation-delay: ${i * 0.1}s" title="${getPrizeName(prize.nameKey)}">
                 ${prize.emoji}
             </span>
         `).join('');
@@ -1210,9 +1627,9 @@ function showPrize(prize, callback) {
     const prizeStreakMsg = document.getElementById('prize-streak-msg');
 
     prizeEmoji.textContent = prize.emoji;
-    prizeName.textContent = prize.name;
-    prizePoints.textContent = `+${prize.points} bonus points!`;
-    prizeStreakMsg.textContent = `🔥 ${gameState.streak} in a row! 🔥`;
+    prizeName.textContent = getPrizeName(prize.nameKey);
+    prizePoints.textContent = t('bonusPoints', { points: prize.points });
+    prizeStreakMsg.textContent = `🔥 ${t('inARow', { count: gameState.streak })} 🔥`;
 
     prizePopup.classList.remove('hidden');
     prizePopup.classList.add('show');
@@ -1233,10 +1650,11 @@ function showFeedback(isCorrect, correctAnswer = null) {
 
     if (isCorrect) {
         emoji.textContent = ['🎉', '⭐', '🌟', '💫', '🏆'][Math.floor(Math.random() * 5)];
-        text.textContent = ['Correct!', 'Awesome!', 'Perfect!', 'Great job!'][Math.floor(Math.random() * 4)];
+        const feedbackMessages = tArray('correctFeedback');
+        text.textContent = feedbackMessages[Math.floor(Math.random() * feedbackMessages.length)];
     } else {
         emoji.textContent = ['😅', '🤔', '💪'][Math.floor(Math.random() * 3)];
-        text.textContent = `The answer was ${correctAnswer}`;
+        text.textContent = t('answerWas', { answer: correctAnswer });
     }
 
     feedback.classList.remove('hidden');
@@ -1270,7 +1688,7 @@ function endGame() {
     showScreen('results-screen');
 
     const titleEmoji = percentage >= 70 ? '🎉' : percentage >= 50 ? '👍' : '💪';
-    const titleText = percentage >= 70 ? 'Amazing Job!' : percentage >= 50 ? 'Good Try!' : 'Keep Practicing!';
+    const titleText = percentage >= 70 ? t('amazingJob') : percentage >= 50 ? t('goodTry') : t('keepPracticing');
     document.getElementById('results-title').textContent = `${titleEmoji} ${titleText} ${titleEmoji}`;
 
     document.getElementById('results-character').textContent = currentUser ? currentUser.avatar : '🦊';
@@ -1293,12 +1711,13 @@ function endGame() {
     // Show prizes won
     const prizesWonDiv = document.getElementById('prizes-won');
     const prizesList = document.getElementById('prizes-list');
+    document.getElementById('prizes-title').textContent = t('prizesWon');
     if (gameState.prizes.length > 0) {
         prizesWonDiv.classList.remove('hidden');
         prizesList.innerHTML = gameState.prizes.map((prize, i) => `
             <div class="prize-item" style="animation-delay: ${i * 0.1}s">
                 <span class="prize-item-emoji">${prize.emoji}</span>
-                <span class="prize-item-name">${prize.name}</span>
+                <span class="prize-item-name">${getPrizeName(prize.nameKey)}</span>
             </div>
         `).join('');
     } else {
@@ -1308,11 +1727,11 @@ function endGame() {
 
     // Show achievements
     const achievements = [];
-    if (gameState.correctAnswers === gameState.totalQuestions) achievements.push('🏆 Perfect Score!');
-    if (gameState.bestStreak >= 5) achievements.push('🔥 Hot Streak!');
-    if (gameState.score >= 100) achievements.push('⭐ Math Star!');
-    if (gameState.lives === 5) achievements.push('❤️ Flawless!');
-    if (gameState.prizes.length >= 3) achievements.push('🎁 Prize Collector!');
+    if (gameState.correctAnswers === gameState.totalQuestions) achievements.push(`🏆 ${t('perfectScore')}`);
+    if (gameState.bestStreak >= 5) achievements.push(`🔥 ${t('hotStreak')}`);
+    if (gameState.score >= 100) achievements.push(`⭐ ${t('mathStar')}`);
+    if (gameState.lives === 5) achievements.push(`❤️ ${t('flawless')}`);
+    if (gameState.prizes.length >= 3) achievements.push(`🎁 ${t('prizeCollector')}`);
 
     const achievementsDiv = document.getElementById('achievements');
     achievementsDiv.innerHTML = achievements.map(a => `<div class="achievement">${a}</div>`).join('');
