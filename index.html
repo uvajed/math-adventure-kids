@@ -24,22 +24,58 @@
     <div class="container">
         <!-- Login/User Selection Screen -->
         <div id="login-screen" class="screen active">
-            <div class="welcome-content">
-                <h1 class="title bounce" data-i18n="appTitle">Math Adventure!</h1>
-                <p class="subtitle" data-i18n="whoIsPlaying">Who's playing today?</p>
-
-                <div id="user-profiles" class="user-profiles">
-                    <!-- User profiles will be rendered here -->
+            <div class="entry-page">
+                <!-- Hero Section -->
+                <div class="hero-section">
+                    <div class="hero-icons">
+                        <span class="hero-icon hero-icon-1">🔢</span>
+                        <span class="hero-icon hero-icon-2">✨</span>
+                        <span class="hero-icon hero-icon-3">🎯</span>
+                    </div>
+                    <h1 class="hero-title" data-i18n="appTitle">Math Adventure!</h1>
+                    <div class="hero-tagline">
+                        <span class="tagline-icon">🚀</span>
+                        <span class="tagline-text">Learn • Play • Win!</span>
+                        <span class="tagline-icon">🏆</span>
+                    </div>
                 </div>
 
-                <div class="login-actions">
-                    <button id="add-user-btn" class="add-user-btn">
-                        <span class="add-icon">➕</span>
-                        <span data-i18n="addNewPlayer">Add New Player</span>
-                    </button>
-                    <button id="manage-users-btn" class="secondary-button small">
-                        ⚙️ <span data-i18n="managePlayers">Manage Players</span>
-                    </button>
+                <!-- Main Content Card -->
+                <div class="entry-card">
+                    <div class="entry-card-header">
+                        <span class="entry-header-icon">👋</span>
+                        <h2 class="entry-header-title" data-i18n="whoIsPlaying">Who's playing today?</h2>
+                    </div>
+
+                    <div id="user-profiles" class="user-profiles">
+                        <!-- User profiles will be rendered here -->
+                    </div>
+
+                    <div class="login-actions">
+                        <button id="add-user-btn" class="add-user-btn">
+                            <span class="add-icon">➕</span>
+                            <span data-i18n="addNewPlayer">Add New Player</span>
+                        </button>
+                        <button id="manage-users-btn" class="secondary-button small">
+                            ⚙️ <span data-i18n="managePlayers">Manage Players</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Features Section -->
+                <div class="features-section">
+                    <div class="feature-item">
+                        <span class="feature-icon">🎮</span>
+                        <span class="feature-text">4 Fun Games</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🎁</span>
+                        <span class="feature-text">Win Prizes</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">📊</span>
+                        <span class="feature-text">Track Progress</span>
+                    </div>
                 </div>
             </div>
         </div>

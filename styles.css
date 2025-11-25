@@ -133,6 +133,161 @@ body {
     font-weight: 500;
 }
 
+/* ===== Entry Page (Login Screen) ===== */
+.entry-page {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px 0;
+}
+
+.hero-section {
+    text-align: center;
+    padding: 30px 20px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-medium);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: var(--gradient-rainbow);
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+}
+
+.hero-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.hero-icon {
+    font-size: 2.5rem;
+    display: inline-block;
+}
+
+.hero-icon-1 {
+    animation: bounce 2s ease-in-out infinite;
+}
+
+.hero-icon-2 {
+    animation: pulse 1.5s ease-in-out infinite;
+    animation-delay: 0.3s;
+}
+
+.hero-icon-3 {
+    animation: bounce 2s ease-in-out infinite;
+    animation-delay: 0.6s;
+}
+
+.hero-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+    text-shadow: none;
+    letter-spacing: -1px;
+}
+
+.hero-tagline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-size: 1.1rem;
+    color: var(--dark);
+    opacity: 0.9;
+}
+
+.tagline-icon {
+    font-size: 1.3rem;
+}
+
+.tagline-text {
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.entry-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 25px;
+    box-shadow: var(--shadow-strong);
+    border: 3px solid var(--primary-light);
+}
+
+.entry-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px dashed var(--primary-light);
+}
+
+.entry-header-icon {
+    font-size: 2rem;
+    animation: wave 1.5s ease-in-out infinite;
+}
+
+@keyframes wave {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(20deg); }
+    75% { transform: rotate(-15deg); }
+}
+
+.entry-header-title {
+    font-size: 1.4rem;
+    color: var(--dark);
+    font-weight: 600;
+    margin: 0;
+}
+
+.features-section {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--white);
+    padding: 12px 18px;
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-3px);
+}
+
+.feature-icon {
+    font-size: 1.3rem;
+}
+
+.feature-text {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--dark);
+}
+
 /* ===== Welcome Screen ===== */
 .welcome-content {
     background: var(--white);
@@ -1007,6 +1162,73 @@ body {
         padding: 12px;
     }
 
+    /* Entry page mobile */
+    .entry-page {
+        gap: 15px;
+    }
+
+    .hero-section {
+        padding: 20px 15px;
+    }
+
+    .hero-icons {
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .hero-icon {
+        font-size: 2rem;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+        margin-bottom: 8px;
+    }
+
+    .hero-tagline {
+        gap: 8px;
+        font-size: 0.95rem;
+    }
+
+    .tagline-icon {
+        font-size: 1.1rem;
+    }
+
+    .entry-card {
+        padding: 18px 15px;
+    }
+
+    .entry-card-header {
+        gap: 10px;
+        margin-bottom: 15px;
+        padding-bottom: 12px;
+    }
+
+    .entry-header-icon {
+        font-size: 1.6rem;
+    }
+
+    .entry-header-title {
+        font-size: 1.15rem;
+    }
+
+    .features-section {
+        gap: 10px;
+    }
+
+    .feature-item {
+        padding: 10px 14px;
+        gap: 6px;
+    }
+
+    .feature-icon {
+        font-size: 1.1rem;
+    }
+
+    .feature-text {
+        font-size: 0.85rem;
+    }
+
     .title {
         font-size: 1.5rem;
         text-shadow: 1px 1px 0 var(--white), 2px 2px 0 var(--primary-light);
@@ -1315,60 +1537,94 @@ body {
 /* User Profiles Grid */
 .user-profiles {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 20px;
-    margin: 30px 0;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 16px;
+    margin: 10px 0 20px 0;
+    max-width: 100%;
 }
 
 .user-profile-card {
-    background: var(--light);
-    border: 3px solid var(--primary-light);
+    background: linear-gradient(145deg, #f8f9fa 0%, #e9ecef 100%);
+    border: 3px solid transparent;
     border-radius: var(--radius-md);
-    padding: 20px;
+    padding: 18px 12px;
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.user-profile-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-3);
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .user-profile-card:hover {
-    transform: translateY(-8px) scale(1.02);
+    transform: translateY(-6px);
     border-color: var(--primary);
-    box-shadow: var(--shadow-medium);
+    box-shadow: 0 10px 25px rgba(108, 92, 231, 0.25);
+}
+
+.user-profile-card:hover::before {
+    opacity: 1;
 }
 
 .user-profile-card .user-avatar {
-    font-size: 3.5rem;
+    font-size: 3rem;
     line-height: 1;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    transition: transform 0.3s ease;
+}
+
+.user-profile-card:hover .user-avatar {
+    transform: scale(1.1);
 }
 
 .user-profile-card .user-name {
-    font-size: 1.1rem;
-    font-weight: bold;
+    font-size: 1.05rem;
+    font-weight: 700;
     color: var(--dark);
 }
 
 .user-profile-card .user-grades {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: #666;
+    background: rgba(108, 92, 231, 0.1);
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
 }
 
 .no-users-message {
     text-align: center;
-    padding: 40px;
+    padding: 35px 20px;
     color: #666;
+    background: linear-gradient(135deg, rgba(108, 92, 231, 0.05) 0%, rgba(253, 121, 168, 0.05) 100%);
+    border-radius: var(--radius-md);
+    border: 2px dashed var(--primary-light);
 }
 
 .no-users-message .big-emoji {
-    font-size: 4rem;
+    font-size: 3.5rem;
     display: block;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+.no-users-message p {
+    font-size: 1rem;
+    line-height: 1.5;
 }
 
 /* Login Actions */
@@ -1376,34 +1632,58 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
-    margin-top: 20px;
+    gap: 12px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 2px dashed var(--primary-light);
 }
 
 .add-user-btn {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
-    padding: 15px 30px;
-    font-size: 1.2rem;
-    font-weight: bold;
+    padding: 14px 28px;
+    font-size: 1.1rem;
+    font-weight: 700;
     color: var(--white);
-    background: var(--gradient-4);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     border: none;
     border-radius: var(--radius-full);
     cursor: pointer;
     transition: all 0.3s ease;
     font-family: inherit;
-    box-shadow: var(--shadow-soft);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.add-user-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.add-user-btn:hover::before {
+    left: 100%;
 }
 
 .add-user-btn:hover {
     transform: translateY(-3px);
-    box-shadow: var(--shadow-medium);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+
+.add-user-btn:active {
+    transform: translateY(-1px);
 }
 
 .add-user-btn .add-icon {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
 }
 
 .secondary-button.small {
