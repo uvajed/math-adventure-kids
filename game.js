@@ -792,6 +792,7 @@ async function createUser(name, avatar, grades, language, pin) {
             totalScore: 0,
             bestStreak: 0
         },
+        collectedPrizes: [], // Prizes collected across all games
         createdAt: new Date().toISOString()
     };
     users.push(user);
@@ -1659,7 +1660,30 @@ function checkQuizAnswer(btn, correctAnswer) {
 // ===== Match Game Mode =====
 function renderMatch() {
     const gameArea = document.getElementById('game-area');
-    const matchProblems = gameState.problems.slice(0, 5);
+
+    // Select 5 problems with unique answers to avoid matching confusion
+    const usedAnswers = new Set();
+    const matchProblems = [];
+
+    for (const problem of gameState.problems) {
+        const answerKey = String(problem.answer);
+        if (!usedAnswers.has(answerKey) && matchProblems.length < 5) {
+            usedAnswers.add(answerKey);
+            matchProblems.push(problem);
+        }
+    }
+
+    // If we don't have enough unique answers, generate more problems
+    const config = gradeConfig[gameState.grade];
+    while (matchProblems.length < 5) {
+        const operation = config.operations[Math.floor(Math.random() * config.operations.length)];
+        const newProblem = generateProblem(operation, config);
+        const answerKey = String(newProblem.answer);
+        if (!usedAnswers.has(answerKey)) {
+            usedAnswers.add(answerKey);
+            matchProblems.push(newProblem);
+        }
+    }
 
     const problems = matchProblems.map((p, i) => ({
         id: i,
@@ -1841,12 +1865,16 @@ function renderBubble() {
     const container = document.getElementById('bubble-container');
     const containerWidth = container.offsetWidth - 80;
 
+    // Shuffle the order in which bubbles appear so correct answer isn't predictable
+    const shuffledIndices = options.map((_, i) => i).sort(() => Math.random() - 0.5);
+
     // Spread bubbles across horizontal positions to avoid overlap
     const positions = [];
     const bubbleWidth = 75;
     const spacing = Math.floor(containerWidth / options.length);
 
-    options.forEach((opt, i) => {
+    shuffledIndices.forEach((optIndex, i) => {
+        const opt = options[optIndex];
         setTimeout(() => {
             const bubble = document.createElement('div');
             bubble.className = 'bubble';
@@ -2055,14 +2083,32 @@ function endGame() {
     if (percentage >= 70) stars = 2;
     if (percentage >= 90) stars = 3;
 
-    // Update user stats
+    // Update user stats and save prizes
     if (currentUser) {
         currentUser.stats.totalGames++;
         currentUser.stats.totalScore += gameState.score;
         if (gameState.bestStreak > currentUser.stats.bestStreak) {
             currentUser.stats.bestStreak = gameState.bestStreak;
         }
-        updateUser(currentUser.id, { stats: currentUser.stats });
+
+        // Save prizes won during this game to user's collection
+        if (!currentUser.collectedPrizes) {
+            currentUser.collectedPrizes = [];
+        }
+        if (gameState.prizes.length > 0) {
+            const newPrizes = gameState.prizes.map(prize => ({
+                emoji: prize.emoji,
+                nameKey: prize.nameKey,
+                points: prize.points,
+                wonAt: new Date().toISOString()
+            }));
+            currentUser.collectedPrizes = currentUser.collectedPrizes.concat(newPrizes);
+        }
+
+        updateUser(currentUser.id, {
+            stats: currentUser.stats,
+            collectedPrizes: currentUser.collectedPrizes
+        });
     }
 
     // Show results
