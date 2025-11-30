@@ -60,6 +60,7 @@ const translations = {
         totalGames: 'Games',
         totalStars: 'Total Stars',
         bestStreak: 'Best Streak',
+        collectedPrizes: 'Collected Prizes',
         startAdventure: 'Start Adventure!',
         switchPlayer: 'Switch Player',
 
@@ -240,6 +241,7 @@ const translations = {
         totalGames: 'Spiele',
         totalStars: 'Sterne gesamt',
         bestStreak: 'Beste Serie',
+        collectedPrizes: 'Gesammelte Preise',
         startAdventure: 'Abenteuer starten!',
         switchPlayer: 'Spieler wechseln',
 
@@ -1172,6 +1174,20 @@ function loginUser(userId) {
     document.getElementById('total-games').textContent = user.stats.totalGames;
     document.getElementById('total-score').textContent = user.stats.totalScore;
     document.getElementById('best-streak-stat').textContent = user.stats.bestStreak;
+
+    // Display collected prizes
+    const prizesSection = document.getElementById('welcome-prizes-section');
+    const prizesList = document.getElementById('welcome-prizes-list');
+
+    if (user.collectedPrizes && user.collectedPrizes.length > 0) {
+        prizesSection.classList.remove('hidden');
+        prizesList.innerHTML = user.collectedPrizes.map(prize =>
+            `<span class="welcome-prize-item" title="${getPrizeName(prize.nameKey)}">${prize.emoji}</span>`
+        ).join('');
+    } else {
+        prizesSection.classList.add('hidden');
+        prizesList.innerHTML = '';
+    }
 
     showScreen('welcome-screen');
     playSound('click');

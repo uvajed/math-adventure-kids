@@ -2384,6 +2384,42 @@ body {
     color: #666;
 }
 
+/* Collected Prizes Section on Welcome Screen */
+.welcome-prizes-section {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px dashed rgba(255, 255, 255, 0.5);
+}
+
+.welcome-prizes-section h4 {
+    text-align: center;
+    color: var(--dark);
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.welcome-prizes-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    max-height: 120px;
+    overflow-y: auto;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: var(--radius-sm);
+}
+
+.welcome-prize-item {
+    font-size: 1.8rem;
+    cursor: default;
+    transition: transform 0.2s ease;
+}
+
+.welcome-prize-item:hover {
+    transform: scale(1.2);
+}
+
 /* Manage Users Screen */
 .manage-user-list {
     display: flex;
