@@ -78,6 +78,20 @@ const translations = {
         matchGameDesc: 'Match problems with answers!',
         bubblePop: 'Bubble Pop',
         bubblePopDesc: 'Pop the right answer!',
+        speedChallenge: 'Speed Challenge',
+        speedChallengeDesc: 'How many can you solve?',
+        memoryMatch: 'Memory Match',
+        memoryMatchDesc: 'Find matching pairs!',
+        numberOrder: 'Number Order',
+        numberOrderDesc: 'Sort the numbers!',
+        trueFalse: 'True or False',
+        trueFalseDesc: 'Is the equation correct?',
+        true: 'True',
+        false: 'False',
+        sortAscending: 'Sort smallest to largest',
+        sortDescending: 'Sort largest to smallest',
+        timeUp: 'Time is up!',
+        questionsAnswered: 'Questions Answered',
 
         // Game screen
         back: 'Back',
@@ -259,6 +273,20 @@ const translations = {
         matchGameDesc: 'Ordne Aufgaben den Lösungen zu!',
         bubblePop: 'Blasen platzen',
         bubblePopDesc: 'Platze die richtige Antwort!',
+        speedChallenge: 'Schnelligkeitstest',
+        speedChallengeDesc: 'Wie viele schaffst du?',
+        memoryMatch: 'Memory-Spiel',
+        memoryMatchDesc: 'Finde passende Paare!',
+        numberOrder: 'Zahlen ordnen',
+        numberOrderDesc: 'Sortiere die Zahlen!',
+        trueFalse: 'Wahr oder Falsch',
+        trueFalseDesc: 'Stimmt die Gleichung?',
+        true: 'Wahr',
+        false: 'Falsch',
+        sortAscending: 'Sortiere von klein nach groß',
+        sortDescending: 'Sortiere von groß nach klein',
+        timeUp: 'Zeit ist um!',
+        questionsAnswered: 'Beantwortete Fragen',
 
         // Game screen
         back: 'Zurück',
@@ -440,6 +468,20 @@ const translations = {
         matchGameDesc: 'Përputh problemet me përgjigjet!',
         bubblePop: 'Plasni Flluska',
         bubblePopDesc: 'Plasni përgjigjen e saktë!',
+        speedChallenge: 'Sfida e Shpejtësisë',
+        speedChallengeDesc: 'Sa mund të zgjidhësh?',
+        memoryMatch: 'Loja e Kujtesës',
+        memoryMatchDesc: 'Gjej çiftet përkatëse!',
+        numberOrder: 'Radhit Numrat',
+        numberOrderDesc: 'Radhit numrat!',
+        trueFalse: 'E Vërtetë apo e Gabuar',
+        trueFalseDesc: 'A është ekuacioni i saktë?',
+        true: 'E Vërtetë',
+        false: 'E Gabuar',
+        sortAscending: 'Radhit nga më i vogli te më i madhi',
+        sortDescending: 'Radhit nga më i madhi te më i vogli',
+        timeUp: 'Koha mbaroi!',
+        questionsAnswered: 'Pyetje të Përgjiguara',
 
         // Game screen
         back: 'Kthehu',
@@ -1709,6 +1751,18 @@ function startGamePlay() {
         case 'bubble':
             renderBubble();
             break;
+        case 'speed':
+            renderSpeedChallenge();
+            break;
+        case 'memory':
+            renderMemoryMatch();
+            break;
+        case 'order':
+            renderNumberOrder();
+            break;
+        case 'truefalse':
+            renderTrueFalse();
+            break;
     }
 
     updateSpeech(getSpeech('encouragement'));
@@ -2119,6 +2173,461 @@ function popBubble(bubble, correctAnswer) {
             }
         }
     }, 300);
+}
+
+// ===== Speed Challenge Mode =====
+function renderSpeedChallenge() {
+    const problem = gameState.problems[gameState.currentQuestion];
+    const gameArea = document.getElementById('game-area');
+
+    let html = '<div class="speed-challenge">';
+    html += '<div class="speed-score-display">';
+    html += `<span class="speed-answered">${t('questionsAnswered')}: <strong id="speed-count">${gameState.correctAnswers}</strong></span>`;
+    html += '</div>';
+    html += `<div class="math-problem speed-problem"><span>${problem.display}</span></div>`;
+    html += `<input type="number" class="blank-input speed-input" id="speed-input" autofocus>`;
+    html += `<button class="big-button" id="speed-submit">${t('checkAnswer')} ⚡</button>`;
+    html += '</div>';
+
+    gameArea.innerHTML = html;
+
+    const input = document.getElementById('speed-input');
+    const submitBtn = document.getElementById('speed-submit');
+
+    input.focus();
+    input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') checkSpeedAnswer();
+    });
+    submitBtn.addEventListener('click', checkSpeedAnswer);
+}
+
+function checkSpeedAnswer() {
+    const input = document.getElementById('speed-input');
+    const userAnswer = input.value.trim();
+    const problem = gameState.problems[gameState.currentQuestion];
+
+    if (userAnswer === '') return;
+
+    const isCorrect = parseInt(userAnswer) === problem.answer || userAnswer === String(problem.answer);
+
+    if (isCorrect) {
+        gameState.score += 15;
+        gameState.streak++;
+        gameState.correctAnswers++;
+        gameState.timeLeft += 2; // Bonus time for correct answers
+        playSound('correct');
+        updateSpeech(getSpeech('correct'));
+
+        if (gameState.streak > gameState.bestStreak) {
+            gameState.bestStreak = gameState.streak;
+        }
+
+        // Check for prize
+        if (gameState.streak > 0 && gameState.streak % 3 === 0 && gameState.streak > gameState.lastPrizeStreak) {
+            const prizeWon = awardPrize();
+            gameState.lastPrizeStreak = gameState.streak;
+            showPrize(prizeWon, () => {
+                nextSpeedQuestion();
+            });
+            updateStats();
+            return;
+        }
+    } else {
+        gameState.streak = 0;
+        gameState.lastPrizeStreak = 0;
+        gameState.lives--;
+        playSound('wrong');
+        updateSpeech(getSpeech('incorrect'));
+    }
+
+    updateStats();
+
+    if (gameState.lives <= 0) {
+        endGame();
+        return;
+    }
+
+    nextSpeedQuestion();
+}
+
+function nextSpeedQuestion() {
+    gameState.currentQuestion++;
+
+    // Generate more problems if needed (infinite mode)
+    if (gameState.currentQuestion >= gameState.problems.length) {
+        const config = gradeConfig[gameState.grade];
+        for (let i = 0; i < 10; i++) {
+            const operation = config.operations[Math.floor(Math.random() * config.operations.length)];
+            gameState.problems.push(generateProblem(operation, config));
+        }
+        gameState.totalQuestions = gameState.problems.length;
+    }
+
+    updateProgress();
+    renderSpeedChallenge();
+}
+
+// ===== Memory Match Mode =====
+function renderMemoryMatch() {
+    const gameArea = document.getElementById('game-area');
+    const config = gradeConfig[gameState.grade];
+
+    // Generate 6 unique problem-answer pairs for 12 cards
+    const memoryPairs = [];
+    const usedAnswers = new Set();
+
+    while (memoryPairs.length < 6) {
+        const operation = config.operations[Math.floor(Math.random() * config.operations.length)];
+        const problem = generateProblem(operation, config);
+        const answerKey = String(problem.answer);
+
+        if (!usedAnswers.has(answerKey) && problem.operation !== 'fractions') {
+            usedAnswers.add(answerKey);
+            memoryPairs.push({
+                problem: problem.display.replace(' = ?', ''),
+                answer: problem.answer
+            });
+        }
+    }
+
+    // Create cards array with problems and answers
+    const cards = [];
+    memoryPairs.forEach((pair, i) => {
+        cards.push({ id: i, type: 'problem', content: pair.problem, pairId: i });
+        cards.push({ id: i + 6, type: 'answer', content: pair.answer, pairId: i });
+    });
+
+    // Shuffle cards
+    cards.sort(() => Math.random() - 0.5);
+
+    let html = '<div class="memory-game">';
+    html += `<div class="memory-header"><span>${t('memoryMatchDesc')}</span></div>`;
+    html += '<div class="memory-grid">';
+
+    cards.forEach((card, index) => {
+        html += `<div class="memory-card" data-index="${index}" data-pair-id="${card.pairId}" data-type="${card.type}">
+            <div class="memory-card-inner">
+                <div class="memory-card-front">❓</div>
+                <div class="memory-card-back">${card.content}</div>
+            </div>
+        </div>`;
+    });
+
+    html += '</div></div>';
+
+    gameArea.innerHTML = html;
+
+    // Initialize memory state
+    gameState.memoryState = {
+        flippedCards: [],
+        matchedPairs: 0,
+        totalPairs: 6,
+        canFlip: true
+    };
+
+    // Add click handlers
+    document.querySelectorAll('.memory-card').forEach(card => {
+        card.addEventListener('click', () => flipMemoryCard(card));
+    });
+}
+
+function flipMemoryCard(card) {
+    if (!gameState.memoryState.canFlip) return;
+    if (card.classList.contains('flipped') || card.classList.contains('matched')) return;
+
+    card.classList.add('flipped');
+    gameState.memoryState.flippedCards.push(card);
+    playSound('click');
+
+    if (gameState.memoryState.flippedCards.length === 2) {
+        gameState.memoryState.canFlip = false;
+        checkMemoryMatch();
+    }
+}
+
+function checkMemoryMatch() {
+    const [card1, card2] = gameState.memoryState.flippedCards;
+    const pairId1 = card1.dataset.pairId;
+    const pairId2 = card2.dataset.pairId;
+    const type1 = card1.dataset.type;
+    const type2 = card2.dataset.type;
+
+    // Match if same pairId but different types (problem matches answer)
+    const isMatch = pairId1 === pairId2 && type1 !== type2;
+
+    setTimeout(() => {
+        if (isMatch) {
+            card1.classList.add('matched');
+            card2.classList.add('matched');
+            gameState.memoryState.matchedPairs++;
+            gameState.score += 20;
+            gameState.streak++;
+            gameState.correctAnswers++;
+            playSound('correct');
+            updateSpeech(getSpeech('correct'));
+
+            if (gameState.streak > gameState.bestStreak) {
+                gameState.bestStreak = gameState.streak;
+            }
+
+            // Check for prize
+            if (gameState.streak > 0 && gameState.streak % 3 === 0 && gameState.streak > gameState.lastPrizeStreak) {
+                const prizeWon = awardPrize();
+                gameState.lastPrizeStreak = gameState.streak;
+                showPrize(prizeWon, null);
+            }
+
+            // Check if game is complete
+            if (gameState.memoryState.matchedPairs === gameState.memoryState.totalPairs) {
+                gameState.score += 100; // Completion bonus
+                setTimeout(() => endGame(), 1000);
+            }
+        } else {
+            card1.classList.remove('flipped');
+            card2.classList.remove('flipped');
+            gameState.streak = 0;
+            gameState.lastPrizeStreak = 0;
+            gameState.lives--;
+            playSound('wrong');
+            updateSpeech(getSpeech('incorrect'));
+
+            if (gameState.lives <= 0) {
+                setTimeout(() => endGame(), 500);
+            }
+        }
+
+        gameState.memoryState.flippedCards = [];
+        gameState.memoryState.canFlip = true;
+        updateStats();
+    }, 800);
+}
+
+// ===== Number Order Mode =====
+function renderNumberOrder() {
+    const gameArea = document.getElementById('game-area');
+    const config = gradeConfig[gameState.grade];
+
+    // Generate 5 unique numbers/results to sort
+    const numbers = new Set();
+    while (numbers.size < 5) {
+        const operation = config.operations[Math.floor(Math.random() * config.operations.length)];
+        if (operation !== 'fractions') {
+            const problem = generateProblem(operation, config);
+            if (problem.answer > 0 && problem.answer < 1000) {
+                numbers.add(problem.answer);
+            }
+        }
+    }
+
+    const numbersArray = Array.from(numbers);
+    const isAscending = Math.random() > 0.5;
+    const correctOrder = [...numbersArray].sort((a, b) => isAscending ? a - b : b - a);
+    const shuffledNumbers = [...numbersArray].sort(() => Math.random() - 0.5);
+
+    gameState.orderState = {
+        correctOrder,
+        currentOrder: [],
+        remainingNumbers: shuffledNumbers,
+        isAscending
+    };
+
+    let html = '<div class="number-order-game">';
+    html += `<div class="order-instruction">${isAscending ? t('sortAscending') : t('sortDescending')}</div>`;
+    html += '<div class="order-slots" id="order-slots">';
+    for (let i = 0; i < 5; i++) {
+        html += `<div class="order-slot" data-position="${i}"></div>`;
+    }
+    html += '</div>';
+    html += '<div class="order-numbers" id="order-numbers">';
+    shuffledNumbers.forEach(num => {
+        html += `<button class="order-number" data-value="${num}">${num}</button>`;
+    });
+    html += '</div>';
+    html += '</div>';
+
+    gameArea.innerHTML = html;
+
+    document.querySelectorAll('.order-number').forEach(btn => {
+        btn.addEventListener('click', () => selectOrderNumber(btn));
+    });
+}
+
+function selectOrderNumber(btn) {
+    const value = parseInt(btn.dataset.value);
+    const position = gameState.orderState.currentOrder.length;
+
+    if (position >= 5) return;
+
+    const expectedValue = gameState.orderState.correctOrder[position];
+
+    if (value === expectedValue) {
+        // Correct position
+        gameState.orderState.currentOrder.push(value);
+        btn.classList.add('correct');
+        btn.disabled = true;
+
+        // Add to slot
+        const slot = document.querySelector(`.order-slot[data-position="${position}"]`);
+        slot.textContent = value;
+        slot.classList.add('filled');
+
+        gameState.score += 10;
+        gameState.streak++;
+        playSound('correct');
+
+        if (gameState.streak > gameState.bestStreak) {
+            gameState.bestStreak = gameState.streak;
+        }
+
+        // Check for prize
+        if (gameState.streak > 0 && gameState.streak % 3 === 0 && gameState.streak > gameState.lastPrizeStreak) {
+            const prizeWon = awardPrize();
+            gameState.lastPrizeStreak = gameState.streak;
+            showPrize(prizeWon, null);
+        }
+
+        updateStats();
+
+        // Check if complete
+        if (gameState.orderState.currentOrder.length === 5) {
+            gameState.correctAnswers++;
+            gameState.score += 50; // Completion bonus
+            updateSpeech(getSpeech('correct'));
+
+            setTimeout(() => {
+                gameState.currentQuestion++;
+                if (gameState.currentQuestion >= gameState.totalQuestions) {
+                    endGame();
+                } else {
+                    updateProgress();
+                    renderNumberOrder();
+                }
+            }, 1000);
+        }
+    } else {
+        // Wrong position
+        btn.classList.add('wrong');
+        setTimeout(() => btn.classList.remove('wrong'), 500);
+
+        gameState.streak = 0;
+        gameState.lastPrizeStreak = 0;
+        gameState.lives--;
+        playSound('wrong');
+        updateSpeech(getSpeech('incorrect'));
+        updateStats();
+
+        if (gameState.lives <= 0) {
+            setTimeout(() => endGame(), 500);
+        }
+    }
+}
+
+// ===== True or False Mode =====
+function renderTrueFalse() {
+    const gameArea = document.getElementById('game-area');
+    const config = gradeConfig[gameState.grade];
+
+    // Generate a problem
+    const operation = config.operations.filter(op => op !== 'fractions')[Math.floor(Math.random() * config.operations.filter(op => op !== 'fractions').length)];
+    const problem = generateProblem(operation, config);
+
+    // 50% chance to show correct answer, 50% chance to show wrong answer
+    const showCorrect = Math.random() > 0.5;
+    let displayedAnswer;
+
+    if (showCorrect) {
+        displayedAnswer = problem.answer;
+    } else {
+        // Generate a wrong answer
+        const offset = randomInt(1, 5) * (Math.random() > 0.5 ? 1 : -1);
+        displayedAnswer = problem.answer + offset;
+        if (displayedAnswer < 0) displayedAnswer = problem.answer + Math.abs(offset);
+    }
+
+    const equation = problem.display.replace('?', displayedAnswer);
+
+    gameState.trueFalseState = {
+        isTrue: showCorrect,
+        correctAnswer: problem.answer
+    };
+
+    let html = '<div class="true-false-game">';
+    html += `<div class="tf-equation">${equation}</div>`;
+    html += '<div class="tf-buttons">';
+    html += `<button class="tf-btn tf-true" data-answer="true">✓ ${t('true')}</button>`;
+    html += `<button class="tf-btn tf-false" data-answer="false">✗ ${t('false')}</button>`;
+    html += '</div>';
+    html += '</div>';
+
+    gameArea.innerHTML = html;
+
+    document.querySelectorAll('.tf-btn').forEach(btn => {
+        btn.addEventListener('click', () => checkTrueFalse(btn));
+    });
+}
+
+function checkTrueFalse(btn) {
+    const userAnswer = btn.dataset.answer === 'true';
+    const isCorrect = userAnswer === gameState.trueFalseState.isTrue;
+
+    document.querySelectorAll('.tf-btn').forEach(b => b.disabled = true);
+
+    if (isCorrect) {
+        btn.classList.add('correct');
+        gameState.score += 10;
+        gameState.streak++;
+        gameState.correctAnswers++;
+        playSound('correct');
+        updateSpeech(getSpeech('correct'));
+
+        if (gameState.streak > gameState.bestStreak) {
+            gameState.bestStreak = gameState.streak;
+        }
+
+        // Check for prize
+        if (gameState.streak > 0 && gameState.streak % 3 === 0 && gameState.streak > gameState.lastPrizeStreak) {
+            const prizeWon = awardPrize();
+            gameState.lastPrizeStreak = gameState.streak;
+            showPrize(prizeWon, () => {
+                proceedToNextTrueFalse();
+            });
+            updateStats();
+            return;
+        }
+    } else {
+        btn.classList.add('wrong');
+        // Highlight correct answer
+        const correctBtn = document.querySelector(`.tf-btn[data-answer="${gameState.trueFalseState.isTrue}"]`);
+        correctBtn.classList.add('correct');
+
+        gameState.streak = 0;
+        gameState.lastPrizeStreak = 0;
+        gameState.lives--;
+        playSound('wrong');
+        updateSpeech(getSpeech('incorrect'));
+    }
+
+    updateStats();
+
+    if (gameState.lives <= 0) {
+        setTimeout(() => endGame(), 1000);
+        return;
+    }
+
+    setTimeout(() => {
+        proceedToNextTrueFalse();
+    }, 1200);
+}
+
+function proceedToNextTrueFalse() {
+    gameState.currentQuestion++;
+
+    if (gameState.currentQuestion >= gameState.totalQuestions) {
+        endGame();
+    } else {
+        updateProgress();
+        renderTrueFalse();
+    }
 }
 
 // ===== Answer Handling =====

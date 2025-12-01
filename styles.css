@@ -3227,3 +3227,397 @@ body {
         font-size: 1.2rem;
     }
 }
+
+/* ===== Speed Challenge Game ===== */
+.speed-challenge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.speed-score-display {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 15px 30px;
+    border-radius: var(--radius-full);
+    font-size: 1.2rem;
+    box-shadow: var(--shadow-medium);
+}
+
+.speed-score-display strong {
+    font-size: 1.5rem;
+    margin-left: 5px;
+}
+
+.speed-problem {
+    font-size: 2.5rem !important;
+    animation: pulseScale 0.3s ease-out;
+}
+
+.speed-input {
+    font-size: 2rem;
+    width: 150px;
+    text-align: center;
+}
+
+@keyframes pulseScale {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* ===== Memory Match Game ===== */
+.memory-game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+}
+
+.memory-header {
+    font-size: 1.2rem;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.memory-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    max-width: 400px;
+    width: 100%;
+}
+
+.memory-card {
+    aspect-ratio: 1;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.memory-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease;
+    transform-style: preserve-3d;
+}
+
+.memory-card.flipped .memory-card-inner,
+.memory-card.matched .memory-card-inner {
+    transform: rotateY(180deg);
+}
+
+.memory-card-front,
+.memory-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    box-shadow: var(--shadow-soft);
+}
+
+.memory-card-front {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-size: 2rem;
+}
+
+.memory-card-back {
+    background: white;
+    color: var(--dark);
+    transform: rotateY(180deg);
+    border: 3px solid var(--primary-light);
+    font-size: 1.1rem;
+    padding: 5px;
+    word-break: break-word;
+}
+
+.memory-card.matched .memory-card-back {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    color: white;
+    border-color: var(--success);
+}
+
+/* ===== Number Order Game ===== */
+.number-order-game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    padding: 20px;
+}
+
+.order-instruction {
+    font-size: 1.3rem;
+    color: var(--primary);
+    font-weight: 600;
+    text-align: center;
+    padding: 15px 25px;
+    background: white;
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-soft);
+}
+
+.order-slots {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.order-slot {
+    width: 60px;
+    height: 60px;
+    border: 3px dashed var(--primary-light);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
+}
+
+.order-slot.filled {
+    border-style: solid;
+    border-color: var(--success);
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    color: white;
+    animation: slotFill 0.3s ease;
+}
+
+@keyframes slotFill {
+    0% { transform: scale(0.5); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.order-numbers {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 350px;
+}
+
+.order-number {
+    width: 65px;
+    height: 65px;
+    border: none;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-soft);
+}
+
+.order-number:hover:not(:disabled) {
+    transform: scale(1.1);
+    box-shadow: var(--shadow-medium);
+}
+
+.order-number:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+.order-number.correct {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    transform: scale(0.9);
+    opacity: 0.7;
+}
+
+.order-number.wrong {
+    background: linear-gradient(135deg, #e17055 0%, #d63031 100%);
+    animation: shake 0.3s ease;
+}
+
+.order-number:disabled {
+    cursor: not-allowed;
+}
+
+/* ===== True or False Game ===== */
+.true-false-game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 20px;
+}
+
+.tf-equation {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--dark);
+    padding: 30px 50px;
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-medium);
+    animation: fadeInUp 0.4s ease;
+}
+
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.tf-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.tf-btn {
+    padding: 20px 40px;
+    border: none;
+    border-radius: var(--radius-lg);
+    font-size: 1.5rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-soft);
+    min-width: 140px;
+}
+
+.tf-true {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    color: white;
+}
+
+.tf-false {
+    background: linear-gradient(135deg, #e17055 0%, #d63031 100%);
+    color: white;
+}
+
+.tf-btn:hover:not(:disabled) {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-medium);
+}
+
+.tf-btn:active:not(:disabled) {
+    transform: scale(0.98);
+}
+
+.tf-btn.correct {
+    animation: correctPulse 0.5s ease;
+    box-shadow: 0 0 30px rgba(67, 233, 123, 0.6);
+}
+
+.tf-btn.wrong {
+    animation: shake 0.3s ease;
+    opacity: 0.7;
+}
+
+@keyframes correctPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.tf-btn:disabled {
+    cursor: not-allowed;
+}
+
+/* ===== Responsive Styles for New Games ===== */
+@media (max-width: 480px) {
+    .speed-score-display {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+
+    .speed-problem {
+        font-size: 2rem !important;
+    }
+
+    .speed-input {
+        font-size: 1.5rem;
+        width: 120px;
+    }
+
+    .memory-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+
+    .memory-card-front {
+        font-size: 1.5rem;
+    }
+
+    .memory-card-back {
+        font-size: 0.9rem;
+    }
+
+    .order-instruction {
+        font-size: 1.1rem;
+        padding: 12px 20px;
+    }
+
+    .order-slot {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+
+    .order-number {
+        width: 55px;
+        height: 55px;
+        font-size: 1.2rem;
+    }
+
+    .tf-equation {
+        font-size: 1.8rem;
+        padding: 20px 30px;
+    }
+
+    .tf-btn {
+        padding: 15px 25px;
+        font-size: 1.2rem;
+        min-width: 110px;
+    }
+}
+
+@media (max-width: 360px) {
+    .memory-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+    }
+
+    .memory-card-back {
+        font-size: 0.8rem;
+    }
+
+    .order-slot {
+        width: 45px;
+        height: 45px;
+    }
+
+    .order-number {
+        width: 50px;
+        height: 50px;
+        font-size: 1.1rem;
+    }
+
+    .tf-equation {
+        font-size: 1.5rem;
+        padding: 15px 20px;
+    }
+
+    .tf-buttons {
+        gap: 12px;
+    }
+
+    .tf-btn {
+        padding: 12px 20px;
+        font-size: 1rem;
+        min-width: 90px;
+    }
+}
