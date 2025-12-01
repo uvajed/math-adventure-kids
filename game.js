@@ -1,7 +1,7 @@
 // ===== Math Adventure - Game Logic with User Management =====
 
 // ===== Internationalization (i18n) =====
-let currentLanguage = 'en';
+let currentLanguage = 'sq';
 
 const translations = {
     en: {
@@ -365,6 +365,187 @@ const translations = {
         changePin: 'PIN ändern:',
         changePinHint: 'Leer lassen, um aktuelle PIN zu behalten',
         pleaseEnterPin: 'Bitte gib eine 4-stellige PIN ein!'
+    },
+    sq: {
+        // App title and main
+        appTitle: 'Aventura e Matematikës!',
+        funMathForKids: 'Matematikë Argëtuese për Fëmijë!',
+        whoIsPlaying: 'Kush po luan sot?',
+        addNewPlayer: 'Shto Lojtar të Ri',
+        managePlayers: 'Menaxho Lojtarët',
+
+        // Registration
+        createProfile: 'Krijo Profilin Tënd!',
+        letsGetSetup: 'Le të të përgatisim për të mësuar!',
+        whatsYourName: 'Si të quajnë?',
+        enterName: 'Shkruaj emrin tënd...',
+        pickAvatar: 'Zgjidh avatarin tënd!',
+        selectGradeLevels: 'Zgjidh klasën tënde:',
+        canChooseMultiple: 'Mund të zgjedhësh një ose më shumë!',
+        selectAllGrades: 'Zgjidh të Gjitha Klasat',
+        createProfileBtn: 'Krijo Profilin',
+        selectLanguage: 'Zgjidh gjuhën tënde:',
+
+        // Grade levels
+        grade: 'Klasa',
+        grades: 'Klasat',
+        gradeOrdinal: { 1: 'e 1-rë', 2: 'e 2-të', 3: 'e 3-të', 4: 'e 4-të' },
+        gradeDescriptions: {
+            1: 'Numrat 1-20, Mbledhje e Thjeshtë',
+            2: 'Numrat deri në 100, Mbledh & Zbrit',
+            3: 'Shumëzim & Pjesëtim',
+            4: 'Thyesa & Probleme me Fjalë'
+        },
+
+        // Edit profile
+        editProfile: 'Ndrysho Profilin',
+        name: 'Emri',
+        avatar: 'Avatari',
+        gradeLevels: 'Nivelet e Klasës',
+        saveChanges: 'Ruaj Ndryshimet',
+
+        // Manage users
+        managePlayersTitle: 'Menaxho Lojtarët',
+        editOrRemove: 'Ndrysho ose fshi profilet e lojtarëve',
+        noPlayersToManage: 'Nuk ka lojtarë për të menaxhuar.',
+        games: 'Lojëra',
+
+        // Delete modal
+        deletePlayer: 'Fshi Lojtarin?',
+        deleteConfirm: 'Je i sigurt që dëshiron të fshish këtë lojtar? Kjo nuk mund të zhbëhet.',
+        yesDelete: 'Po, Fshije',
+        cancel: 'Anulo',
+
+        // Welcome screen
+        welcomeBack: 'Mirësevjen përsëri,',
+        yourProgress: 'Progresi Yt',
+        totalGames: 'Lojëra',
+        totalStars: 'Yje Gjithsej',
+        bestStreak: 'Seria më e Mirë',
+        collectedPrizes: 'Çmimet e Mbledhura',
+        startAdventure: 'Fillo Aventurën!',
+        switchPlayer: 'Ndrysho Lojtarin',
+
+        // Grade selection
+        chooseLevel: 'Zgjidh Nivelin Tënd!',
+        pickLevel: 'Zgjidh nivelin që dëshiron të praktikosh',
+
+        // Game mode selection
+        chooseGame: 'Zgjidh Lojën Tënde!',
+        fillTheGap: 'Plotëso Boshllëkun',
+        fillTheGapDesc: 'Gjej numrin që mungon!',
+        quickQuiz: 'Kuiz i Shpejtë',
+        quickQuizDesc: 'Përgjigju sa më shpejt!',
+        matchGame: 'Loja e Përputhjes',
+        matchGameDesc: 'Përputh problemet me përgjigjet!',
+        bubblePop: 'Plasni Flluska',
+        bubblePopDesc: 'Plasni përgjigjen e saktë!',
+
+        // Game screen
+        back: 'Kthehu',
+        checkAnswer: 'Kontrollo Përgjigjen!',
+        questionOf: 'Pyetja {current} nga {total}',
+        prizes: 'Çmimet:',
+
+        // Character speech
+        letsDoThis: 'Le ta bëjmë!',
+        encouragement: [
+            "Ti mundesh! 💪",
+            "Vazhdo kështu! 🌟",
+            "Pothuajse! 🎯",
+            "Po ia del shkëlqyer! 🎉",
+            "Fantastike! ✨",
+            "Bravo! 🚀"
+        ],
+        correct: [
+            "Shkëlqyeshëm! 🎉",
+            "Perfekt! ⭐",
+            "Mahnitëse! 🌟",
+            "Brilante! 💫",
+            "Yll! 🏆",
+            "Mrekullueshëm! 🎊"
+        ],
+        incorrect: [
+            "Provo përsëri! 💪",
+            "Pothuajse! 🤔",
+            "Vazhdo të provosh! 🌈",
+            "Ti mundesh! ⭐",
+            "Mos u dorëzo! 🎯"
+        ],
+        streak: [
+            "Në zjarr! 🔥",
+            "I pandalshëm! 💥",
+            "Seri e pabesueshme! ⚡",
+            "Magjistar i matematikës! 🧙‍♂️"
+        ],
+
+        // Feedback
+        correctFeedback: ['Saktë!', 'Super!', 'Perfekt!', 'Punë e mirë!'],
+        answerWas: 'Përgjigja ishte {answer}',
+
+        // Prize popup
+        youWonPrize: 'FITOVE NJË ÇMIM!',
+        bonusPoints: '+{points} pikë bonus!',
+        inARow: '{count} radhazi!',
+        prizesWon: 'Çmimet e Fituara!',
+
+        // Prize names
+        prizeNames: {
+            'Gift Box': 'Kuti Dhurate',
+            'Lollipop': 'Lëpirëse',
+            'Cookie': 'Biskotë',
+            'Teddy Bear': 'Ariu Pelush',
+            'Balloon': 'Tullumbace',
+            'Ice Cream': 'Akullore',
+            'Ribbon': 'Fjongo',
+            'Golden Star': 'Yll i Artë',
+            'Medal': 'Medalje',
+            'Circus Ticket': 'Biletë Cirku',
+            'Butterfly': 'Flutur',
+            'Rainbow': 'Ylber',
+            'Paint Set': 'Set Bojërash',
+            'Game Controller': 'Kontrollues Loje',
+            'Storybook': 'Libër Tregimesh',
+            'Puzzle Piece': 'Copë Puzzle',
+            'Music Note': 'Notë Muzikore',
+            'Rocket Ship': 'Raketë',
+            'Crown': 'Kurorë',
+            'Diamond': 'Diamant'
+        },
+
+        // Results screen
+        amazingJob: 'Punë e Shkëlqyer!',
+        goodTry: 'Provim i Mirë!',
+        keepPracticing: 'Vazhdo të Praktikosh!',
+        score: 'Pikët',
+        correctLabel: 'Saktë',
+        playAgain: 'Luaj Përsëri',
+        differentGame: 'Lojë Tjetër',
+        home: 'Ballina',
+
+        // Achievements
+        perfectScore: 'Pikë Perfekte!',
+        hotStreak: 'Seri e Nxehtë!',
+        mathStar: 'Yll Matematike!',
+        flawless: 'Pa Gabime!',
+        prizeCollector: 'Mbledhës Çmimesh!',
+
+        // Fraction problems
+        whichIsBigger: 'Cila është më e madhe: {f1} apo {f2}?',
+
+        // Validation
+        pleaseEnterName: 'Ju lutem shkruani emrin tuaj!',
+        pleaseSelectGrade: 'Ju lutem zgjidhni të paktën një nivel klase!',
+        noPlayersYet: 'Ende pa lojtarë! Klikoni më poshtë për të shtuar lojtarin e parë.',
+
+        // PIN related
+        createPin: 'Krijo një PIN 4-shifror:',
+        pinHint: 'Kjo e mban profilin tënd privat!',
+        enterPin: 'Shkruaj PIN-in tënd:',
+        wrongPin: 'PIN i gabuar! Provo përsëri.',
+        changePin: 'Ndrysho PIN:',
+        changePinHint: 'Lëre bosh për të mbajtur PIN-in aktual',
+        pleaseEnterPin: 'Ju lutem shkruani një PIN 4-shifror!'
     }
 };
 
@@ -745,6 +926,7 @@ function renderLanguageSelector() {
     [regLangSelector, editLangSelector].forEach(selector => {
         if (selector) {
             selector.innerHTML = `
+                <option value="sq" ${currentLanguage === 'sq' ? 'selected' : ''}>🇦🇱 Shqip</option>
                 <option value="en" ${currentLanguage === 'en' ? 'selected' : ''}>🇬🇧 English</option>
                 <option value="de" ${currentLanguage === 'de' ? 'selected' : ''}>🇩🇪 Deutsch</option>
             `;
