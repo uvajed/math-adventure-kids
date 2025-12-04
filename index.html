@@ -338,6 +338,10 @@
                 <button id="start-btn" class="big-button pulse">
                     🚀 <span data-i18n="startAdventure">Start Adventure!</span> 🚀
                 </button>
+
+                <button id="power-learn-btn" class="secondary-button power-learn-btn">
+                    🔢 <span data-i18n="learnPowers">Learn Powers</span>
+                </button>
             </div>
         </div>
 
@@ -456,6 +460,184 @@
                     <div id="progress-fill" class="progress-fill"></div>
                 </div>
                 <span id="progress-text">Question 1 of 10</span>
+            </div>
+        </div>
+
+        <!-- Power of Numbers Learning Tab -->
+        <div id="power-screen" class="screen">
+            <div class="screen-header">
+                <button class="back-btn" data-target="welcome-screen">← <span data-i18n="back">Back</span></button>
+                <span id="power-player-display" class="player-info"></span>
+            </div>
+            <h1 class="title">🔢 <span data-i18n="powerOfNumbers">Power of Numbers</span> 🔢</h1>
+            <p class="subtitle" data-i18n="learnExponents">Learn about exponents and powers!</p>
+
+            <div class="power-tabs">
+                <button class="power-tab active" data-tab="learn" data-i18n="learnTab">Learn</button>
+                <button class="power-tab" data-tab="play" data-i18n="playTab">Play</button>
+            </div>
+
+            <!-- Learn Section -->
+            <div id="power-learn-section" class="power-section active">
+                <div class="learn-card">
+                    <h3 data-i18n="whatArePowers">What are Powers?</h3>
+                    <p data-i18n="powersExplanation">When we multiply a number by itself, we use powers! For example:</p>
+                    <div class="power-examples">
+                        <div class="power-example">
+                            <span class="power-notation">2<sup>2</sup></span>
+                            <span class="power-equals">=</span>
+                            <span class="power-expansion">2 × 2</span>
+                            <span class="power-equals">=</span>
+                            <span class="power-result">4</span>
+                        </div>
+                        <div class="power-example">
+                            <span class="power-notation">3<sup>2</sup></span>
+                            <span class="power-equals">=</span>
+                            <span class="power-expansion">3 × 3</span>
+                            <span class="power-equals">=</span>
+                            <span class="power-result">9</span>
+                        </div>
+                        <div class="power-example">
+                            <span class="power-notation">2<sup>3</sup></span>
+                            <span class="power-equals">=</span>
+                            <span class="power-expansion">2 × 2 × 2</span>
+                            <span class="power-equals">=</span>
+                            <span class="power-result">8</span>
+                        </div>
+                        <div class="power-example">
+                            <span class="power-notation">5<sup>2</sup></span>
+                            <span class="power-equals">=</span>
+                            <span class="power-expansion">5 × 5</span>
+                            <span class="power-equals">=</span>
+                            <span class="power-result">25</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="learn-card">
+                    <h3 data-i18n="partsOfPower">Parts of a Power</h3>
+                    <div class="power-anatomy">
+                        <div class="anatomy-display">
+                            <span class="anatomy-base">3</span><sup class="anatomy-exponent">4</sup>
+                        </div>
+                        <div class="anatomy-labels">
+                            <div class="anatomy-label base-label">
+                                <span class="label-arrow">↑</span>
+                                <span data-i18n="baseLabel">Base</span>
+                                <span class="label-desc" data-i18n="baseDesc">(the number we multiply)</span>
+                            </div>
+                            <div class="anatomy-label exp-label">
+                                <span class="label-arrow">↑</span>
+                                <span data-i18n="exponentLabel">Exponent</span>
+                                <span class="label-desc" data-i18n="exponentDesc">(how many times)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="anatomy-example" data-i18n="anatomyExample">3⁴ = 3 × 3 × 3 × 3 = 81</p>
+                </div>
+
+                <div class="learn-card">
+                    <h3 data-i18n="squareNumbers">Square Numbers (²)</h3>
+                    <p data-i18n="squareExplanation">When the exponent is 2, we call it "squared":</p>
+                    <div class="squares-grid">
+                        <div class="square-item">1² = 1</div>
+                        <div class="square-item">2² = 4</div>
+                        <div class="square-item">3² = 9</div>
+                        <div class="square-item">4² = 16</div>
+                        <div class="square-item">5² = 25</div>
+                        <div class="square-item">6² = 36</div>
+                        <div class="square-item">7² = 49</div>
+                        <div class="square-item">8² = 64</div>
+                        <div class="square-item">9² = 81</div>
+                        <div class="square-item">10² = 100</div>
+                    </div>
+                </div>
+
+                <div class="learn-card">
+                    <h3 data-i18n="cubeNumbers">Cube Numbers (³)</h3>
+                    <p data-i18n="cubeExplanation">When the exponent is 3, we call it "cubed":</p>
+                    <div class="cubes-grid">
+                        <div class="cube-item">1³ = 1</div>
+                        <div class="cube-item">2³ = 8</div>
+                        <div class="cube-item">3³ = 27</div>
+                        <div class="cube-item">4³ = 64</div>
+                        <div class="cube-item">5³ = 125</div>
+                    </div>
+                </div>
+
+                <button class="big-button" id="start-power-game">
+                    🎮 <span data-i18n="playPowerGame">Play Power Game!</span> 🎮
+                </button>
+            </div>
+
+            <!-- Play Section -->
+            <div id="power-play-section" class="power-section">
+                <div class="power-game-setup">
+                    <h3 data-i18n="chooseDifficulty">Choose Difficulty</h3>
+                    <div class="difficulty-buttons">
+                        <button class="difficulty-btn" data-difficulty="easy">
+                            <span class="diff-icon">🌱</span>
+                            <span class="diff-name" data-i18n="easy">Easy</span>
+                            <span class="diff-desc" data-i18n="easyDesc">Squares (1-5)²</span>
+                        </button>
+                        <button class="difficulty-btn" data-difficulty="medium">
+                            <span class="diff-icon">🌿</span>
+                            <span class="diff-name" data-i18n="medium">Medium</span>
+                            <span class="diff-desc" data-i18n="mediumDesc">Squares (1-10)²</span>
+                        </button>
+                        <button class="difficulty-btn" data-difficulty="hard">
+                            <span class="diff-icon">🌳</span>
+                            <span class="diff-name" data-i18n="hard">Hard</span>
+                            <span class="diff-desc" data-i18n="hardDesc">Squares & Cubes</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Power Game Screen -->
+        <div id="power-game-screen" class="screen">
+            <div class="game-header">
+                <button class="back-btn" data-target="power-screen">← <span data-i18n="back">Back</span></button>
+                <div class="game-stats">
+                    <div class="stat">
+                        <span class="stat-icon">⭐</span>
+                        <span id="power-score">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-icon">🔥</span>
+                        <span id="power-streak">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-icon">❤️</span>
+                        <span id="power-lives">5</span>
+                    </div>
+                </div>
+                <div class="timer-container">
+                    <span class="stat-icon">⏱️</span>
+                    <span id="power-timer">60</span>
+                </div>
+            </div>
+
+            <div class="game-character">
+                <span id="power-game-character">🧙‍♂️</span>
+                <div id="power-character-speech" class="speech-bubble" data-i18n="letsDoThis">Let's do this!</div>
+            </div>
+
+            <div id="power-game-area" class="game-area">
+                <!-- Power game content will be inserted here -->
+            </div>
+
+            <div id="power-feedback" class="feedback hidden">
+                <span class="feedback-emoji"></span>
+                <span class="feedback-text"></span>
+            </div>
+
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div id="power-progress-fill" class="progress-fill"></div>
+                </div>
+                <span id="power-progress-text">Question 1 of 10</span>
             </div>
         </div>
 

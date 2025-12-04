@@ -197,7 +197,36 @@ const translations = {
         wrongPin: 'Wrong PIN! Try again.',
         changePin: 'Change PIN:',
         changePinHint: 'Leave empty to keep current PIN',
-        pleaseEnterPin: 'Please enter a 4-digit PIN!'
+        pleaseEnterPin: 'Please enter a 4-digit PIN!',
+
+        // Power of Numbers
+        learnPowers: 'Learn Powers',
+        powerOfNumbers: 'Power of Numbers',
+        learnExponents: 'Learn about exponents and powers!',
+        learnTab: 'Learn',
+        playTab: 'Play',
+        whatArePowers: 'What are Powers?',
+        powersExplanation: 'When we multiply a number by itself, we use powers! For example:',
+        partsOfPower: 'Parts of a Power',
+        baseLabel: 'Base',
+        baseDesc: '(the number we multiply)',
+        exponentLabel: 'Exponent',
+        exponentDesc: '(how many times)',
+        anatomyExample: '3⁴ = 3 × 3 × 3 × 3 = 81',
+        squareNumbers: 'Square Numbers (²)',
+        squareExplanation: 'When the exponent is 2, we call it "squared":',
+        cubeNumbers: 'Cube Numbers (³)',
+        cubeExplanation: 'When the exponent is 3, we call it "cubed":',
+        playPowerGame: 'Play Power Game!',
+        chooseDifficulty: 'Choose Difficulty',
+        easy: 'Easy',
+        easyDesc: 'Squares (1-5)²',
+        medium: 'Medium',
+        mediumDesc: 'Squares (1-10)²',
+        hard: 'Hard',
+        hardDesc: 'Squares & Cubes',
+        whatIs: 'What is',
+        powerWizard: 'Power Wizard!'
     },
     de: {
         // App title and main
@@ -392,7 +421,36 @@ const translations = {
         wrongPin: 'Falsche PIN! Versuche es erneut.',
         changePin: 'PIN ändern:',
         changePinHint: 'Leer lassen, um aktuelle PIN zu behalten',
-        pleaseEnterPin: 'Bitte gib eine 4-stellige PIN ein!'
+        pleaseEnterPin: 'Bitte gib eine 4-stellige PIN ein!',
+
+        // Power of Numbers
+        learnPowers: 'Potenzen lernen',
+        powerOfNumbers: 'Potenzen',
+        learnExponents: 'Lerne über Exponenten und Potenzen!',
+        learnTab: 'Lernen',
+        playTab: 'Spielen',
+        whatArePowers: 'Was sind Potenzen?',
+        powersExplanation: 'Wenn wir eine Zahl mit sich selbst multiplizieren, benutzen wir Potenzen! Zum Beispiel:',
+        partsOfPower: 'Teile einer Potenz',
+        baseLabel: 'Basis',
+        baseDesc: '(die Zahl, die wir multiplizieren)',
+        exponentLabel: 'Exponent',
+        exponentDesc: '(wie oft)',
+        anatomyExample: '3⁴ = 3 × 3 × 3 × 3 = 81',
+        squareNumbers: 'Quadratzahlen (²)',
+        squareExplanation: 'Wenn der Exponent 2 ist, sagen wir "zum Quadrat":',
+        cubeNumbers: 'Kubikzahlen (³)',
+        cubeExplanation: 'Wenn der Exponent 3 ist, sagen wir "hoch drei":',
+        playPowerGame: 'Potenzen-Spiel spielen!',
+        chooseDifficulty: 'Schwierigkeit wählen',
+        easy: 'Einfach',
+        easyDesc: 'Quadrate (1-5)²',
+        medium: 'Mittel',
+        mediumDesc: 'Quadrate (1-10)²',
+        hard: 'Schwer',
+        hardDesc: 'Quadrate & Kuben',
+        whatIs: 'Was ist',
+        powerWizard: 'Potenzen-Zauberer!'
     },
     sq: {
         // App title and main
@@ -587,7 +645,36 @@ const translations = {
         wrongPin: 'PIN i gabuar! Provo përsëri.',
         changePin: 'Ndrysho PIN:',
         changePinHint: 'Lëre bosh për të mbajtur PIN-in aktual',
-        pleaseEnterPin: 'Ju lutem shkruani një PIN 4-shifror!'
+        pleaseEnterPin: 'Ju lutem shkruani një PIN 4-shifror!',
+
+        // Power of Numbers
+        learnPowers: 'Mëso Fuqitë',
+        powerOfNumbers: 'Fuqia e Numrave',
+        learnExponents: 'Mëso për eksponentët dhe fuqitë!',
+        learnTab: 'Mëso',
+        playTab: 'Luaj',
+        whatArePowers: 'Çfarë janë Fuqitë?',
+        powersExplanation: 'Kur shumëzojmë një numër me vetveten, përdorim fuqi! Për shembull:',
+        partsOfPower: 'Pjesët e një Fuqie',
+        baseLabel: 'Baza',
+        baseDesc: '(numri që shumëzojmë)',
+        exponentLabel: 'Eksponenti',
+        exponentDesc: '(sa herë)',
+        anatomyExample: '3⁴ = 3 × 3 × 3 × 3 = 81',
+        squareNumbers: 'Numrat Katrorë (²)',
+        squareExplanation: 'Kur eksponenti është 2, e quajmë "në katror":',
+        cubeNumbers: 'Numrat Kub (³)',
+        cubeExplanation: 'Kur eksponenti është 3, e quajmë "në kub":',
+        playPowerGame: 'Luaj Lojën e Fuqive!',
+        chooseDifficulty: 'Zgjidh Vështirësinë',
+        easy: 'E Lehtë',
+        easyDesc: 'Katrorë (1-5)²',
+        medium: 'Mesatare',
+        mediumDesc: 'Katrorë (1-10)²',
+        hard: 'E Vështirë',
+        hardDesc: 'Katrorë & Kube',
+        whatIs: 'Sa është',
+        powerWizard: 'Magjistar i Fuqive!'
     }
 };
 
@@ -808,7 +895,26 @@ const screens = {
     grade: document.getElementById('grade-screen'),
     mode: document.getElementById('mode-screen'),
     game: document.getElementById('game-screen'),
-    results: document.getElementById('results-screen')
+    results: document.getElementById('results-screen'),
+    power: document.getElementById('power-screen'),
+    powerGame: document.getElementById('power-game-screen')
+};
+
+// Power Game State
+const powerGameState = {
+    difficulty: 'easy',
+    score: 0,
+    streak: 0,
+    bestStreak: 0,
+    lives: 5,
+    currentQuestion: 0,
+    totalQuestions: 10,
+    correctAnswers: 0,
+    timeLeft: 60,
+    timerInterval: null,
+    problems: [],
+    prizes: [],
+    lastPrizeStreak: 0
 };
 
 // Initialize the game
@@ -1240,6 +1346,10 @@ function setupEventListeners() {
             if (gameState.timerInterval) {
                 clearInterval(gameState.timerInterval);
             }
+            // Also stop power game timer
+            if (powerGameState.timerInterval) {
+                clearInterval(powerGameState.timerInterval);
+            }
             showScreen(btn.dataset.target);
             playSound('click');
         });
@@ -1252,6 +1362,43 @@ function setupEventListeners() {
 
     // Sound toggle
     document.getElementById('sound-toggle').addEventListener('click', toggleSound);
+
+    // Power of Numbers tab
+    document.getElementById('power-learn-btn').addEventListener('click', () => {
+        updatePowerPlayerDisplay();
+        showScreen('power-screen');
+        playSound('click');
+    });
+
+    // Power tabs
+    document.querySelectorAll('.power-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.power-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            document.querySelectorAll('.power-section').forEach(s => s.classList.remove('active'));
+            const targetSection = document.getElementById(`power-${tab.dataset.tab}-section`);
+            if (targetSection) targetSection.classList.add('active');
+
+            playSound('click');
+        });
+    });
+
+    // Start power game from learn section
+    document.getElementById('start-power-game').addEventListener('click', () => {
+        document.querySelectorAll('.power-tab').forEach(t => t.classList.remove('active'));
+        document.querySelector('.power-tab[data-tab="play"]').classList.add('active');
+        document.querySelectorAll('.power-section').forEach(s => s.classList.remove('active'));
+        document.getElementById('power-play-section').classList.add('active');
+        playSound('click');
+    });
+
+    // Difficulty buttons
+    document.querySelectorAll('.difficulty-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            startPowerGame(btn.dataset.difficulty);
+        });
+    });
 }
 
 // ===== User Actions =====
@@ -3007,6 +3154,403 @@ function launchConfetti() {
     }
 
     animate();
+}
+
+// ===== Power of Numbers Game =====
+
+function updatePowerPlayerDisplay() {
+    if (!currentUser) return;
+    const display = `${currentUser.avatar} ${currentUser.name}`;
+    document.getElementById('power-player-display').textContent = display;
+}
+
+function resetPowerGameState() {
+    powerGameState.score = 0;
+    powerGameState.streak = 0;
+    powerGameState.bestStreak = 0;
+    powerGameState.lives = 5;
+    powerGameState.currentQuestion = 0;
+    powerGameState.correctAnswers = 0;
+    powerGameState.timeLeft = 60;
+    powerGameState.problems = [];
+    powerGameState.prizes = [];
+    powerGameState.lastPrizeStreak = 0;
+
+    if (powerGameState.timerInterval) {
+        clearInterval(powerGameState.timerInterval);
+    }
+}
+
+function startPowerGame(difficulty) {
+    powerGameState.difficulty = difficulty;
+    resetPowerGameState();
+    generatePowerProblems();
+    showScreen('power-game-screen');
+    startPowerGamePlay();
+    playSound('start');
+}
+
+function generatePowerProblems() {
+    powerGameState.problems = [];
+
+    for (let i = 0; i < powerGameState.totalQuestions; i++) {
+        powerGameState.problems.push(generatePowerProblem());
+    }
+}
+
+function generatePowerProblem() {
+    let base, exponent, answer;
+
+    switch (powerGameState.difficulty) {
+        case 'easy':
+            // Squares 1-5
+            base = randomInt(1, 5);
+            exponent = 2;
+            answer = Math.pow(base, exponent);
+            break;
+
+        case 'medium':
+            // Squares 1-10
+            base = randomInt(1, 10);
+            exponent = 2;
+            answer = Math.pow(base, exponent);
+            break;
+
+        case 'hard':
+            // Squares (1-10) and Cubes (1-5)
+            if (Math.random() > 0.4) {
+                base = randomInt(1, 10);
+                exponent = 2;
+            } else {
+                base = randomInt(1, 5);
+                exponent = 3;
+            }
+            answer = Math.pow(base, exponent);
+            break;
+
+        default:
+            base = randomInt(1, 5);
+            exponent = 2;
+            answer = Math.pow(base, exponent);
+    }
+
+    return {
+        base,
+        exponent,
+        answer,
+        display: `${base}<sup>${exponent}</sup>`
+    };
+}
+
+function startPowerGamePlay() {
+    document.getElementById('power-game-character').textContent = currentUser ? currentUser.avatar : '🧙‍♂️';
+    updatePowerStats();
+    updatePowerProgress();
+
+    // Reset timer color
+    document.getElementById('power-timer').style.color = '';
+
+    // Start timer
+    powerGameState.timerInterval = setInterval(updatePowerTimer, 1000);
+
+    // Render first question
+    renderPowerQuestion();
+
+    updatePowerSpeech(getSpeech('encouragement'));
+}
+
+function updatePowerStats() {
+    document.getElementById('power-score').textContent = powerGameState.score;
+    document.getElementById('power-streak').textContent = powerGameState.streak;
+    document.getElementById('power-lives').textContent = powerGameState.lives;
+    document.getElementById('power-timer').textContent = powerGameState.timeLeft;
+}
+
+function updatePowerProgress() {
+    const progress = (powerGameState.currentQuestion / powerGameState.totalQuestions) * 100;
+    document.getElementById('power-progress-fill').style.width = `${progress}%`;
+    document.getElementById('power-progress-text').textContent =
+        t('questionOf', { current: powerGameState.currentQuestion + 1, total: powerGameState.totalQuestions });
+}
+
+function updatePowerTimer() {
+    powerGameState.timeLeft--;
+    document.getElementById('power-timer').textContent = powerGameState.timeLeft;
+
+    if (powerGameState.timeLeft <= 10) {
+        document.getElementById('power-timer').style.color = '#e74c3c';
+    }
+
+    if (powerGameState.timeLeft <= 0) {
+        endPowerGame();
+    }
+}
+
+function updatePowerSpeech(message) {
+    document.getElementById('power-character-speech').textContent = message;
+}
+
+function renderPowerQuestion() {
+    const problem = powerGameState.problems[powerGameState.currentQuestion];
+    const gameArea = document.getElementById('power-game-area');
+
+    // Generate options
+    const options = generatePowerOptions(problem.answer);
+
+    let html = `
+        <div class="power-problem">
+            <p class="power-question">${t('whatIs')}</p>
+            <div class="power-display">${problem.display}</div>
+            <div class="power-options">
+                ${options.map(opt => `
+                    <button class="power-option" data-answer="${opt}">${opt}</button>
+                `).join('')}
+            </div>
+        </div>
+    `;
+
+    gameArea.innerHTML = html;
+
+    // Add click handlers
+    document.querySelectorAll('.power-option').forEach(btn => {
+        btn.addEventListener('click', () => checkPowerAnswer(btn, problem.answer));
+    });
+}
+
+function generatePowerOptions(correctAnswer) {
+    const options = [correctAnswer];
+
+    while (options.length < 4) {
+        let wrong;
+        // Generate nearby wrong answers
+        const offset = randomInt(-10, 10);
+        wrong = correctAnswer + offset;
+
+        if (wrong < 0) wrong = correctAnswer + Math.abs(offset);
+        if (!options.includes(wrong) && wrong !== 0 && wrong !== correctAnswer) {
+            options.push(wrong);
+        }
+    }
+
+    return options.sort(() => Math.random() - 0.5);
+}
+
+function checkPowerAnswer(btn, correctAnswer) {
+    const userAnswer = parseInt(btn.dataset.answer);
+    const isCorrect = userAnswer === correctAnswer;
+
+    // Disable all buttons
+    document.querySelectorAll('.power-option').forEach(b => {
+        b.disabled = true;
+        if (parseInt(b.dataset.answer) === correctAnswer) {
+            b.classList.add('correct');
+        }
+    });
+
+    if (!isCorrect) {
+        btn.classList.add('incorrect');
+    }
+
+    handlePowerAnswer(isCorrect, correctAnswer);
+}
+
+function handlePowerAnswer(isCorrect, correctAnswer) {
+    if (isCorrect) {
+        powerGameState.score += 10 + powerGameState.streak;
+        powerGameState.streak++;
+        powerGameState.correctAnswers++;
+
+        if (powerGameState.streak > powerGameState.bestStreak) {
+            powerGameState.bestStreak = powerGameState.streak;
+        }
+
+        // Add time bonus
+        powerGameState.timeLeft = Math.min(60, powerGameState.timeLeft + 2);
+
+        showPowerFeedback(true);
+        updatePowerSpeech(getSpeech('correct'));
+        playSound('correct');
+
+        // Check for streak prize (every 3 correct in a row)
+        if (powerGameState.streak >= 3 && powerGameState.streak % 3 === 0) {
+            awardPowerPrize();
+        }
+    } else {
+        powerGameState.streak = 0;
+        powerGameState.lives--;
+
+        showPowerFeedback(false, correctAnswer);
+        updatePowerSpeech(getSpeech('incorrect'));
+        playSound('wrong');
+
+        if (powerGameState.lives <= 0) {
+            setTimeout(() => endPowerGame(), 1500);
+            return;
+        }
+    }
+
+    updatePowerStats();
+    powerGameState.currentQuestion++;
+
+    if (powerGameState.currentQuestion >= powerGameState.totalQuestions) {
+        setTimeout(() => endPowerGame(), 1500);
+    } else {
+        updatePowerProgress();
+        setTimeout(() => renderPowerQuestion(), 1500);
+    }
+}
+
+function showPowerFeedback(isCorrect, correctAnswer = null) {
+    const feedback = document.getElementById('power-feedback');
+    const emoji = feedback.querySelector('.feedback-emoji');
+    const text = feedback.querySelector('.feedback-text');
+
+    if (isCorrect) {
+        emoji.textContent = '✓';
+        text.textContent = tArray('correctFeedback')[Math.floor(Math.random() * tArray('correctFeedback').length)];
+        feedback.className = 'feedback correct';
+    } else {
+        emoji.textContent = '✗';
+        text.textContent = t('answerWas', { answer: correctAnswer });
+        feedback.className = 'feedback incorrect';
+    }
+
+    feedback.classList.remove('hidden');
+    setTimeout(() => feedback.classList.add('hidden'), 1200);
+}
+
+function awardPowerPrize() {
+    const prize = prizes[Math.floor(Math.random() * prizes.length)];
+    powerGameState.prizes.push(prize);
+    powerGameState.score += prize.points;
+
+    // Show prize popup
+    const popup = document.getElementById('prize-popup');
+    document.getElementById('prize-emoji').textContent = prize.emoji;
+    document.getElementById('prize-name').textContent = getPrizeName(prize.nameKey);
+    document.getElementById('prize-points').textContent = t('bonusPoints', { points: prize.points });
+    document.getElementById('prize-streak-msg').textContent = t('inARow', { count: powerGameState.streak });
+
+    popup.classList.remove('hidden');
+    playSound('prize');
+
+    setTimeout(() => {
+        popup.classList.add('hidden');
+    }, 2500);
+}
+
+function endPowerGame() {
+    clearInterval(powerGameState.timerInterval);
+
+    // Calculate stars
+    const percentage = (powerGameState.correctAnswers / powerGameState.totalQuestions) * 100;
+    let stars = 1;
+    if (percentage >= 70) stars = 2;
+    if (percentage >= 90) stars = 3;
+
+    // Update user stats
+    if (currentUser) {
+        currentUser.stats.totalGames++;
+        currentUser.stats.totalScore += powerGameState.score;
+        if (powerGameState.bestStreak > currentUser.stats.bestStreak) {
+            currentUser.stats.bestStreak = powerGameState.bestStreak;
+        }
+
+        // Save prizes
+        if (!currentUser.collectedPrizes) {
+            currentUser.collectedPrizes = [];
+        }
+        powerGameState.prizes.forEach(prize => {
+            currentUser.collectedPrizes.push({
+                emoji: prize.emoji,
+                nameKey: prize.nameKey,
+                wonAt: new Date().toISOString()
+            });
+        });
+
+        saveUsers();
+    }
+
+    // Show results
+    showPowerResults(stars, percentage);
+}
+
+function showPowerResults(stars, percentage) {
+    // Use the existing results screen
+    let title, message;
+    if (percentage >= 90) {
+        title = `🎉 ${t('amazingJob')} 🎉`;
+        message = t('powerWizard');
+    } else if (percentage >= 70) {
+        title = `🌟 ${t('goodTry')} 🌟`;
+        message = getSpeech('correct');
+    } else {
+        title = `💪 ${t('keepPracticing')} 💪`;
+        message = getSpeech('encouragement');
+    }
+
+    document.getElementById('results-title').textContent = title;
+    document.getElementById('results-character').textContent = currentUser ? currentUser.avatar : '🧙‍♂️';
+    document.getElementById('final-score').textContent = powerGameState.score;
+    document.getElementById('correct-count').textContent = `${powerGameState.correctAnswers}/${powerGameState.totalQuestions}`;
+    document.getElementById('best-streak').textContent = powerGameState.bestStreak;
+
+    // Stars
+    const starsContainer = document.getElementById('stars-earned');
+    starsContainer.innerHTML = Array(3).fill('').map((_, i) =>
+        `<span class="${i < stars ? 'star-active' : 'star-inactive'}">⭐</span>`
+    ).join('');
+
+    // Prizes
+    const prizesWon = document.getElementById('prizes-won');
+    const prizesList = document.getElementById('prizes-list');
+
+    if (powerGameState.prizes.length > 0) {
+        prizesWon.classList.remove('hidden');
+        prizesList.innerHTML = powerGameState.prizes.map(prize => `
+            <div class="prize-item">
+                <span class="prize-item-emoji">${prize.emoji}</span>
+                <span class="prize-item-name">${getPrizeName(prize.nameKey)}</span>
+            </div>
+        `).join('');
+    } else {
+        prizesWon.classList.add('hidden');
+    }
+
+    // Achievements
+    const achievements = document.getElementById('achievements');
+    let achievementHTML = '';
+
+    if (percentage === 100) {
+        achievementHTML += `<div class="achievement">🏆 ${t('perfectScore')}</div>`;
+    }
+    if (powerGameState.bestStreak >= 5) {
+        achievementHTML += `<div class="achievement">🔥 ${t('hotStreak')}</div>`;
+    }
+    if (powerGameState.prizes.length >= 3) {
+        achievementHTML += `<div class="achievement">🎁 ${t('prizeCollector')}</div>`;
+    }
+
+    achievements.innerHTML = achievementHTML;
+
+    // Update button actions for power game
+    document.getElementById('play-again-btn').onclick = () => {
+        startPowerGame(powerGameState.difficulty);
+    };
+    document.getElementById('change-mode-btn').onclick = () => {
+        showScreen('power-screen');
+        document.querySelectorAll('.power-tab').forEach(tab => tab.classList.remove('active'));
+        document.querySelector('.power-tab[data-tab="play"]').classList.add('active');
+        document.querySelectorAll('.power-section').forEach(sec => sec.classList.remove('active'));
+        document.getElementById('power-play-section').classList.add('active');
+    };
+    document.getElementById('home-btn').onclick = () => showScreen('welcome-screen');
+
+    showScreen('results-screen');
+
+    if (percentage >= 70) {
+        launchConfetti();
+    }
 }
 
 // Initialize on load
