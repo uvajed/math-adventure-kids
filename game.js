@@ -115,6 +115,48 @@ const translations = {
         timeUp: 'Time is up!',
         questionsAnswered: 'Questions Answered',
 
+        // Word problem content
+        wpNames: ['Alex', 'Sam', 'Jordan', 'Taylor', 'Morgan', 'Casey'],
+        wpItems: {
+            apples: 'apples', books: 'books', cookies: 'cookies',
+            pencils: 'pencils', stickers: 'stickers', marbles: 'marbles'
+        },
+        wpTemplates: {
+            addition: [
+                '{name} has {a} {items}. {name2} gives them {b} more. How many {items} does {name} have now?',
+                'There are {a} {items} in one box and {b} in another. How many total?'
+            ],
+            subtraction: [
+                '{name} has {a} {items}. {name} gives {b} to {name2}. How many are left?'
+            ],
+            multiplication: [
+                'There are {a} boxes. Each has {b} {items}. How many total?',
+                '{name} buys {a} {items} at ${b} each. Total cost?'
+            ],
+            division: [
+                '{name} shares {total} {items} equally among {b} friends. Each gets?'
+            ]
+        },
+
+        // Geometry content
+        rectangle: 'Rectangle',
+        triangle: 'Triangle',
+        circle: 'Circle',
+        square: 'Square',
+        area: 'Area',
+        perimeter: 'Perimeter',
+        radius: 'Radius',
+        side: 'Side',
+        base: 'Base',
+        height: 'Height',
+        width: 'Width',
+        length: 'Length',
+        geoAreaQuestion: '{shape}: {dims}, Area = ?',
+        geoPerimeterQuestion: '{shape}: {dims}, Perimeter = ?',
+
+        // Equation solver
+        solveForX: 'Solve for x',
+
         // Game screen
         back: 'Back',
         checkAnswer: 'Check Answer!',
@@ -361,6 +403,48 @@ const translations = {
         timeUp: 'Zeit ist um!',
         questionsAnswered: 'Beantwortete Fragen',
 
+        // Word problem content
+        wpNames: ['Max', 'Anna', 'Tom', 'Lisa', 'Felix', 'Emma'],
+        wpItems: {
+            apples: 'Äpfel', books: 'Bücher', cookies: 'Kekse',
+            pencils: 'Stifte', stickers: 'Aufkleber', marbles: 'Murmeln'
+        },
+        wpTemplates: {
+            addition: [
+                '{name} hat {a} {items}. {name2} gibt ihm/ihr {b} mehr. Wie viele {items} hat {name} jetzt?',
+                'Es sind {a} {items} in einer Kiste und {b} in einer anderen. Wie viele insgesamt?'
+            ],
+            subtraction: [
+                '{name} hat {a} {items}. {name} gibt {b} an {name2}. Wie viele bleiben übrig?'
+            ],
+            multiplication: [
+                'Es gibt {a} Kisten. Jede hat {b} {items}. Wie viele insgesamt?',
+                '{name} kauft {a} {items} für je {b}€. Gesamtkosten?'
+            ],
+            division: [
+                '{name} teilt {total} {items} gleichmäßig unter {b} Freunden auf. Wie viele bekommt jeder?'
+            ]
+        },
+
+        // Geometry content
+        rectangle: 'Rechteck',
+        triangle: 'Dreieck',
+        circle: 'Kreis',
+        square: 'Quadrat',
+        area: 'Fläche',
+        perimeter: 'Umfang',
+        radius: 'Radius',
+        side: 'Seite',
+        base: 'Basis',
+        height: 'Höhe',
+        width: 'Breite',
+        length: 'Länge',
+        geoAreaQuestion: '{shape}: {dims}, Fläche = ?',
+        geoPerimeterQuestion: '{shape}: {dims}, Umfang = ?',
+
+        // Equation solver
+        solveForX: 'Löse nach x',
+
         // Game screen
         back: 'Zurück',
         checkAnswer: 'Antwort prüfen!',
@@ -606,6 +690,48 @@ const translations = {
         sortDescending: 'Radhit nga më i madhi te më i vogli',
         timeUp: 'Koha mbaroi!',
         questionsAnswered: 'Pyetje të Përgjiguara',
+
+        // Word problem content
+        wpNames: ['Arbi', 'Elsa', 'Lindi', 'Genta', 'Bledi', 'Drita'],
+        wpItems: {
+            apples: 'mollë', books: 'libra', cookies: 'biskota',
+            pencils: 'lapsa', stickers: 'ngjitëse', marbles: 'rruza'
+        },
+        wpTemplates: {
+            addition: [
+                '{name} ka {a} {items}. {name2} i jep {b} të tjera. Sa {items} ka {name} tani?',
+                'Ka {a} {items} në një kuti dhe {b} në tjetrën. Sa janë gjithsej?'
+            ],
+            subtraction: [
+                '{name} ka {a} {items}. {name} i jep {b} {name2}. Sa mbetën?'
+            ],
+            multiplication: [
+                'Ka {a} kuti. Secila ka {b} {items}. Sa janë gjithsej?',
+                '{name} blen {a} {items} me {b}€ secila. Sa kushton gjithsej?'
+            ],
+            division: [
+                '{name} ndan {total} {items} në mënyrë të barabartë mes {b} miqve. Sa merr secili?'
+            ]
+        },
+
+        // Geometry content
+        rectangle: 'Drejtkëndësh',
+        triangle: 'Trekëndësh',
+        circle: 'Rreth',
+        square: 'Katror',
+        area: 'Sipërfaqja',
+        perimeter: 'Perimetri',
+        radius: 'Rrezja',
+        side: 'Brinja',
+        base: 'Baza',
+        height: 'Lartësia',
+        width: 'Gjerësia',
+        length: 'Gjatësia',
+        geoAreaQuestion: '{shape}: {dims}, Sipërfaqja = ?',
+        geoPerimeterQuestion: '{shape}: {dims}, Perimetri = ?',
+
+        // Equation solver
+        solveForX: 'Zgjidh për x',
 
         // Game screen
         back: 'Kthehu',
@@ -3513,25 +3639,13 @@ function checkTimedAnswer() {
 }
 
 // ===== Word Problems Mode =====
-const wordProblemTemplates = {
-    addition: [
-        { template: '{name} has {a} {items}. {name2} gives them {b} more. How many {items} does {name} have now?', calc: (a, b) => a + b },
-        { template: 'There are {a} {items} in one box and {b} in another. How many total?', calc: (a, b) => a + b }
-    ],
-    subtraction: [
-        { template: '{name} has {a} {items}. {name} gives {b} to {name2}. How many are left?', calc: (a, b) => a - b }
-    ],
-    multiplication: [
-        { template: 'There are {a} boxes. Each has {b} {items}. How many total?', calc: (a, b) => a * b },
-        { template: '{name} buys {a} {items} at ${b} each. Total cost?', calc: (a, b) => a * b }
-    ],
-    division: [
-        { template: '{name} shares {total} {items} equally among {b} friends. Each gets?', calc: (total, b, a) => a }
-    ]
+// Calculation functions for word problems
+const wpCalcs = {
+    addition: [(a, b) => a + b, (a, b) => a + b],
+    subtraction: [(a, b) => a - b],
+    multiplication: [(a, b) => a * b, (a, b) => a * b],
+    division: [(total, b, a) => a]
 };
-
-const wpNames = ['Alex', 'Sam', 'Jordan', 'Taylor', 'Morgan', 'Casey'];
-const wpItems = ['apples', 'books', 'cookies', 'pencils', 'stickers', 'marbles'];
 
 function renderWordProblems() {
     const gameArea = document.getElementById('game-area');
@@ -3560,12 +3674,20 @@ function generateWordProblem() {
     const availableOps = ['addition', 'subtraction', 'multiplication', 'division'].filter(op => config.operations.includes(op));
     const operation = availableOps[randomInt(0, availableOps.length - 1)] || 'addition';
 
-    const templates = wordProblemTemplates[operation];
-    const template = templates[randomInt(0, templates.length - 1)];
+    // Get translated templates and data
+    const templates = t('wpTemplates')[operation];
+    const templateIdx = randomInt(0, templates.length - 1);
+    const template = templates[templateIdx];
+    const calcFn = wpCalcs[operation][templateIdx] || wpCalcs[operation][0];
 
-    const name = wpNames[randomInt(0, wpNames.length - 1)];
-    const name2 = wpNames.filter(n => n !== name)[randomInt(0, wpNames.length - 2)];
-    const item = wpItems[randomInt(0, wpItems.length - 1)];
+    const names = t('wpNames');
+    const items = t('wpItems');
+    const itemKeys = Object.keys(items);
+
+    const name = names[randomInt(0, names.length - 1)];
+    const name2 = names.filter(n => n !== name)[randomInt(0, names.length - 2)];
+    const itemKey = itemKeys[randomInt(0, itemKeys.length - 1)];
+    const item = items[itemKey];
 
     let a, b, total, answer;
 
@@ -3577,10 +3699,10 @@ function generateWordProblem() {
     } else {
         a = randomInt(5, 50);
         b = operation === 'subtraction' ? randomInt(1, a - 1) : randomInt(2, 20);
-        answer = template.calc(a, b);
+        answer = calcFn(a, b);
     }
 
-    let display = template.template
+    let display = template
         .replace(/{name}/g, name)
         .replace(/{name2}/g, name2)
         .replace(/{items}/g, item)
@@ -3689,22 +3811,26 @@ function renderGeometryGame() {
 
 function generateSimpleGeometryProblem() {
     const shapes = ['rectangle', 'triangle'];
-    const shape = shapes[randomInt(0, shapes.length - 1)];
+    const shapeKey = shapes[randomInt(0, shapes.length - 1)];
+    const shapeName = t(shapeKey);
+    const areaLabel = t('area');
 
-    if (shape === 'rectangle') {
+    if (shapeKey === 'rectangle') {
         const w = randomInt(3, 10);
         const h = randomInt(3, 10);
         return {
-            display: `Rectangle: ${w} × ${h}, Area = ?`,
+            display: `${shapeName}: ${w} × ${h}, ${areaLabel} = ?`,
             answer: w * h,
             operation: 'geometry'
         };
     } else {
         const base = randomInt(4, 10);
-        const height = randomInt(4, 10);
+        const heightVal = randomInt(4, 10);
+        const baseLabel = t('base');
+        const heightLabel = t('height');
         return {
-            display: `Triangle: base=${base}, height=${height}, Area = ?`,
-            answer: (base * height) / 2,
+            display: `${shapeName}: ${baseLabel}=${base}, ${heightLabel}=${heightVal}, ${areaLabel} = ?`,
+            answer: (base * heightVal) / 2,
             operation: 'geometry'
         };
     }
