@@ -5,21 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="theme-color" content="#a8edea">
+    <meta name="theme-color" content="#7C9CBF">
+
+    <!-- Google Fonts - Friendly rounded font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://uvajed.github.io/math-adventure-kids/" />
-    <meta property="og:title" content="Math Adventure Kids - Fun Learning for Grades 1-4" />
-    <meta property="og:description" content="A colorful, interactive math learning app for kids. Practice addition, subtraction, multiplication and more with fun games!" />
+    <meta property="og:title" content="Math Adventure Kids - Fun Learning for Grades 1-13" />
+    <meta property="og:description" content="A complete math learning app for grades 1-13. From basic arithmetic to algebra, geometry, and trigonometry with 12 fun game modes!" />
     <meta property="og:image" content="https://uvajed.github.io/math-adventure-kids/og-preview.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Math Adventure Kids - Fun Learning for Grades 1-4" />
-    <meta name="twitter:description" content="A colorful, interactive math learning app for kids. Practice addition, subtraction, multiplication and more with fun games!" />
+    <meta name="twitter:title" content="Math Adventure Kids - Fun Learning for Grades 1-13" />
+    <meta name="twitter:description" content="A complete math learning app for grades 1-13. From basic arithmetic to algebra, geometry, and trigonometry with 12 fun game modes!" />
     <meta name="twitter:image" content="https://uvajed.github.io/math-adventure-kids/og-preview.jpg" />
 
     <title>Math Adventure - Fun Learning for Kids!</title>
@@ -97,7 +102,7 @@
                 <!-- Features Row -->
                 <div class="home-features">
                     <div class="feature">
-                        <span class="feature-num">4</span>
+                        <span class="feature-num">12</span>
                         <span class="feature-label">Games</span>
                     </div>
                     <div class="feature">
@@ -105,7 +110,7 @@
                         <span class="feature-label">Prizes</span>
                     </div>
                     <div class="feature">
-                        <span class="feature-num">1-4</span>
+                        <span class="feature-num">1-13</span>
                         <span class="feature-label">Grades</span>
                     </div>
                 </div>
@@ -158,35 +163,8 @@
                     <div class="form-section">
                         <label class="form-label" data-i18n="selectGradeLevels">Select your grade levels:</label>
                         <p class="form-hint" data-i18n="canChooseMultiple">You can choose one or more!</p>
-                        <div class="grade-select-grid">
-                            <label class="grade-checkbox">
-                                <input type="checkbox" name="grade" value="1">
-                                <span class="grade-check-box">
-                                    <span class="grade-num" data-i18n-grade="1">1st</span>
-                                    <span class="grade-text" data-i18n="grade">Grade</span>
-                                </span>
-                            </label>
-                            <label class="grade-checkbox">
-                                <input type="checkbox" name="grade" value="2">
-                                <span class="grade-check-box">
-                                    <span class="grade-num" data-i18n-grade="2">2nd</span>
-                                    <span class="grade-text" data-i18n="grade">Grade</span>
-                                </span>
-                            </label>
-                            <label class="grade-checkbox">
-                                <input type="checkbox" name="grade" value="3">
-                                <span class="grade-check-box">
-                                    <span class="grade-num" data-i18n-grade="3">3rd</span>
-                                    <span class="grade-text" data-i18n="grade">Grade</span>
-                                </span>
-                            </label>
-                            <label class="grade-checkbox">
-                                <input type="checkbox" name="grade" value="4">
-                                <span class="grade-check-box">
-                                    <span class="grade-num" data-i18n-grade="4">4th</span>
-                                    <span class="grade-text" data-i18n="grade">Grade</span>
-                                </span>
-                            </label>
+                        <div class="grade-select-grid" id="register-grade-grid">
+                            <!-- Grade checkboxes generated dynamically -->
                         </div>
                         <label class="select-all-label">
                             <input type="checkbox" id="select-all-grades">
@@ -236,34 +214,7 @@
                     <div class="form-section">
                         <label class="form-label" data-i18n="gradeLevels">Grade Levels</label>
                         <div class="grade-select-grid" id="edit-grade-grid">
-                            <label class="grade-checkbox">
-                                <input type="checkbox" name="edit-grade" value="1">
-                                <span class="grade-check-box">
-                                    <span class="grade-num" data-i18n-grade="1">1st</span>
-                                    <span class="grade-text" data-i18n="grade">Grade</span>
-                                </span>
-                            </label>
-                            <label class="grade-checkbox">
-                                <input type="checkbox" name="edit-grade" value="2">
-                                <span class="grade-check-box">
-                                    <span class="grade-num" data-i18n-grade="2">2nd</span>
-                                    <span class="grade-text" data-i18n="grade">Grade</span>
-                                </span>
-                            </label>
-                            <label class="grade-checkbox">
-                                <input type="checkbox" name="edit-grade" value="3">
-                                <span class="grade-check-box">
-                                    <span class="grade-num" data-i18n-grade="3">3rd</span>
-                                    <span class="grade-text" data-i18n="grade">Grade</span>
-                                </span>
-                            </label>
-                            <label class="grade-checkbox">
-                                <input type="checkbox" name="edit-grade" value="4">
-                                <span class="grade-check-box">
-                                    <span class="grade-num" data-i18n-grade="4">4th</span>
-                                    <span class="grade-text" data-i18n="grade">Grade</span>
-                                </span>
-                            </label>
+                            <!-- Grade checkboxes generated dynamically -->
                         </div>
                     </div>
 
@@ -407,6 +358,27 @@
                     <span class="mode-icon">✅</span>
                     <span class="mode-name" data-i18n="trueFalse">True or False</span>
                     <span class="mode-desc" data-i18n="trueFalseDesc">Is the equation correct?</span>
+                </button>
+                <!-- New Advanced Game Modes -->
+                <button class="mode-btn" data-mode="timed">
+                    <span class="mode-icon">⏱️</span>
+                    <span class="mode-name" data-i18n="timedChallenge">Timed Challenge</span>
+                    <span class="mode-desc" data-i18n="timedChallengeDesc">Beat the clock!</span>
+                </button>
+                <button class="mode-btn" data-mode="word">
+                    <span class="mode-icon">📖</span>
+                    <span class="mode-name" data-i18n="wordProblems">Word Problems</span>
+                    <span class="mode-desc" data-i18n="wordProblemsDesc">Real-world math!</span>
+                </button>
+                <button class="mode-btn" data-mode="equation">
+                    <span class="mode-icon">🔤</span>
+                    <span class="mode-name" data-i18n="equationSolver">Equation Solver</span>
+                    <span class="mode-desc" data-i18n="equationSolverDesc">Solve for X!</span>
+                </button>
+                <button class="mode-btn" data-mode="geometryGame">
+                    <span class="mode-icon">📐</span>
+                    <span class="mode-name" data-i18n="geometryGames">Geometry</span>
+                    <span class="mode-desc" data-i18n="geometryGamesDesc">Shapes & angles!</span>
                 </button>
             </div>
         </div>

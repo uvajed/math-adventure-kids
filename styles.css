@@ -1,30 +1,48 @@
 /* ===== CSS Variables & Reset ===== */
 :root {
-    --primary: #6c5ce7;
-    --primary-light: #a29bfe;
-    --secondary: #00cec9;
-    --accent: #fd79a8;
-    --success: #00b894;
-    --warning: #fdcb6e;
-    --danger: #e17055;
-    --white: #ffffff;
-    --light: #f8f9fa;
-    --dark: #2d3436;
+    /* Soft & Friendly Pastel Palette */
+    --primary: #7C9CBF;           /* Soft sky blue */
+    --primary-light: #A8C5E2;     /* Lighter sky */
+    --primary-dark: #5A7A9E;      /* Deeper blue for contrast */
+    --secondary: #9BC4BC;         /* Soft mint */
+    --accent: #E8B4BC;            /* Soft rose */
+    --success: #9BC4BC;           /* Mint green */
+    --warning: #F5D89A;           /* Soft golden */
+    --danger: #E8A5A5;            /* Soft coral */
+    --white: #FFFFFF;
+    --light: #F8FAFC;             /* Very light gray-blue */
+    --cream: #FDF8F5;             /* Warm cream */
+    --dark: #4A5568;              /* Soft charcoal */
+    --gray: #718096;              /* Medium gray */
 
-    --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-    --gradient-rainbow: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3, #54a0ff);
+    /* Pastel accent colors for variety */
+    --pastel-lavender: #C5B9E8;
+    --pastel-peach: #FCDCCE;
+    --pastel-mint: #B8E0D4;
+    --pastel-sky: #B8D4E8;
+    --pastel-lemon: #F5EDBE;
+    --pastel-rose: #F0D0D8;
 
-    --shadow-soft: 0 4px 15px rgba(0, 0, 0, 0.1);
-    --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.15);
-    --shadow-strong: 0 15px 40px rgba(0, 0, 0, 0.2);
+    /* Soft gradients */
+    --gradient-1: linear-gradient(135deg, #7C9CBF 0%, #A8C5E2 100%);
+    --gradient-2: linear-gradient(135deg, #E8B4BC 0%, #F0D0D8 100%);
+    --gradient-3: linear-gradient(135deg, #9BC4BC 0%, #B8E0D4 100%);
+    --gradient-4: linear-gradient(135deg, #C5B9E8 0%, #DDD5F0 100%);
+    --gradient-rainbow: linear-gradient(90deg, #E8B4BC, #F5D89A, #9BC4BC, #C5B9E8, #7C9CBF);
+    --gradient-bg: linear-gradient(150deg, #F8FAFC 0%, #F0F7FF 25%, #FDF8F5 50%, #F5F0F8 75%, #F0FBF8 100%);
 
-    --radius-sm: 10px;
+    /* Softer shadows with color tints */
+    --shadow-soft: 0 4px 20px rgba(124, 156, 191, 0.1);
+    --shadow-medium: 0 8px 30px rgba(124, 156, 191, 0.12);
+    --shadow-strong: 0 15px 50px rgba(124, 156, 191, 0.15);
+    --shadow-glow: 0 0 30px rgba(124, 156, 191, 0.2);
+
+    /* More rounded for friendly feel */
+    --radius-sm: 12px;
     --radius-md: 20px;
-    --radius-lg: 30px;
-    --radius-full: 50px;
+    --radius-lg: 28px;
+    --radius-xl: 36px;
+    --radius-full: 9999px;
 
     /* Mobile-friendly font sizes */
     --font-size-base: 18px;
@@ -32,6 +50,11 @@
     --font-size-xl: 1.5rem;
     --font-size-2xl: 2rem;
     --font-size-3xl: 2.5rem;
+
+    /* Gentle transitions */
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.25s ease;
+    --transition-slow: 0.4s ease;
 }
 
 * {
@@ -46,19 +69,21 @@ html {
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 50%, #d299c2 100%);
+    font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--gradient-bg);
     min-height: 100vh;
     min-height: -webkit-fill-available;
     overflow-x: hidden;
     position: relative;
-    line-height: 1.5;
+    line-height: 1.6;
+    color: var(--dark);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
 /* ===== Modern Floating Decorations ===== */
 .floating-decorations {
+    display: none; /* Hidden for calm design */
     position: fixed;
     width: 100%;
     height: 100%;
@@ -492,13 +517,13 @@ body {
 .logo-icon {
     position: absolute;
     inset: 8px;
-    background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+    background: linear-gradient(135deg, #5a7d95 0%, #7a9db5 100%);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 2.8rem;
-    box-shadow: 0 10px 40px rgba(102, 126, 234, 0.5);
+    box-shadow: 0 10px 30px rgba(90, 125, 149, 0.35);
 }
 
 .home-title {
@@ -518,80 +543,104 @@ body {
     text-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
 
-/* Main Card */
+/* Main Card - Soft & Friendly */
 .home-card {
     width: 100%;
     max-width: 400px;
-    background: rgba(255,255,255,0.95);
+    background: var(--white);
     backdrop-filter: blur(20px);
-    border-radius: 32px;
-    padding: 28px 24px;
-    box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+    border-radius: var(--radius-xl);
+    padding: 32px 28px;
+    box-shadow: 0 20px 60px rgba(124, 156, 191, 0.15), 0 0 0 1px rgba(124, 156, 191, 0.05);
     position: relative;
     z-index: 1;
+    border: 1px solid rgba(255, 255, 255, 0.8);
 }
 
 .card-top {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    margin-bottom: 20px;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--light);
 }
 
 .card-emoji {
-    font-size: 1.8rem;
-    animation: wave 2s ease-in-out infinite;
+    font-size: 2rem;
+    animation: wave 2.5s ease-in-out infinite;
 }
 
 @keyframes wave {
     0%, 100% { transform: rotate(0); }
-    25% { transform: rotate(20deg); }
-    75% { transform: rotate(-15deg); }
+    25% { transform: rotate(15deg); }
+    75% { transform: rotate(-10deg); }
 }
 
 .card-title {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-weight: 700;
-    color: #333;
+    color: var(--dark);
 }
 
-/* Main Button */
+/* Main Button - Soft & Friendly */
 .btn-main {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 12px;
-    padding: 18px;
+    padding: 18px 24px;
     margin-top: 20px;
-    background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+    background: var(--gradient-1);
     border: none;
-    border-radius: 16px;
+    border-radius: var(--radius-full);
     color: white;
     font-size: 1.15rem;
     font-weight: 700;
     font-family: inherit;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+    transition: all var(--transition-normal);
+    box-shadow: 0 6px 20px rgba(124, 156, 191, 0.35);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-main::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
 }
 
 .btn-main:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 40px rgba(102, 126, 234, 0.5);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(124, 156, 191, 0.45);
+}
+
+.btn-main:hover::before {
+    left: 100%;
+}
+
+.btn-main:active {
+    transform: translateY(0) scale(0.98);
 }
 
 .btn-plus {
     width: 28px;
     height: 28px;
-    background: rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.25);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
-    font-weight: 300;
+    font-weight: 400;
 }
 
 .btn-link {
@@ -600,15 +649,17 @@ body {
     margin-top: 8px;
     background: none;
     border: none;
-    color: #999;
-    font-size: 0.9rem;
+    color: var(--gray);
+    font-size: 0.95rem;
     font-family: inherit;
     cursor: pointer;
-    transition: color 0.2s;
+    transition: all var(--transition-fast);
+    border-radius: var(--radius-md);
 }
 
 .btn-link:hover {
-    color: #667EEA;
+    color: var(--primary);
+    background: rgba(124, 156, 191, 0.08);
 }
 
 /* Features Row */
@@ -625,25 +676,31 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
-    background: rgba(255,255,255,0.2);
+    gap: 6px;
+    background: var(--white);
     backdrop-filter: blur(10px);
-    padding: 16px 24px;
-    border-radius: 20px;
-    border: 1px solid rgba(255,255,255,0.3);
+    padding: 18px 28px;
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(124, 156, 191, 0.15);
+    box-shadow: var(--shadow-soft);
+    transition: all var(--transition-normal);
+}
+
+.feature:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
 }
 
 .feature-num {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-weight: 800;
-    color: white;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    color: var(--primary);
 }
 
 .feature-label {
     font-size: 0.75rem;
     font-weight: 600;
-    color: rgba(255,255,255,0.9);
+    color: var(--gray);
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -651,10 +708,10 @@ body {
 /* ===== Welcome Screen ===== */
 .welcome-content {
     background: var(--white);
-    border-radius: var(--radius-lg);
-    padding: 24px;
-    box-shadow: var(--shadow-strong);
-    border: 3px solid var(--primary-light);
+    border-radius: var(--radius-xl);
+    padding: 28px;
+    box-shadow: 0 15px 50px rgba(124, 156, 191, 0.12);
+    border: 1px solid rgba(124, 156, 191, 0.1);
 }
 
 .character-select {
@@ -839,33 +896,51 @@ body {
 
 .grade-btn {
     background: var(--white);
-    border: 4px solid transparent;
-    border-radius: var(--radius-md);
-    padding: 20px 16px;
+    border: 3px solid var(--pastel-sky);
+    border-radius: var(--radius-lg);
+    padding: 22px 18px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all var(--transition-normal);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     box-shadow: var(--shadow-soft);
     font-family: inherit;
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
+    position: relative;
+    overflow: hidden;
 }
 
-.grade-btn:nth-child(1) { border-color: #74b9ff; }
-.grade-btn:nth-child(2) { border-color: #81ecec; }
-.grade-btn:nth-child(3) { border-color: #ffeaa7; }
-.grade-btn:nth-child(4) { border-color: #fab1a0; }
+.grade-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+}
+
+.grade-btn:nth-child(1) { border-color: var(--pastel-sky); background: linear-gradient(135deg, #fff 0%, #f0f7ff 100%); }
+.grade-btn:nth-child(2) { border-color: var(--pastel-mint); background: linear-gradient(135deg, #fff 0%, #f0fff8 100%); }
+.grade-btn:nth-child(3) { border-color: var(--pastel-lemon); background: linear-gradient(135deg, #fff 0%, #fffef0 100%); }
+.grade-btn:nth-child(4) { border-color: var(--pastel-peach); background: linear-gradient(135deg, #fff 0%, #fff8f5 100%); }
 
 .grade-btn:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: var(--shadow-strong);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 12px 35px rgba(124, 156, 191, 0.2);
+}
+
+.grade-btn:hover::after {
+    opacity: 0.5;
 }
 
 .grade-btn:active {
-    transform: scale(0.98);
+    transform: scale(0.97);
 }
 
 .grade-number {
@@ -902,29 +977,45 @@ body {
 
 .mode-btn {
     background: var(--white);
-    border: 3px solid var(--primary-light);
-    border-radius: var(--radius-md);
-    padding: 20px 16px;
+    border: 2px solid rgba(124, 156, 191, 0.2);
+    border-radius: var(--radius-lg);
+    padding: 22px 18px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all var(--transition-normal);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     box-shadow: var(--shadow-soft);
     font-family: inherit;
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
+    position: relative;
+}
+
+.mode-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--gradient-1);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    z-index: 0;
 }
 
 .mode-btn:hover {
-    transform: translateY(-5px);
-    border-color: var(--primary);
-    box-shadow: var(--shadow-strong);
+    transform: translateY(-4px);
+    border-color: var(--primary-light);
+    box-shadow: 0 12px 35px rgba(124, 156, 191, 0.2);
+}
+
+.mode-btn:hover::before {
+    opacity: 0.05;
 }
 
 .mode-btn:active {
-    transform: scale(0.98);
+    transform: scale(0.97);
 }
 
 .mode-icon {
@@ -1020,17 +1111,18 @@ body {
     border-right-color: var(--white);
 }
 
-/* ===== Game Area ===== */
+/* ===== Game Area - Soft & Friendly ===== */
 .game-area {
     background: var(--white);
-    border-radius: var(--radius-lg);
-    padding: 24px 16px;
-    min-height: 250px;
-    box-shadow: var(--shadow-medium);
+    border-radius: var(--radius-xl);
+    padding: 28px 20px;
+    min-height: 260px;
+    box-shadow: 0 12px 40px rgba(124, 156, 191, 0.12);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    border: 1px solid rgba(124, 156, 191, 0.08);
 }
 
 /* Fill the Blank Game */
@@ -1040,91 +1132,99 @@ body {
     color: var(--dark);
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 24px;
+    gap: 12px;
+    margin-bottom: 28px;
     flex-wrap: wrap;
     justify-content: center;
     text-align: center;
 }
 
 .blank-input {
-    width: 80px;
-    height: 60px;
+    width: 85px;
+    height: 65px;
     font-size: var(--font-size-xl);
     text-align: center;
-    border: 3px dashed var(--primary);
-    border-radius: var(--radius-md);
+    border: 3px dashed var(--primary-light);
+    border-radius: var(--radius-lg);
     background: var(--light);
     font-family: inherit;
     color: var(--primary);
     font-weight: 700;
     outline: none;
-    transition: all 0.3s ease;
+    transition: all var(--transition-normal);
     -webkit-appearance: none;
     appearance: none;
 }
 
 .blank-input:focus {
     border-style: solid;
+    border-color: var(--primary);
     background: var(--white);
-    box-shadow: 0 0 20px rgba(108, 92, 231, 0.3);
+    box-shadow: 0 0 0 4px rgba(124, 156, 191, 0.15), 0 4px 15px rgba(124, 156, 191, 0.2);
 }
 
 .blank-input.correct {
-    border-color: var(--success);
-    background: #d4edda;
+    border-color: var(--secondary);
+    border-style: solid;
+    background: linear-gradient(135deg, #f0fff8 0%, #d4f0e8 100%);
     animation: correctPulse 0.5s ease;
 }
 
 .blank-input.incorrect {
     border-color: var(--danger);
-    background: #f8d7da;
+    border-style: solid;
+    background: linear-gradient(135deg, #fff5f5 0%, #fce4e4 100%);
     animation: shake 0.5s ease;
 }
 
-/* Quiz Mode */
+/* Quiz Mode - Soft & Friendly */
 .quiz-options {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    gap: 14px;
     width: 100%;
     max-width: 100%;
 }
 
 .quiz-option {
-    padding: 18px 12px;
+    padding: 20px 14px;
     font-size: var(--font-size-xl);
     font-weight: 700;
-    background: var(--light);
-    border: 3px solid var(--primary-light);
-    border-radius: var(--radius-md);
+    background: var(--white);
+    border: 2px solid rgba(124, 156, 191, 0.2);
+    border-radius: var(--radius-lg);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all var(--transition-normal);
     font-family: inherit;
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
+    box-shadow: var(--shadow-soft);
+    color: var(--dark);
 }
 
 .quiz-option:hover {
-    transform: scale(1.02);
-    border-color: var(--primary);
-    background: var(--primary-light);
+    transform: translateY(-3px) scale(1.02);
+    border-color: var(--primary-light);
+    background: linear-gradient(135deg, #fff 0%, #f0f7ff 100%);
+    box-shadow: 0 8px 25px rgba(124, 156, 191, 0.2);
 }
 
 .quiz-option:active {
-    transform: scale(0.98);
+    transform: scale(0.97);
 }
 
 .quiz-option.correct {
-    background: var(--success);
-    border-color: var(--success);
-    color: var(--white);
+    background: linear-gradient(135deg, var(--pastel-mint) 0%, #d4f0e8 100%);
+    border-color: var(--secondary);
+    color: #2d6a4f;
+    box-shadow: 0 4px 15px rgba(155, 196, 188, 0.4);
 }
 
 .quiz-option.incorrect {
-    background: var(--danger);
+    background: linear-gradient(135deg, var(--pastel-rose) 0%, #fce4e4 100%);
     border-color: var(--danger);
-    color: var(--white);
+    color: #9b4444;
+    box-shadow: 0 4px 15px rgba(232, 165, 165, 0.4);
 }
 
 /* Match Game - Horizontal Layout with Lines */
@@ -1247,7 +1347,7 @@ body {
 }
 
 .match-item.selected {
-    background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+    background: linear-gradient(135deg, #5a7d95 0%, #7a9db5 100%);
     border-color: transparent;
     color: white;
 }
@@ -1258,7 +1358,7 @@ body {
 }
 
 .match-item.matched {
-    background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
+    background: linear-gradient(135deg, #5a8a78 0%, #7ab098 100%);
     border-color: transparent;
     color: white;
     cursor: default;
@@ -2009,8 +2109,8 @@ body {
 .user-profile-card:hover {
     transform: translateY(-4px);
     background: white;
-    border-color: #667EEA;
-    box-shadow: 0 12px 35px rgba(102, 126, 234, 0.2);
+    border-color: #5a7d95;
+    box-shadow: 0 12px 35px rgba(90, 125, 149, 0.2);
 }
 
 .user-profile-card .user-avatar {
@@ -2031,8 +2131,8 @@ body {
 
 .user-profile-card .user-grades {
     font-size: 0.7rem;
-    color: #667EEA;
-    background: rgba(102, 126, 234, 0.1);
+    color: #5a7d95;
+    background: rgba(90, 125, 149, 0.12);
     padding: 4px 10px;
     border-radius: 10px;
     font-weight: 600;
@@ -3341,7 +3441,7 @@ body {
 }
 
 .memory-card.matched .memory-card-back {
-    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    background: linear-gradient(135deg, #5a8a78 0%, #7ab098 100%);
     color: white;
     border-color: var(--success);
 }
@@ -3390,7 +3490,7 @@ body {
 .order-slot.filled {
     border-style: solid;
     border-color: var(--success);
-    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    background: linear-gradient(135deg, #5a8a78 0%, #7ab098 100%);
     color: white;
     animation: slotFill 0.3s ease;
 }
@@ -3433,13 +3533,13 @@ body {
 }
 
 .order-number.correct {
-    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    background: linear-gradient(135deg, #5a8a78 0%, #7ab098 100%);
     transform: scale(0.9);
     opacity: 0.7;
 }
 
 .order-number.wrong {
-    background: linear-gradient(135deg, #e17055 0%, #d63031 100%);
+    background: linear-gradient(135deg, #b87070 0%, #a05858 100%);
     animation: shake 0.3s ease;
 }
 
@@ -3490,12 +3590,12 @@ body {
 }
 
 .tf-true {
-    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    background: linear-gradient(135deg, #5a8a78 0%, #7ab098 100%);
     color: white;
 }
 
 .tf-false {
-    background: linear-gradient(135deg, #e17055 0%, #d63031 100%);
+    background: linear-gradient(135deg, #b87070 0%, #a05858 100%);
     color: white;
 }
 
@@ -4124,5 +4224,646 @@ body {
     .power-option {
         padding: 12px 16px;
         font-size: 1rem;
+    }
+}
+
+/* ==========================================
+   GRADE GROUP STYLES (Grades 5-13)
+   ========================================== */
+
+.grade-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.grade-group {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.grade-group-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--light);
+}
+
+.grade-group .grade-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+}
+
+/* Extended grade button colors for grades 5-13 - Soft Pastels */
+.grade-btn:nth-child(5) {
+    border-color: var(--pastel-lavender);
+    background: linear-gradient(135deg, #fff 0%, #f8f5ff 100%);
+}
+
+.grade-btn:nth-child(6) {
+    border-color: var(--pastel-rose);
+    background: linear-gradient(135deg, #fff 0%, #fff5f8 100%);
+}
+
+.grade-btn:nth-child(7) {
+    border-color: #B8D4E8;
+    background: linear-gradient(135deg, #fff 0%, #f5faff 100%);
+}
+
+.grade-btn:nth-child(8) {
+    border-color: #D4E8B8;
+    background: linear-gradient(135deg, #fff 0%, #f8fff5 100%);
+}
+
+.grade-btn:nth-child(9) {
+    border-color: #E8D4B8;
+    background: linear-gradient(135deg, #fff 0%, #fffaf5 100%);
+}
+
+.grade-btn:nth-child(10) {
+    border-color: #D4B8E8;
+    background: linear-gradient(135deg, #fff 0%, #faf5ff 100%);
+}
+
+.grade-btn:nth-child(11) {
+    border-color: #B8E8D4;
+    background: linear-gradient(135deg, #fff 0%, #f5fff8 100%);
+}
+
+.grade-btn:nth-child(12) {
+    border-color: #E8C8B8;
+    background: linear-gradient(135deg, #fff 0%, #fff8f5 100%);
+}
+
+.grade-btn:nth-child(13) {
+    border-color: #B8C8E8;
+    background: linear-gradient(135deg, #fff 0%, #f5f8ff 100%);
+}
+
+/* ==========================================
+   TIMED CHALLENGE STYLES - Soft & Friendly
+   ========================================== */
+
+.timed-challenge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 24px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.timed-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 18px 24px;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(124, 156, 191, 0.1);
+}
+
+.timed-timer {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary);
+    font-family: 'Nunito', sans-serif;
+}
+
+.timed-timer.warning {
+    color: var(--warning);
+    animation: pulse 0.5s ease-in-out infinite;
+}
+
+.timed-timer.danger {
+    color: var(--danger);
+    animation: pulse 0.3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+}
+
+.timed-score-display {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.timed-score-display span {
+    color: var(--primary);
+    font-size: 2rem;
+}
+
+.timed-problem {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    padding: 35px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 10px 35px rgba(124, 156, 191, 0.12);
+    border: 1px solid rgba(124, 156, 191, 0.08);
+}
+
+.timed-problem .problem-text {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 24px;
+}
+
+.timed-input {
+    width: 150px;
+    padding: 16px;
+    font-size: 2rem;
+    text-align: center;
+    border: 3px solid rgba(124, 156, 191, 0.2);
+    border-radius: var(--radius-lg);
+    outline: none;
+    transition: all var(--transition-normal);
+    font-family: inherit;
+}
+
+.timed-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(124, 156, 191, 0.15);
+}
+
+.timed-input.correct {
+    border-color: var(--secondary);
+    background: linear-gradient(135deg, #f0fff8 0%, #e8f8f0 100%);
+}
+
+.timed-input.incorrect {
+    border-color: var(--danger);
+    background: linear-gradient(135deg, #fff5f5 0%, #fce4e4 100%);
+    animation: shake 0.3s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.timed-results {
+    text-align: center;
+    padding: 30px;
+}
+
+.timed-results h2 {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+
+.timed-final-score {
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 10px;
+}
+
+.timed-stats {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 20px 0;
+}
+
+.timed-stat {
+    text-align: center;
+}
+
+.timed-stat-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.timed-stat-label {
+    font-size: 0.9rem;
+    color: var(--gray);
+}
+
+/* ==========================================
+   WORD PROBLEMS STYLES
+   ========================================== */
+
+.word-problem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.word-problem-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 30px;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.word-problem-icon {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.word-problem-text {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    color: var(--dark);
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.word-problem-text .highlight {
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.word-input-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.word-input-label {
+    font-size: 1.1rem;
+    color: var(--gray);
+}
+
+.word-input {
+    width: 200px;
+    padding: 15px;
+    font-size: 1.5rem;
+    text-align: center;
+    border: 3px solid var(--light);
+    border-radius: 12px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.word-input:focus {
+    border-color: var(--primary);
+}
+
+.word-submit-btn {
+    background: var(--gradient-1);
+    color: white;
+    border: none;
+    padding: 16px 44px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    box-shadow: 0 6px 20px rgba(124, 156, 191, 0.3);
+    font-family: inherit;
+}
+
+.word-submit-btn:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(124, 156, 191, 0.4);
+}
+
+.word-submit-btn:active {
+    transform: scale(0.98);
+}
+
+/* ==========================================
+   EQUATION SOLVER STYLES
+   ========================================== */
+
+.equation-solver {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    padding: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.equation-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 30px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.equation-instruction {
+    font-size: 1.1rem;
+    color: var(--gray);
+    margin-bottom: 15px;
+}
+
+.equation-display {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--dark);
+    padding: 20px;
+    background: var(--light);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    font-family: 'Courier New', monospace;
+}
+
+.equation-display .variable {
+    color: var(--primary);
+}
+
+.equation-input-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.equation-variable-label {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.equation-input {
+    width: 120px;
+    padding: 15px;
+    font-size: 1.8rem;
+    text-align: center;
+    border: 3px solid var(--light);
+    border-radius: 12px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.equation-input:focus {
+    border-color: var(--primary);
+}
+
+.equation-submit-btn {
+    background: var(--gradient-1);
+    color: white;
+    border: none;
+    padding: 16px 40px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    box-shadow: 0 6px 20px rgba(124, 156, 191, 0.3);
+    font-family: inherit;
+}
+
+.equation-submit-btn:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(124, 156, 191, 0.4);
+}
+
+.equation-submit-btn:active {
+    transform: scale(0.98);
+}
+
+/* ==========================================
+   GEOMETRY GAME STYLES
+   ========================================== */
+
+.geometry-game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    padding: 20px;
+    max-width: 550px;
+    margin: 0 auto;
+}
+
+.geometry-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 30px;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.geometry-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    min-height: 200px;
+}
+
+.geometry-visual svg {
+    max-width: 100%;
+    height: auto;
+}
+
+.geometry-shape {
+    fill: rgba(90, 125, 149, 0.2);
+    stroke: var(--primary);
+    stroke-width: 3;
+}
+
+.geometry-label {
+    font-size: 14px;
+    fill: var(--dark);
+    font-weight: 600;
+}
+
+.geometry-question {
+    font-size: 1.3rem;
+    color: var(--dark);
+    text-align: center;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.geometry-question .formula {
+    display: inline-block;
+    background: var(--light);
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    margin: 5px 0;
+}
+
+.geometry-input-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.geometry-input {
+    width: 150px;
+    padding: 15px;
+    font-size: 1.5rem;
+    text-align: center;
+    border: 3px solid var(--light);
+    border-radius: 12px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.geometry-input:focus {
+    border-color: var(--primary);
+}
+
+.geometry-unit {
+    font-size: 1rem;
+    color: var(--gray);
+}
+
+.geometry-submit-btn {
+    background: var(--gradient-1);
+    color: white;
+    border: none;
+    padding: 16px 40px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    box-shadow: 0 6px 20px rgba(124, 156, 191, 0.3);
+    font-family: inherit;
+}
+
+.geometry-submit-btn:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(124, 156, 191, 0.4);
+}
+
+.geometry-submit-btn:active {
+    transform: scale(0.98);
+}
+
+/* ==========================================
+   RESPONSIVE STYLES FOR NEW GAME MODES
+   ========================================== */
+
+@media (max-width: 768px) {
+    .grade-group .grade-grid {
+        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    }
+
+    .timed-problem .problem-text {
+        font-size: 2rem;
+    }
+
+    .timed-input {
+        width: 120px;
+        font-size: 1.5rem;
+    }
+
+    .word-problem-text {
+        font-size: 1.1rem;
+    }
+
+    .equation-display {
+        font-size: 2rem;
+    }
+
+    .geometry-visual {
+        min-height: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .grade-group {
+        padding: 12px;
+    }
+
+    .grade-group-label {
+        font-size: 0.75rem;
+    }
+
+    .timed-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .timed-timer {
+        font-size: 1.5rem;
+    }
+
+    .timed-problem .problem-text {
+        font-size: 1.8rem;
+    }
+
+    .word-problem-card {
+        padding: 20px;
+    }
+
+    .word-problem-icon {
+        font-size: 2.5rem;
+    }
+
+    .word-problem-text {
+        font-size: 1rem;
+    }
+
+    .equation-display {
+        font-size: 1.5rem;
+        padding: 15px;
+    }
+
+    .equation-input {
+        width: 100px;
+        font-size: 1.5rem;
+    }
+
+    .geometry-card {
+        padding: 20px;
+    }
+
+    .geometry-question {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .timed-problem .problem-text {
+        font-size: 1.5rem;
+    }
+
+    .timed-input {
+        width: 100px;
+        font-size: 1.3rem;
+        padding: 12px;
+    }
+
+    .word-input {
+        width: 150px;
+        font-size: 1.2rem;
+    }
+
+    .equation-display {
+        font-size: 1.3rem;
+    }
+
+    .geometry-input {
+        width: 120px;
+        font-size: 1.2rem;
     }
 }

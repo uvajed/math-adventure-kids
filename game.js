@@ -27,13 +27,27 @@ const translations = {
         // Grade levels
         grade: 'Grade',
         grades: 'Grades',
-        gradeOrdinal: { 1: '1st', 2: '2nd', 3: '3rd', 4: '4th' },
+        gradeOrdinal: { 1: '1st', 2: '2nd', 3: '3rd', 4: '4th', 5: '5th', 6: '6th', 7: '7th', 8: '8th', 9: '9th', 10: '10th', 11: '11th', 12: '12th', 13: '13th' },
         gradeDescriptions: {
             1: 'Numbers 1-20, Simple Addition',
             2: 'Numbers to 100, Add & Subtract',
             3: 'Multiplication & Division',
-            4: 'Fractions & Word Problems'
+            4: 'Fractions & Word Problems',
+            5: 'Decimals & Percentages',
+            6: 'Order of Operations, Negatives',
+            7: 'Pre-Algebra, Ratios',
+            8: 'Two-Step Equations, Exponents',
+            9: 'Linear Equations, Basic Geometry',
+            10: 'Quadratics, Systems of Equations',
+            11: 'Trigonometry Basics, Polynomials',
+            12: 'Advanced Trig, Logarithms',
+            13: 'Pre-Calculus Concepts'
         },
+        // Grade group labels
+        elementary: 'Elementary',
+        middleSchool: 'Middle School',
+        highSchool: 'High School',
+        advanced: 'Advanced',
 
         // Edit profile
         editProfile: 'Edit Profile',
@@ -86,6 +100,14 @@ const translations = {
         numberOrderDesc: 'Sort the numbers!',
         trueFalse: 'True or False',
         trueFalseDesc: 'Is the equation correct?',
+        timedChallenge: 'Timed Challenge',
+        timedChallengeDesc: 'Beat the clock!',
+        wordProblems: 'Word Problems',
+        wordProblemsDesc: 'Real-world math!',
+        equationSolver: 'Equation Solver',
+        equationSolverDesc: 'Solve for X!',
+        geometryGames: 'Geometry',
+        geometryGamesDesc: 'Shapes & angles!',
         true: 'True',
         false: 'False',
         sortAscending: 'Sort smallest to largest',
@@ -251,13 +273,27 @@ const translations = {
         // Grade levels
         grade: 'Klasse',
         grades: 'Klassen',
-        gradeOrdinal: { 1: '1.', 2: '2.', 3: '3.', 4: '4.' },
+        gradeOrdinal: { 1: '1.', 2: '2.', 3: '3.', 4: '4.', 5: '5.', 6: '6.', 7: '7.', 8: '8.', 9: '9.', 10: '10.', 11: '11.', 12: '12.', 13: '13.' },
         gradeDescriptions: {
             1: 'Zahlen 1-20, Einfache Addition',
             2: 'Zahlen bis 100, Addieren & Subtrahieren',
             3: 'Multiplikation & Division',
-            4: 'Brüche & Textaufgaben'
+            4: 'Brüche & Textaufgaben',
+            5: 'Dezimalzahlen & Prozente',
+            6: 'Rechenreihenfolge, Negative Zahlen',
+            7: 'Vor-Algebra, Verhältnisse',
+            8: 'Zweistufige Gleichungen, Exponenten',
+            9: 'Lineare Gleichungen, Grundgeometrie',
+            10: 'Quadratische Gleichungen, Systeme',
+            11: 'Trigonometrie Grundlagen, Polynome',
+            12: 'Fortgeschrittene Trig, Logarithmen',
+            13: 'Vorkalkül-Konzepte'
         },
+        // Grade group labels
+        elementary: 'Grundschule',
+        middleSchool: 'Mittelstufe',
+        highSchool: 'Oberstufe',
+        advanced: 'Fortgeschritten',
 
         // Edit profile
         editProfile: 'Profil bearbeiten',
@@ -310,6 +346,14 @@ const translations = {
         numberOrderDesc: 'Sortiere die Zahlen!',
         trueFalse: 'Wahr oder Falsch',
         trueFalseDesc: 'Stimmt die Gleichung?',
+        timedChallenge: 'Zeitchallenge',
+        timedChallengeDesc: 'Schlag die Uhr!',
+        wordProblems: 'Textaufgaben',
+        wordProblemsDesc: 'Mathe im Alltag!',
+        equationSolver: 'Gleichungslöser',
+        equationSolverDesc: 'Löse nach X!',
+        geometryGames: 'Geometrie',
+        geometryGamesDesc: 'Formen & Winkel!',
         true: 'Wahr',
         false: 'Falsch',
         sortAscending: 'Sortiere von klein nach groß',
@@ -475,13 +519,27 @@ const translations = {
         // Grade levels
         grade: 'Klasa',
         grades: 'Klasat',
-        gradeOrdinal: { 1: 'e 1-rë', 2: 'e 2-të', 3: 'e 3-të', 4: 'e 4-të' },
+        gradeOrdinal: { 1: 'e 1-rë', 2: 'e 2-të', 3: 'e 3-të', 4: 'e 4-të', 5: 'e 5-të', 6: 'e 6-të', 7: 'e 7-të', 8: 'e 8-të', 9: 'e 9-të', 10: 'e 10-të', 11: 'e 11-të', 12: 'e 12-të', 13: 'e 13-të' },
         gradeDescriptions: {
             1: 'Numrat 1-20, Mbledhje e Thjeshtë',
             2: 'Numrat deri në 100, Mbledh & Zbrit',
             3: 'Shumëzim & Pjesëtim',
-            4: 'Thyesa & Probleme me Fjalë'
+            4: 'Thyesa & Probleme me Fjalë',
+            5: 'Dhjetorë & Përqindje',
+            6: 'Rendi i Veprimeve, Negativë',
+            7: 'Para-Algjebrë, Raportet',
+            8: 'Ekuacione Dy-Hapash, Eksponentë',
+            9: 'Ekuacione Lineare, Gjeometri Bazë',
+            10: 'Ekuacione Kuadratike, Sisteme',
+            11: 'Trigonometri Bazë, Polinome',
+            12: 'Trigonometri e Avancuar, Logaritme',
+            13: 'Koncepte Para-Kalkulus'
         },
+        // Grade group labels
+        elementary: 'Fillore',
+        middleSchool: 'Shkollë e Mesme',
+        highSchool: 'Gjimnaz',
+        advanced: 'E Avancuar',
 
         // Edit profile
         editProfile: 'Ndrysho Profilin',
@@ -534,6 +592,14 @@ const translations = {
         numberOrderDesc: 'Radhit numrat!',
         trueFalse: 'E Vërtetë apo e Gabuar',
         trueFalseDesc: 'A është ekuacioni i saktë?',
+        timedChallenge: 'Sfidë me Kohë',
+        timedChallengeDesc: 'Mund orën!',
+        wordProblems: 'Probleme me Fjalë',
+        wordProblemsDesc: 'Matematikë reale!',
+        equationSolver: 'Zgjidhës Ekuacionesh',
+        equationSolverDesc: 'Zgjidh për X!',
+        geometryGames: 'Gjeometri',
+        geometryGamesDesc: 'Forma & kënde!',
         true: 'E Vërtetë',
         false: 'E Gabuar',
         sortAscending: 'Radhit nga më i vogli te më i madhi',
@@ -876,6 +942,86 @@ const gradeConfig = {
         fractions: true,
         operations: ['addition', 'subtraction', 'multiplication', 'division', 'fractions'],
         timeBonus: 1
+    },
+    // Grade 5: Upper Elementary - Decimals & Percentages
+    5: {
+        addition: { min: 100, max: 1000 },
+        subtraction: { min: 50, max: 500 },
+        multiplication: { min: 10, max: 25 },
+        division: { min: 2, max: 15 },
+        decimals: { places: 1, max: 100 },
+        percentages: { max: 100 },
+        operations: ['addition', 'subtraction', 'multiplication', 'division', 'decimals', 'percentages'],
+        timeBonus: 1
+    },
+    // Grade 6: Order of Operations & Negative Numbers
+    6: {
+        addition: { min: 100, max: 2000 },
+        subtraction: { min: 100, max: 1000 },
+        multiplication: { min: 10, max: 50 },
+        division: { min: 2, max: 20 },
+        decimals: { places: 2, max: 500 },
+        percentages: { max: 200 },
+        negatives: { min: -20, max: 20 },
+        orderOfOps: true,
+        operations: ['addition', 'subtraction', 'multiplication', 'division', 'decimals', 'negatives', 'orderOfOps'],
+        timeBonus: 1
+    },
+    // Grade 7: Pre-Algebra & Ratios
+    7: {
+        prealgebra: { type: 'simple' },
+        ratios: true,
+        proportions: true,
+        negatives: { min: -50, max: 50 },
+        operations: ['prealgebra', 'ratios', 'negatives', 'addition', 'subtraction', 'multiplication'],
+        timeBonus: 1
+    },
+    // Grade 8: Two-Step Equations & Exponents
+    8: {
+        prealgebra: { type: 'twoStep' },
+        exponents: { base: 10, exp: 3 },
+        negatives: { min: -100, max: 100 },
+        operations: ['prealgebra', 'exponents', 'negatives'],
+        timeBonus: 1
+    },
+    // Grade 9: Linear Equations & Basic Geometry
+    9: {
+        linearEquations: true,
+        quadratics: { type: 'factor' },
+        geometry: { shapes: ['triangle', 'rectangle', 'circle'] },
+        operations: ['linearEquations', 'quadratics', 'geometry'],
+        timeBonus: 0
+    },
+    // Grade 10: Quadratics & Systems
+    10: {
+        quadratics: { type: 'formula' },
+        systems: { type: 'twoVar' },
+        geometry: { shapes: ['all'], concepts: ['area', 'perimeter', 'angles'] },
+        operations: ['quadratics', 'systems', 'geometry'],
+        timeBonus: 0
+    },
+    // Grade 11: Trigonometry Basics & Polynomials
+    11: {
+        trigBasics: { concepts: ['sin', 'cos', 'tan'] },
+        polynomials: true,
+        operations: ['trigBasics', 'polynomials', 'quadratics'],
+        timeBonus: 0
+    },
+    // Grade 12: Advanced Trig & Logarithms
+    12: {
+        trigonometry: true,
+        logarithms: true,
+        sequences: true,
+        operations: ['trigonometry', 'logarithms', 'sequences'],
+        timeBonus: 0
+    },
+    // Grade 13: Pre-Calculus
+    13: {
+        limits: { type: 'basic' },
+        functions: { types: ['polynomial', 'rational', 'exponential'] },
+        trigAdvanced: true,
+        operations: ['limits', 'functions', 'trigAdvanced'],
+        timeBonus: 0
     }
 };
 
@@ -1253,15 +1399,26 @@ function renderGradeButtons() {
     const container = document.getElementById('grade-buttons');
     if (!currentUser) return;
 
-    const colors = ['#74b9ff', '#81ecec', '#ffeaa7', '#fab1a0'];
-    const stars = ['⭐', '⭐⭐', '⭐⭐⭐', '⭐⭐⭐⭐'];
+    // Extended color palette for 13 grades
+    const colors = [
+        '#74b9ff', '#81ecec', '#ffeaa7', '#fab1a0', // Grades 1-4 (Elementary)
+        '#a29bfe', '#fd79a8', '#55efc4', '#fdcb6e', // Grades 5-8 (Middle)
+        '#e17055', '#00b894', '#6c5ce7', '#e84393', // Grades 9-12 (High)
+        '#00cec9'  // Grade 13 (Advanced)
+    ];
+    // Star progression by level
+    const stars = [
+        '⭐', '⭐⭐', '⭐⭐⭐', '⭐⭐⭐⭐', '⭐⭐⭐⭐⭐', // Grades 1-5
+        '🌟', '🌟🌟', '🌟🌟🌟', '🌟🌟🌟🌟', // Grades 6-9
+        '💫', '💫💫', '💫💫💫', '🏆' // Grades 10-13
+    ];
 
     container.innerHTML = currentUser.grades.map((grade, i) => `
-        <button class="grade-btn" data-grade="${grade}" style="border-color: ${colors[grade-1]}">
+        <button class="grade-btn" data-grade="${grade}" style="border-color: ${colors[grade-1] || '#5a7d95'}">
             <span class="grade-number">${tNested('gradeOrdinal', grade)}</span>
             <span class="grade-label">${t('grade')}</span>
             <span class="grade-desc">${tNested('gradeDescriptions', grade)}</span>
-            <span class="grade-stars">${stars[grade-1]}</span>
+            <span class="grade-stars">${stars[grade-1] || '🏆'}</span>
         </button>
     `).join('');
 
@@ -1269,6 +1426,40 @@ function renderGradeButtons() {
     container.querySelectorAll('.grade-btn').forEach(btn => {
         btn.addEventListener('click', () => selectGrade(parseInt(btn.dataset.grade)));
     });
+}
+
+// Render grade checkboxes dynamically for registration and edit forms
+function renderGradeCheckboxes(containerId, inputName) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    // Grade groupings for better organization
+    const gradeGroups = [
+        { name: 'elementary', grades: [1, 2, 3, 4, 5], labelKey: 'elementary' },
+        { name: 'middle', grades: [6, 7, 8], labelKey: 'middleSchool' },
+        { name: 'high', grades: [9, 10, 11, 12], labelKey: 'highSchool' },
+        { name: 'advanced', grades: [13], labelKey: 'advanced' }
+    ];
+
+    let html = '';
+    gradeGroups.forEach(group => {
+        html += `<div class="grade-group">
+            <h4 class="grade-group-label">${t(group.labelKey)}</h4>
+            <div class="grade-group-checkboxes">`;
+        group.grades.forEach(grade => {
+            html += `
+                <label class="grade-checkbox">
+                    <input type="checkbox" name="${inputName}" value="${grade}">
+                    <span class="grade-check-box">
+                        <span class="grade-num">${tNested('gradeOrdinal', grade)}</span>
+                        <span class="grade-text">${t('grade')}</span>
+                    </span>
+                </label>`;
+        });
+        html += `</div></div>`;
+    });
+
+    container.innerHTML = html;
 }
 
 // ===== Event Listeners Setup =====
@@ -1404,6 +1595,10 @@ function setupEventListeners() {
 // ===== User Actions =====
 function resetRegistrationForm() {
     document.getElementById('reg-name').value = '';
+
+    // Render grade checkboxes dynamically
+    renderGradeCheckboxes('register-grade-grid', 'grade');
+
     document.querySelectorAll('input[name="grade"]').forEach(cb => cb.checked = false);
     document.getElementById('select-all-grades').checked = false;
 
@@ -1577,7 +1772,8 @@ function openEditScreen(userId) {
         btn.classList.toggle('selected', btn.dataset.avatar === user.avatar);
     });
 
-    // Set grades
+    // Render grade checkboxes dynamically and set grades
+    renderGradeCheckboxes('edit-grade-grid', 'edit-grade');
     document.querySelectorAll('input[name="edit-grade"]').forEach(cb => {
         cb.checked = user.grades.includes(parseInt(cb.value));
     });
@@ -1781,6 +1977,64 @@ function generateProblem(operation, config) {
         case 'fractions':
             return generateFractionProblem();
 
+        // Grade 5-6: Decimals & Percentages
+        case 'decimals':
+            return generateDecimalProblem(config);
+
+        case 'percentages':
+            return generatePercentageProblem(config);
+
+        case 'negatives':
+            return generateNegativesProblem(config);
+
+        case 'orderOfOps':
+            return generateOrderOfOpsProblem();
+
+        // Grade 7-8: Pre-Algebra
+        case 'prealgebra':
+            return generatePreAlgebraProblem(config);
+
+        case 'ratios':
+            return generateRatioProblem();
+
+        case 'exponents':
+            return generateExponentProblem(config);
+
+        // Grade 9-10: Algebra & Geometry
+        case 'linearEquations':
+            return generateLinearEquationProblem();
+
+        case 'quadratics':
+            return generateQuadraticProblem(config);
+
+        case 'geometry':
+            return generateGeometryProblem(config);
+
+        case 'systems':
+            return generateSystemsProblem();
+
+        // Grade 11-12: Trig & Advanced
+        case 'trigBasics':
+        case 'trigonometry':
+        case 'trigAdvanced':
+            return generateTrigProblem(config);
+
+        case 'logarithms':
+            return generateLogProblem();
+
+        case 'sequences':
+            return generateSequenceProblem();
+
+        case 'polynomials':
+            return generatePolynomialProblem();
+
+        // Grade 13: Pre-Calculus
+        case 'limits':
+            return generateLimitProblem();
+
+        case 'functions':
+            return generateFunctionProblem(config);
+
         default:
             return generateProblem('addition', config);
     }
@@ -1871,6 +2125,394 @@ function randomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+// ===== Grade 5-6: Decimals & Percentages =====
+function generateDecimalProblem(config) {
+    const places = config.decimals?.places || 1;
+    const max = config.decimals?.max || 100;
+    const multiplier = Math.pow(10, places);
+
+    const num1 = Math.round(randomInt(10, max * multiplier) / multiplier * multiplier) / multiplier;
+    const num2 = Math.round(randomInt(10, max * multiplier / 2) / multiplier * multiplier) / multiplier;
+    const ops = ['+', '-', '×'];
+    const op = ops[randomInt(0, ops.length - 1)];
+
+    let answer;
+    switch(op) {
+        case '+': answer = parseFloat((num1 + num2).toFixed(places)); break;
+        case '-': answer = parseFloat((Math.max(num1, num2) - Math.min(num1, num2)).toFixed(places)); break;
+        case '×': answer = parseFloat((num1 * num2).toFixed(places + 1)); break;
+    }
+
+    const displayNum1 = op === '-' ? Math.max(num1, num2) : num1;
+    const displayNum2 = op === '-' ? Math.min(num1, num2) : num2;
+
+    return {
+        display: `${displayNum1} ${op} ${displayNum2} = ?`,
+        answer: answer,
+        operation: 'decimals'
+    };
+}
+
+function generatePercentageProblem(config) {
+    const types = ['findPercent', 'percentOf'];
+    const type = types[randomInt(0, types.length - 1)];
+
+    let display, answer;
+
+    if (type === 'findPercent') {
+        // What is 25% of 80?
+        const percent = randomInt(1, 10) * 10;
+        const base = randomInt(2, 20) * 10;
+        answer = (percent / 100) * base;
+        display = `${percent}% of ${base} = ?`;
+    } else {
+        // 20 is what percent of 80?
+        const percent = randomInt(1, 10) * 10;
+        const whole = randomInt(2, 10) * 10;
+        const part = (percent / 100) * whole;
+        answer = percent;
+        display = `${part} is ?% of ${whole}`;
+    }
+
+    return { display, answer, operation: 'percentages' };
+}
+
+function generateNegativesProblem(config) {
+    const min = config.negatives?.min || -20;
+    const max = config.negatives?.max || 20;
+
+    const num1 = randomInt(min, max);
+    const num2 = randomInt(min, max);
+    const ops = ['+', '-', '×'];
+    const op = ops[randomInt(0, ops.length - 1)];
+
+    let answer;
+    switch(op) {
+        case '+': answer = num1 + num2; break;
+        case '-': answer = num1 - num2; break;
+        case '×': answer = num1 * num2; break;
+    }
+
+    const displayNum1 = num1 < 0 ? `(${num1})` : num1;
+    const displayNum2 = num2 < 0 ? `(${num2})` : num2;
+
+    return {
+        display: `${displayNum1} ${op} ${displayNum2} = ?`,
+        answer,
+        operation: 'negatives'
+    };
+}
+
+function generateOrderOfOpsProblem() {
+    const templates = [
+        { expr: (a, b, c) => `${a} + ${b} × ${c}`, calc: (a, b, c) => a + b * c },
+        { expr: (a, b, c) => `${a} × ${b} + ${c}`, calc: (a, b, c) => a * b + c },
+        { expr: (a, b, c) => `(${a} + ${b}) × ${c}`, calc: (a, b, c) => (a + b) * c },
+        { expr: (a, b, c) => `${a} × (${b} + ${c})`, calc: (a, b, c) => a * (b + c) },
+        { expr: (a, b, c) => `${a} + ${b} - ${c}`, calc: (a, b, c) => a + b - c },
+        { expr: (a, b, c) => `${a} × ${b} ÷ ${c}`, calc: (a, b, c) => Math.round((a * b) / c) }
+    ];
+
+    const template = templates[randomInt(0, templates.length - 1)];
+    const a = randomInt(2, 10);
+    const b = randomInt(2, 10);
+    const c = randomInt(2, 5);
+
+    return {
+        display: template.expr(a, b, c) + ' = ?',
+        answer: template.calc(a, b, c),
+        operation: 'orderOfOps'
+    };
+}
+
+// ===== Grade 7-8: Pre-Algebra =====
+function generatePreAlgebraProblem(config) {
+    const type = config.prealgebra?.type || 'simple';
+
+    if (type === 'simple') {
+        // x + 5 = 12 or x - 3 = 7
+        const x = randomInt(1, 20);
+        const b = randomInt(1, 15);
+        const isAdd = Math.random() > 0.5;
+
+        if (isAdd) {
+            return {
+                display: `x + ${b} = ${x + b}`,
+                answer: x,
+                operation: 'prealgebra'
+            };
+        } else {
+            return {
+                display: `x - ${b} = ${x - b}`,
+                answer: x,
+                operation: 'prealgebra'
+            };
+        }
+    } else {
+        // Two-step: 2x + 3 = 11
+        const x = randomInt(1, 10);
+        const a = randomInt(2, 5);
+        const b = randomInt(1, 10);
+        const result = a * x + b;
+
+        return {
+            display: `${a}x + ${b} = ${result}`,
+            answer: x,
+            operation: 'prealgebra'
+        };
+    }
+}
+
+function generateRatioProblem() {
+    const a = randomInt(1, 6);
+    const b = randomInt(1, 6);
+    const multiplier = randomInt(2, 5);
+
+    // Find equivalent ratio: a:b = (a*m):?
+    return {
+        display: `${a}:${b} = ${a * multiplier}:?`,
+        answer: b * multiplier,
+        operation: 'ratios'
+    };
+}
+
+function generateExponentProblem(config) {
+    const bases = [2, 3, 4, 5, 10];
+    const base = bases[randomInt(0, bases.length - 1)];
+    const exp = randomInt(2, 4);
+
+    return {
+        display: `${base}<sup>${exp}</sup> = ?`,
+        answer: Math.pow(base, exp),
+        operation: 'exponents'
+    };
+}
+
+// ===== Grade 9-10: Algebra & Geometry =====
+function generateLinearEquationProblem() {
+    const m = randomInt(-5, 5);
+    const b = randomInt(-10, 10);
+    const x = randomInt(-5, 5);
+    const y = m * x + b;
+
+    const types = ['findY', 'findX'];
+    const type = types[randomInt(0, types.length - 1)];
+
+    const mStr = m === 1 ? '' : m === -1 ? '-' : m;
+    const bStr = b >= 0 ? `+ ${b}` : `- ${Math.abs(b)}`;
+
+    if (type === 'findY') {
+        return {
+            display: `y = ${mStr}x ${bStr}, x = ${x}, y = ?`,
+            answer: y,
+            operation: 'linearEquations'
+        };
+    } else {
+        return {
+            display: `y = ${mStr}x ${bStr}, y = ${y}, x = ?`,
+            answer: x,
+            operation: 'linearEquations'
+        };
+    }
+}
+
+function generateQuadraticProblem(config) {
+    // x² - 5x + 6 = 0, find x (factoring)
+    const root1 = randomInt(1, 6);
+    const root2 = randomInt(1, 6);
+
+    const b = -(root1 + root2);
+    const c = root1 * root2;
+
+    const bStr = b >= 0 ? `+ ${b}` : `- ${Math.abs(b)}`;
+    const cStr = c >= 0 ? `+ ${c}` : `- ${Math.abs(c)}`;
+
+    // Ask for one root
+    return {
+        display: `x² ${bStr}x ${cStr} = 0, x = ?`,
+        answer: root1,
+        operation: 'quadratics',
+        acceptedAnswers: [root1, root2]
+    };
+}
+
+function generateGeometryProblem(config) {
+    const shapes = ['rectangle', 'triangle', 'circle'];
+    const shape = shapes[randomInt(0, shapes.length - 1)];
+    const concept = ['area', 'perimeter'][randomInt(0, 1)];
+
+    if (shape === 'rectangle') {
+        const w = randomInt(3, 12);
+        const h = randomInt(3, 12);
+        if (concept === 'area') {
+            return {
+                display: `Rectangle: ${w} × ${h}, Area = ?`,
+                answer: w * h,
+                operation: 'geometry'
+            };
+        } else {
+            return {
+                display: `Rectangle: ${w} × ${h}, Perimeter = ?`,
+                answer: 2 * (w + h),
+                operation: 'geometry'
+            };
+        }
+    } else if (shape === 'triangle') {
+        const base = randomInt(4, 12);
+        const height = randomInt(4, 12);
+        return {
+            display: `Triangle: base=${base}, height=${height}, Area = ?`,
+            answer: (base * height) / 2,
+            operation: 'geometry'
+        };
+    } else {
+        const r = randomInt(2, 10);
+        if (concept === 'area') {
+            return {
+                display: `Circle: r=${r}, Area = ? (use π≈3.14)`,
+                answer: Math.round(3.14 * r * r * 100) / 100,
+                operation: 'geometry',
+                tolerance: 1
+            };
+        } else {
+            return {
+                display: `Circle: r=${r}, Circumference = ? (use π≈3.14)`,
+                answer: Math.round(2 * 3.14 * r * 100) / 100,
+                operation: 'geometry',
+                tolerance: 1
+            };
+        }
+    }
+}
+
+function generateSystemsProblem() {
+    // Simple system: x + y = ?, x - y = ?
+    const x = randomInt(1, 10);
+    const y = randomInt(1, 10);
+
+    return {
+        display: `x + y = ${x + y}, x - y = ${x - y}, x = ?`,
+        answer: x,
+        operation: 'systems'
+    };
+}
+
+// ===== Grade 11-12: Trig & Advanced =====
+function generateTrigProblem(config) {
+    const angles = [0, 30, 45, 60, 90];
+    const angle = angles[randomInt(0, angles.length - 1)];
+    const funcs = ['sin', 'cos', 'tan'];
+    const func = funcs[randomInt(0, angle === 90 && funcs.indexOf('tan') !== -1 ? 1 : funcs.length - 1)];
+
+    const trigValues = {
+        sin: { 0: 0, 30: 0.5, 45: 0.71, 60: 0.87, 90: 1 },
+        cos: { 0: 1, 30: 0.87, 45: 0.71, 60: 0.5, 90: 0 },
+        tan: { 0: 0, 30: 0.58, 45: 1, 60: 1.73 }
+    };
+
+    return {
+        display: `${func}(${angle}°) = ?`,
+        answer: trigValues[func][angle],
+        operation: 'trigonometry',
+        tolerance: 0.1
+    };
+}
+
+function generateLogProblem() {
+    const bases = [2, 10];
+    const base = bases[randomInt(0, 1)];
+    const exp = randomInt(1, 4);
+    const result = Math.pow(base, exp);
+
+    return {
+        display: `log<sub>${base}</sub>(${result}) = ?`,
+        answer: exp,
+        operation: 'logarithms'
+    };
+}
+
+function generateSequenceProblem() {
+    const isArithmetic = Math.random() > 0.5;
+
+    if (isArithmetic) {
+        const first = randomInt(1, 10);
+        const diff = randomInt(2, 5);
+        const seq = [first, first + diff, first + 2*diff, first + 3*diff];
+        return {
+            display: `${seq.join(', ')}, ? (find next)`,
+            answer: first + 4*diff,
+            operation: 'sequences'
+        };
+    } else {
+        const first = randomInt(1, 3);
+        const ratio = randomInt(2, 3);
+        const seq = [first, first * ratio, first * ratio * ratio];
+        return {
+            display: `${seq.join(', ')}, ? (find next)`,
+            answer: first * ratio * ratio * ratio,
+            operation: 'sequences'
+        };
+    }
+}
+
+function generatePolynomialProblem() {
+    // Evaluate polynomial at a point
+    const a = randomInt(1, 3);
+    const b = randomInt(-5, 5);
+    const c = randomInt(-5, 5);
+    const x = randomInt(-3, 3);
+
+    const answer = a * x * x + b * x + c;
+    const bStr = b >= 0 ? `+ ${b}x` : `- ${Math.abs(b)}x`;
+    const cStr = c >= 0 ? `+ ${c}` : `- ${Math.abs(c)}`;
+
+    return {
+        display: `f(x) = ${a}x² ${bStr} ${cStr}, f(${x}) = ?`,
+        answer: answer,
+        operation: 'polynomials'
+    };
+}
+
+// ===== Grade 13: Pre-Calculus =====
+function generateLimitProblem() {
+    // Simple limits
+    const types = ['constant', 'linear'];
+    const type = types[randomInt(0, types.length - 1)];
+
+    if (type === 'constant') {
+        const c = randomInt(1, 10);
+        return {
+            display: `lim(x→∞) ${c} = ?`,
+            answer: c,
+            operation: 'limits'
+        };
+    } else {
+        const a = randomInt(1, 5);
+        const b = randomInt(1, 10);
+        const x = randomInt(1, 5);
+        return {
+            display: `lim(x→${x}) (${a}x + ${b}) = ?`,
+            answer: a * x + b,
+            operation: 'limits'
+        };
+    }
+}
+
+function generateFunctionProblem(config) {
+    // Function composition or evaluation
+    const a = randomInt(1, 5);
+    const b = randomInt(-5, 5);
+    const x = randomInt(-5, 5);
+
+    const bStr = b >= 0 ? `+ ${b}` : `- ${Math.abs(b)}`;
+
+    return {
+        display: `f(x) = ${a}x ${bStr}, f(${x}) = ?`,
+        answer: a * x + b,
+        operation: 'functions'
+    };
+}
+
 // ===== Game Play =====
 function startGamePlay() {
     document.getElementById('game-character-emoji').textContent = currentUser ? currentUser.avatar : '🦊';
@@ -1909,6 +2551,18 @@ function startGamePlay() {
             break;
         case 'truefalse':
             renderTrueFalse();
+            break;
+        case 'timed':
+            renderTimedChallenge();
+            break;
+        case 'word':
+            renderWordProblems();
+            break;
+        case 'equation':
+            renderEquationSolver();
+            break;
+        case 'geometryGame':
+            renderGeometryGame();
             break;
     }
 
@@ -2775,6 +3429,301 @@ function proceedToNextTrueFalse() {
         updateProgress();
         renderTrueFalse();
     }
+}
+
+// ===== Timed Challenge Mode =====
+function renderTimedChallenge() {
+    const gameArea = document.getElementById('game-area');
+    gameState.timedScore = 0;
+
+    let html = '<div class="timed-challenge">';
+    html += '<div class="timed-header">';
+    html += `<div class="timed-score-display">${t('score')}: <span id="timed-score">0</span></div>`;
+    html += '</div>';
+    html += '<div class="timed-problem" id="timed-problem"></div>';
+    html += '<div class="timed-input-area">';
+    html += '<input type="number" class="timed-input" id="timed-input" inputmode="numeric">';
+    html += `<button class="big-button" id="timed-submit">${t('checkAnswer')}</button>`;
+    html += '</div>';
+    html += '</div>';
+
+    gameArea.innerHTML = html;
+
+    nextTimedQuestion();
+
+    document.getElementById('timed-input').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') checkTimedAnswer();
+    });
+    document.getElementById('timed-submit').addEventListener('click', checkTimedAnswer);
+    document.getElementById('timed-input').focus();
+}
+
+function nextTimedQuestion() {
+    const config = gradeConfig[gameState.grade];
+    const basicOps = config.operations.filter(op => ['addition', 'subtraction', 'multiplication', 'division'].includes(op));
+    const operation = basicOps.length > 0 ? basicOps[randomInt(0, basicOps.length - 1)] : 'addition';
+
+    gameState.currentTimedProblem = generateProblem(operation, config);
+
+    const problemDiv = document.getElementById('timed-problem');
+    problemDiv.innerHTML = `<span class="problem-text">${gameState.currentTimedProblem.display}</span>`;
+    problemDiv.classList.add('new-problem');
+    setTimeout(() => problemDiv.classList.remove('new-problem'), 300);
+
+    const input = document.getElementById('timed-input');
+    if (input) {
+        input.value = '';
+        input.focus();
+    }
+}
+
+function checkTimedAnswer() {
+    const input = document.getElementById('timed-input');
+    const userAnswer = parseFloat(input.value);
+    const problem = gameState.currentTimedProblem;
+
+    if (isNaN(userAnswer)) return;
+
+    const isCorrect = Math.abs(userAnswer - problem.answer) < 0.01;
+
+    if (isCorrect) {
+        gameState.timedScore++;
+        document.getElementById('timed-score').textContent = gameState.timedScore;
+        gameState.score += 10;
+        gameState.streak++;
+        gameState.correctAnswers++;
+        playSound('correct');
+
+        input.classList.add('correct-flash');
+        setTimeout(() => input.classList.remove('correct-flash'), 200);
+
+        nextTimedQuestion();
+    } else {
+        gameState.streak = 0;
+        playSound('wrong');
+
+        input.classList.add('wrong-flash');
+        setTimeout(() => {
+            input.classList.remove('wrong-flash');
+            input.value = '';
+        }, 300);
+    }
+
+    updateStats();
+}
+
+// ===== Word Problems Mode =====
+const wordProblemTemplates = {
+    addition: [
+        { template: '{name} has {a} {items}. {name2} gives them {b} more. How many {items} does {name} have now?', calc: (a, b) => a + b },
+        { template: 'There are {a} {items} in one box and {b} in another. How many total?', calc: (a, b) => a + b }
+    ],
+    subtraction: [
+        { template: '{name} has {a} {items}. {name} gives {b} to {name2}. How many are left?', calc: (a, b) => a - b }
+    ],
+    multiplication: [
+        { template: 'There are {a} boxes. Each has {b} {items}. How many total?', calc: (a, b) => a * b },
+        { template: '{name} buys {a} {items} at ${b} each. Total cost?', calc: (a, b) => a * b }
+    ],
+    division: [
+        { template: '{name} shares {total} {items} equally among {b} friends. Each gets?', calc: (total, b, a) => a }
+    ]
+};
+
+const wpNames = ['Alex', 'Sam', 'Jordan', 'Taylor', 'Morgan', 'Casey'];
+const wpItems = ['apples', 'books', 'cookies', 'pencils', 'stickers', 'marbles'];
+
+function renderWordProblems() {
+    const gameArea = document.getElementById('game-area');
+    const problem = generateWordProblem();
+    gameState.problems[gameState.currentQuestion] = problem;
+
+    let html = '<div class="word-problem">';
+    html += `<div class="word-problem-text">${problem.display}</div>`;
+    html += '<div class="word-problem-input">';
+    html += '<input type="number" class="word-input" id="word-input" inputmode="numeric">';
+    html += `<button class="big-button" id="word-submit">${t('checkAnswer')}</button>`;
+    html += '</div>';
+    html += '</div>';
+
+    gameArea.innerHTML = html;
+
+    document.getElementById('word-input').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') checkWordAnswer();
+    });
+    document.getElementById('word-submit').addEventListener('click', checkWordAnswer);
+    document.getElementById('word-input').focus();
+}
+
+function generateWordProblem() {
+    const config = gradeConfig[gameState.grade];
+    const availableOps = ['addition', 'subtraction', 'multiplication', 'division'].filter(op => config.operations.includes(op));
+    const operation = availableOps[randomInt(0, availableOps.length - 1)] || 'addition';
+
+    const templates = wordProblemTemplates[operation];
+    const template = templates[randomInt(0, templates.length - 1)];
+
+    const name = wpNames[randomInt(0, wpNames.length - 1)];
+    const name2 = wpNames.filter(n => n !== name)[randomInt(0, wpNames.length - 2)];
+    const item = wpItems[randomInt(0, wpItems.length - 1)];
+
+    let a, b, total, answer;
+
+    if (operation === 'division') {
+        b = randomInt(2, 10);
+        a = randomInt(2, 10);
+        total = a * b;
+        answer = a;
+    } else {
+        a = randomInt(5, 50);
+        b = operation === 'subtraction' ? randomInt(1, a - 1) : randomInt(2, 20);
+        answer = template.calc(a, b);
+    }
+
+    let display = template.template
+        .replace(/{name}/g, name)
+        .replace(/{name2}/g, name2)
+        .replace(/{items}/g, item)
+        .replace(/{a}/g, a)
+        .replace(/{b}/g, b)
+        .replace(/{total}/g, total || a);
+
+    return { display, answer, operation: 'word' };
+}
+
+function checkWordAnswer() {
+    const input = document.getElementById('word-input');
+    const userAnswer = parseFloat(input.value);
+    const problem = gameState.problems[gameState.currentQuestion];
+
+    if (isNaN(userAnswer)) return;
+
+    const isCorrect = Math.abs(userAnswer - problem.answer) < 0.01;
+    input.classList.add(isCorrect ? 'correct' : 'incorrect');
+    input.disabled = true;
+
+    handleAnswer(isCorrect, problem.answer);
+}
+
+// ===== Equation Solver Mode =====
+function renderEquationSolver() {
+    const gameArea = document.getElementById('game-area');
+    const config = gradeConfig[gameState.grade];
+
+    let problem;
+    if (config.prealgebra) {
+        problem = generatePreAlgebraProblem(config);
+    } else if (config.linearEquations) {
+        problem = generateLinearEquationProblem();
+    } else {
+        // Fallback to simple algebra for lower grades
+        const x = randomInt(1, 15);
+        const b = randomInt(1, 10);
+        problem = { display: `x + ${b} = ${x + b}`, answer: x, operation: 'equation' };
+    }
+
+    gameState.problems[gameState.currentQuestion] = problem;
+
+    let html = '<div class="equation-solver">';
+    html += `<div class="equation-display">${problem.display}</div>`;
+    html += '<div class="equation-input-area">';
+    html += '<span class="var-label">x = </span>';
+    html += '<input type="number" class="equation-input" id="equation-input" inputmode="numeric" step="any">';
+    html += '</div>';
+    html += `<button class="big-button" id="equation-submit">${t('checkAnswer')}</button>`;
+    html += '</div>';
+
+    gameArea.innerHTML = html;
+
+    document.getElementById('equation-input').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') checkEquationAnswer();
+    });
+    document.getElementById('equation-submit').addEventListener('click', checkEquationAnswer);
+    document.getElementById('equation-input').focus();
+}
+
+function checkEquationAnswer() {
+    const input = document.getElementById('equation-input');
+    const userAnswer = parseFloat(input.value);
+    const problem = gameState.problems[gameState.currentQuestion];
+
+    if (isNaN(userAnswer)) return;
+
+    let isCorrect;
+    if (problem.acceptedAnswers) {
+        isCorrect = problem.acceptedAnswers.includes(userAnswer);
+    } else {
+        isCorrect = Math.abs(userAnswer - problem.answer) < 0.01;
+    }
+
+    input.classList.add(isCorrect ? 'correct' : 'incorrect');
+    input.disabled = true;
+
+    handleAnswer(isCorrect, problem.answer);
+}
+
+// ===== Geometry Game Mode =====
+function renderGeometryGame() {
+    const gameArea = document.getElementById('game-area');
+    const config = gradeConfig[gameState.grade];
+
+    const problem = config.geometry ? generateGeometryProblem(config) : generateSimpleGeometryProblem();
+    gameState.problems[gameState.currentQuestion] = problem;
+
+    let html = '<div class="geometry-game">';
+    html += `<div class="geometry-question">${problem.display}</div>`;
+    html += '<div class="geometry-input-area">';
+    html += '<input type="number" class="geometry-input" id="geometry-input" inputmode="decimal" step="any">';
+    html += `<button class="big-button" id="geometry-submit">${t('checkAnswer')}</button>`;
+    html += '</div>';
+    html += '</div>';
+
+    gameArea.innerHTML = html;
+
+    document.getElementById('geometry-input').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') checkGeometryAnswer();
+    });
+    document.getElementById('geometry-submit').addEventListener('click', checkGeometryAnswer);
+    document.getElementById('geometry-input').focus();
+}
+
+function generateSimpleGeometryProblem() {
+    const shapes = ['rectangle', 'triangle'];
+    const shape = shapes[randomInt(0, shapes.length - 1)];
+
+    if (shape === 'rectangle') {
+        const w = randomInt(3, 10);
+        const h = randomInt(3, 10);
+        return {
+            display: `Rectangle: ${w} × ${h}, Area = ?`,
+            answer: w * h,
+            operation: 'geometry'
+        };
+    } else {
+        const base = randomInt(4, 10);
+        const height = randomInt(4, 10);
+        return {
+            display: `Triangle: base=${base}, height=${height}, Area = ?`,
+            answer: (base * height) / 2,
+            operation: 'geometry'
+        };
+    }
+}
+
+function checkGeometryAnswer() {
+    const input = document.getElementById('geometry-input');
+    const userAnswer = parseFloat(input.value);
+    const problem = gameState.problems[gameState.currentQuestion];
+
+    if (isNaN(userAnswer)) return;
+
+    const tolerance = problem.tolerance || 0.5;
+    const isCorrect = Math.abs(userAnswer - problem.answer) <= tolerance;
+
+    input.classList.add(isCorrect ? 'correct' : 'incorrect');
+    input.disabled = true;
+
+    handleAnswer(isCorrect, problem.answer);
 }
 
 // ===== Answer Handling =====
